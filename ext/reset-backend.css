@@ -1,0 +1,105 @@
+@CHARSET "UTF-8";
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outline:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+.clear {clear: both;}
+
+body {font-family: "微软雅黑"; font-size: 12px; color: #333; height: 100%; width: 100%; background: url('bg.png');}
+a {color: #0077BB; text-decoration: none;}
+li {list-style: none;}
+input {border: 1px solid grey;}
+select {border: 1px solid grey;}
+textarea {width: 450px;height: 100px;border: 1px solid grey;}
+
+/**********mini-icon-background***********/
+.mini-icon-bg {
+	width: 17px;
+	height: 17px;
+	display: block;
+	border: 1px solid #eee;
+	border-radius: 2px;
+}
+.mini-icon-bg:hover {
+	border: 1px solid #0077bb;
+}
+.mini-icon-edit {
+	background: url('mini-icons.png') no-repeat -64px -112px;
+}
+.mini-icon-delete {
+	background: url('mini-icons.png') no-repeat -176px -96px;
+}
+/*******Forms*********/
+fieldset.main-form {
+	float: left;
+	width: 60%;
+}
+
+fieldset.required-form {
+	float: right;
+	width: 35%;
+}
+
+fieldset.dependent-form {
+	float: right;
+	width: 35%;
+	display: none;
+}
+
+fieldset.optional-form {
+	float: right;
+	width: 35%;
+}
+
+fieldset.param-form {
+	float: right;
+	width: 35%;
+}
+
+fieldset dl {
+	
+}
+
+fieldset dl dt {
+	float: left;
+	width: 75px;
+	clear: both;
+	padding-top: 2px;
+	margin-top: 5px;
+}
+
+fieldset dl dd {
+	float: left;
+	width: 240px;
+	margin-top: 5px;
+}
+
+fieldset.main-form dl dd {
+	width: 480px;
+}
+
+fieldset dl dd textarea{
+	width: 240px;
+}
+
+/*********************/
+/* all context menus have this class */
+.context-menu- {
+	background-color: #f2f2f2;
+	border: 1px solid #999;
+	border-radius: 4px;
+	list-style-type: none;
+	margin: 0; 
+	padding: 0;
+}
+
+.context-menu- a {
+	display: block;
+	padding: 3px 6px;
+	margin: 1px 0;
+	text-decoration: none;
+	color: #333;
+	letter-spacing: 1px;
+}
+
+.context-menu- a:hover {
+	background-color: #666;
+	color: white;
+}

@@ -1,0 +1,334 @@
+.layout_top {}
+.layout_menu-top {}
+.layout_center-bg {
+	margin: 10px;
+	border: 1px solid #b1b0ae;
+    padding: 10px;
+}
+
+.header {
+	background-color: #3a3a3a;
+	padding: 12px;	
+}
+
+.header a.home {
+	color: white;
+	font-weight: bold;
+}
+
+.header div.link {
+	float: right;
+	color: white;
+}
+
+.header div.link a {
+	color: white;
+}
+
+.header-info {
+	background-color: orange;
+	height: 2px;
+}
+
+/*general for all A tag*/
+ul.brick-menu a {
+	width: 95px;
+	padding-top: 12px;
+	height: 22px;
+	color: #353535;
+	display: block;
+	text-align: center;
+}
+
+ul.brick-menu a:hover {
+	color: white;
+}
+/*first level nav*/
+ul.brick-menu {
+	overflow: auto;
+	border-bottom: 2px solid #bcbbaf;
+	font-weight: bold;
+	margin-top: 5px;
+}
+
+ul.brick-menu li {
+	float: left;
+	margin-left: 5px;
+	background: url('../image/ui.png') repeat-x;
+	border-radius: 4px 4px 0 0;
+}
+
+ul.brick-menu li.mouseover {
+	background-position: 0 -52px;
+}
+
+ul.brick-menu li.active {
+	background-position: 0 -52px;
+}
+
+/*second level nav*/
+ul.brick-menu ul {
+	display: none;
+	position: absolute;
+	background: #bcbbaf;
+	overflow: auto;
+	width: 115px;
+	padding: 5px 25px 5px 5px;
+	border-radius: 0 0 4px 4px;
+}
+
+ul.brick-menu ul li {
+	float: none;
+	margin: 0;
+	background: none;
+}
+
+ul.brick-menu ul li a {
+	width: 115px;
+	padding-top: 10px;
+	height: 17px;
+}
+
+.brick-menu-bc {
+	color: #777;
+	margin: 5px 0;
+	height: 18px;
+	font-weight: bold;
+	padding-left: 15px;
+}
+
+div.brick-control {
+	overflow: auto;
+	margin: 0px 10px;
+	padding: 8px;
+	background: url('../image/ui.png') 0 -512px repeat-x;
+	border: 1px solid #AAAAAA;
+}
+
+div.brick-control .control-title {
+	float: left;
+	overflow: auto;
+	margin: 15px 0 0 25px;
+}
+
+div.brick-control .control-title span.control {
+	font-size: large;
+	font-weight: bold;
+}
+
+div.brick-control .control-title span.action {
+	font-size: larger;
+}
+
+div.brick-control .control-buttons {
+	float: right;
+	overflow: auto;
+}
+
+div.brick-control a {
+	float: left;
+	margin: 0 5px;
+	display: block;
+	background: url('../image/icon-32.png') no-repeat;
+	width: 32px;
+	height: 52px;
+	border-bottom: 2px solid #CECECE;
+}
+div.brick-control div.seperator {
+	float: left;
+	width: 0;
+	height: 42px;
+	border-left: 1px solid #CECECE;
+	margin: 5px 10px;
+}
+div.brick-control a div {
+	margin-top: 36px;
+	letter-spacing: 3px;
+	text-align: center;
+}
+
+div.brick-control a:hover {
+	border-bottom: 2px solid #666666;
+}
+div.brick-control a.create 		{background-position: 0px 0px;}
+div.brick-control a.confirm-save{background-position: -32px 0px;}
+div.brick-control a.exit		{background-position: -64px 0px;}
+div.brick-control a.delete		{background-position: -96px 0px;}
+div.brick-control a.export		{background-position: -128px 0px;}
+div.brick-control a.help		{background-position: -160px 0px;}
+div.brick-control a.next		{background-position: -192px 0px;}
+
+/*********************************************************************************************/
+div.ext-default-setting {
+	height: 40px;
+	border-bottom: 1px dotted #AAAAAA;
+	margin-bottom: 10px;
+}
+div.ext-default-setting .hint {
+	float: left;
+	width: 60px;
+	padding: 10px;
+	border: 1px solid #AAAAAA;
+	border-radius: 4px 0 0 4px;
+	background: #e2dfdb;
+}
+
+div.ext-default-setting a {
+	display: block;
+	width: 180px;
+	float: left;
+	padding: 10px;
+	border: 1px solid #AAAAAA;
+	border-left: none;
+	border-radius: 0 4px 4px 0;
+	background: #e2dfdb;
+}
+div.ext-default-setting a:hover {
+	color: white;
+}
+/*********************************************************************************************/
+.file-selector {
+	overflow: auto;
+	width: -moz-calc(100% - 45px);
+	height: 500px;
+	margin: 10px;
+	border: 1px solid #DDEEFF;
+	border-radius: 4px 4px 4px 4px;
+	background: #e0e0e0;
+}
+.file-selector .file {
+	width: 110px;
+	height: 150px;
+	margin: 10px;
+	float: left;
+	border: 1px solid #DDD;
+	background: white;
+	cursor: pointer;
+}
+.file-selector .file .frame {
+	width: 100px;
+	height: 100px;
+	margin: 5px;
+	overflow: hidden;
+}
+.file-selector .file .info {
+	width: 100px;
+	text-align: center;
+	font-size: smaller;
+	line-height: 1.4em;
+}
+/*********************************************************************************************/
+#attachment-list li {
+	padding: 3px;
+	margin: 5px 0;
+	cursor: pointer;
+	border-bottom: 1px solid #777;
+}
+#attachment-list li:hover {
+	border-bottom: 1px solid #FF6600;
+}
+
+/***************************************Forms***************************************/
+fieldset.main-form {
+	float: left;
+	width: 60%;
+}
+fieldset.required-form {
+	float: right;
+	width: 35%;
+}
+fieldset.dependent-form {
+	float: right;
+	width: 35%;
+	display: none;
+}
+fieldset.optional-form {
+	float: right;
+	width: 35%;
+}
+fieldset.param-form {
+	float: right;
+	width: 35%;
+}
+fieldset.attachment-form {
+	float: left;
+	width: 60%;
+}
+fieldset dl {
+	
+}
+fieldset dl dt {
+	float: left;
+	width: 75px;
+	clear: both;
+	padding-top: 2px;
+	margin-top: 5px;
+}
+fieldset dl dd {
+	float: left;
+	width: 240px;
+	margin-top: 5px;
+}
+fieldset.main-form dl dd {
+	width: 480px;
+}
+fieldset dl dd textarea{
+	width: 240px;
+}
+/*********************/
+.left {
+	float: left;
+	margin: 10px;
+	width: 380px;
+}
+.left div.title {
+	text-indent: 2em;
+	height: 25px;
+	line-height: 25px;
+	font-size: 14px;
+	font-weight: bold;
+	background: #b3b3b3;
+	border: 1px solid black;
+	border-bottom: none;
+	margin-top: 15px;
+}
+.left div.recent-box {
+
+}
+.index-order-selector {
+	float: left;
+	margin: 10px;
+	width: 540px;
+}
+.index-order-selector .title-box {
+	height: 25px;
+	background: #b3b3b3;
+	margin-top: 15px;
+}
+.index-order-selector .title-box .title {
+	float: left;
+	line-height: 25px;
+	text-indent: 2em;
+	font-size: 14px;
+	font-weight: bold;
+}
+.index-order-selector .title-box .selector {
+	float: right;
+	margin: 3px 15px;
+}
+
+.index-order-selector #order-list-container {
+	min-height: 150px;
+	background: #fffeee;
+	padding: 10px 0;
+}
+
+/******************************************/
+/******************login*******************/
+/******************************************/
+.admin-login {
+	padding: 0 0 55px 55px;
+}
+.super-admin-login {
+	padding: 0 0 55px 55px;
+}

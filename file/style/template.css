@@ -1,0 +1,178 @@
+@charset "UTF-8";
+#blackbox {
+	padding: 15px;
+	border-radius: 8px;
+	background-color: #333;
+	box-shadow: 0 0 8px #999;
+}
+
+.clickable {
+	cursor: pointer;
+}
+.body_main_frame {
+	padding: 0;
+	margin: 0;
+	width: 960px;
+	margin: 10px auto;
+}
+
+nav.group-container {
+	float: left;
+	width: 180px;
+	background: white;
+	border-radius: 4px 0 0 4px;
+	padding: 4px 0 4px 4px;
+	height: 600px;
+	overflow: auto;
+}
+
+nav.group-container .group-head {
+	font-weight: bold;
+	color: #0077bb;
+	padding: 15px 5px;
+}
+nav.group-container .default-group li {
+	margin: 0 0 10px 5px;
+	font-size: smaller;
+}
+nav.group-container li.add-group {
+	padding: 5px 0;
+}
+nav.group-container li.add-group div.add-group {
+	padding: 10px;
+}
+nav.group-container li.add-group #label-create {
+	margin-left: 10px;
+}
+nav.group-container li.load-group {
+	display: block;
+	margin-bottom: 1px;
+	background: #f4f3f2;
+	position: relative;
+	border-radius: 2px 0 0 2px;
+}
+nav.group-container li.load-group.selected {
+	background: #eee;
+}
+nav.group-container li.load-group:hover {
+	background: #eee;
+}
+
+nav.group-container li.load-group div.load-group {
+	padding: 15px 0 16px 10px;
+}
+nav.group-container li.load-group div.actions {
+	padding: 5px;
+	position: absolute;
+	top: 32px;
+	left: 128px;
+	display: none;
+}
+nav.group-container li.load-group div.actions a {
+	float: left;
+	margin: 0 1px;
+}
+nav.group-container li.load-group .text-label {
+	font-weight: bold;
+	height: 18px;
+}
+nav.group-container li.load-group .text-count {
+	font-size: 10px;
+	color: #777;
+}
+
+div.file-container {
+	float: left;
+	width: 764px;
+	border-radius: 0 4px 4px 0;
+	background: white;
+	height: 600px;
+	padding: 4px;
+	border-left: 2px solid #eee;
+}
+div.file-container ul.file-list {
+	height: 465px;
+}
+div.file-container ul.file-list li {
+	width: 168px;
+	float: left;
+	height: 200px;
+	border: 1px solid #eee;
+	padding: 5px;
+	border-radius: 2px;
+	font-size: 10px;
+	margin: 10px 5px;
+	line-height: 1.4em;
+}
+div.file-container ul.file-list li:hover {
+	border: 1px solid #0077bb;
+}
+div.file-container ul.file-list li img {
+	display: block;
+	margin: 0 auto;
+}
+div.file-container ul.file-list li .actions {
+	margin-top: 5px;
+}
+div.file-container ul.paginator {
+	height: 20px;
+}
+div.file-container ul.paginator li {
+	float: left;
+}
+div.file-container ul.paginator li a {
+	display: block;
+	height: 15px;
+	width: 20px;
+	font-size: 12px;
+	text-decoration: none;
+	text-align: center;
+}
+div.file-container ul.paginator li.current a {
+	font-size: 16px;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+div.file-container .upload-toolbar {
+	margin-top: 15px;
+	border-top: 2px solid #eee;
+	padding-top: 15px;
+}
+div.file-container .upload-toolbar #upload-button {
+	height: 32px;
+	background: url('../image/upload.png') no-repeat 10px 8px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-shadow: 2px 2px 3px #ccc;
+	height: 48px;
+	width: 220px;
+	cursor: pointer;
+}
+div.file-container .upload-toolbar #upload-button:hover {
+	box-shadow: 1px 1px 2px #ccc;
+}
+
+ul.file-list {
+	height: 340px;
+	overflow: auto;
+	background: white;
+	border-radius: 4px;
+	margin: 5px 0;
+}
+ul.file-list li {
+	border-bottom: 1px dotted #777;
+	padding: 4px;
+	margin: 4px;
+	font-size: smaller;
+	overflow: auto;
+}
+ul.file-list li .size {
+	float: right;
+}
+#button-start {
+	padding: 5px 12px;
+	border: 1px solid #000;
+	margin-top: 20px;
+	cursor: pointer;
+}

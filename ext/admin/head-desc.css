@@ -1,0 +1,8 @@
+@CHARSET "UTF-8";
+.head-desc {
+	border-bottom: 3px solid #aaa;
+	padding: 10px;
+	font-size: larger;
+	font-weight: bold;
+	color: #333;
+}

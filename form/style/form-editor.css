@@ -1,0 +1,57 @@
+.element-library {
+	width: 350px;
+	border-radius: 4px;
+	background: #eee;
+	padding: 25px;
+	margin: 15px;
+	position: fixed;
+}
+.element-current {
+	width: 420px;
+	margin-left: 450px;
+}
+ul.form-editor {
+	
+}
+
+ul.form-editor li.drag-dropable {
+	padding: 0;
+	border-radius: 2px;
+}
+
+ul.form-editor li.solid {
+	padding: 5px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+}
+
+ul.form-editor li.solid:hover {
+	border: 1px dashed #777;
+}
+
+ul.form-editor div.element-label {
+	width: 400px;
+}
+
+ul.form-editor div.element-label a {
+	display: block;
+	font-weight: bold;
+	padding: 8px;
+	cursor: pointer;
+	background: #f0f0f0;
+	border-radius: 2px;
+}
+
+ul.form-editor div.element-label a:hover {
+	background: #e0e0e0;
+}
+
+ul.form-editor div.element {
+	font-weight: bold;
+	padding: 2px 0;
+}
+
+ul.form-editor div.element-desc {
+	font-size: smaller;
+	padding: 2px 0;
+}

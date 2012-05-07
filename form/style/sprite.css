@@ -1,0 +1,202 @@
+.body_main_frame {
+	width: 1008px;
+	margin: 0 auto;
+}
+/*******************/
+/*Stage Dropper*****/
+/*******************/
+.stage-dropper {
+	border: 1px dotted black;
+	height: 15px;
+	clear: both;
+}
+.stage-gap {
+	height: 15px;
+}
+/*******************/
+/*Stage*************/
+/*******************/
+div.stage {
+	width: 100%;
+	
+	position: relative;
+}
+/*******************/
+/*Sprite************/
+/*******************/
+div.sprite {
+	float: left;
+	position: relative;
+	min-height: 80px;
+}
+div.sprite-surrogate {
+	position: relative;
+}
+div.sprite-surrogate .handle {
+	cursor: pointer;
+}
+div.sprite-editmode {
+	background-color: #87CB53;
+}
+div.grid-25 {
+	width: 242px;
+	margin: 0 4px;
+}
+div.grid-33 {
+	width: 326px;
+	margin: 0 4px;
+}
+div.grid-50 {
+	width: 494px;
+	margin: 0 4px;
+}
+div.grid-66 {
+	width: 662px;
+	margin: 0 4px;
+}
+div.grid-75 {
+	width: 746px;
+	margin: 0 4px;
+}
+div.grid-100 {
+	width: 998px;
+	margin: 0 4px;
+}
+/*******************/
+/*Sprite Controller*/
+/*******************/
+div.sprite a.sprite-controller {
+	display: block;
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	padding: 2px 10px;
+	color: white;
+	background-color: #678;
+	border-radius: 2px;
+	box-shadow: 0 0 2px #777;
+	cursor: pointer;
+}
+div.sprite a.sprite-controller:hover {
+	box-shadow: 0 0 1px #999;
+	text-decoration: none;
+}
+/*******************/
+/*Sprite Surrogate Controller**/
+/*******************/
+div.sprite-surrogate a.sprite-controller {
+	display: block;
+	position: absolute;
+	top: 5px;
+	left: 95px;
+	padding: 0px 5px;
+	color: white;
+	background-color: #456;
+	border-radius: 2px;
+	box-shadow: 0 0 2px #777;
+	cursor: pointer;
+}
+div.sprite-surrogate a.sprite-controller:hover {
+	box-shadow: 0 0 1px #999;
+	text-decoration: none;
+}
+
+
+/*******************/
+/*Stage Controller**/
+/*******************/
+div.stage a.stage-controller {
+	display: block;
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	padding: 2px 10px;
+	color: white;
+	background-color: #678;
+	border-radius: 2px;
+	box-shadow: 0 0 2px #777;
+	cursor: pointer;
+}
+div.stage a.stage-controller:hover {
+	box-shadow: 0 0 1px #999;
+	text-decoration: none;
+}
+div.stage a.edit-stage-id {
+	display: block;
+	position: absolute;
+	top: 25px;
+	left: 5px;
+	padding: 2px 10px;
+	color: white;
+	background-color: #678;
+	border-radius: 2px;
+	box-shadow: 0 0 2px #777;
+	cursor: pointer;
+}
+div.stage a.edit-stage-id:hover {
+	box-shadow: 0 0 1px #999;
+	text-decoration: none;
+}
+/*******************/
+/*Brick Mask********/
+/*******************/
+.mini-brick-mask {
+	position: absolute;
+	border: 1px dotted #777;
+	background-color: #F0F0F0;
+	opacity: 0.9;
+	display: none;
+}
+.mini-brick-mask a {
+	border: 1px solid #0077BB;
+	color: #0077BB;
+	background-color: #EEE;
+	border-radius: 4px;
+	cursor: pointer;
+	position: relative;
+	margin: 3px;
+	padding: 3px;
+	display: block;
+	width: 100px;
+}
+.mini-brick-mask ul.gearlinks li a {
+	border-radius: 2px;
+	border: 1px solid #777;
+	float: left;
+}
+/***********************/
+/*Extension Icons*******/
+/***********************/
+.extension-icon {
+	width: 72px;
+	height: 72px;
+	background: url('../image/brick.png') -648px -648px no-repeat;
+}
+.Front_Navi {
+	background: url('../image/brick.png') 0px 0px no-repeat;
+}
+.Front_News {
+	background: url('../image/brick.png') -72px 0px no-repeat;
+}
+.Front_Breadcrumb {
+	background: url('../image/brick.png') -144px 0px no-repeat;
+}
+.Front_Html {
+	background: url('../image/brick.png') -216px 0px no-repeat;
+}
+.Front_AdGroupV2 {
+	background: url('../image/brick.png') -288px 0px no-repeat;
+}
+/*******************/
+/*Head&Tail Sprite**/
+/*******************/
+
+
+div.body_head {
+	width: 100%;
+	float: none;
+}
+div.body_tail {
+	width: 100%;
+	float: none;
+}

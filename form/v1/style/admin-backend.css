@@ -1,0 +1,54 @@
+.toolbar {
+	position: fixed;
+	z-index: 999;
+	top: 0;
+	left: 0;
+	height: 51px;
+	width: 100%;
+	box-shadow: 0 2px 6px #777;
+}
+.toolbar .main {
+	height: 28px;
+	width: 100%;
+	background: #333333;
+	font-size: 11px;
+	font-family: 'Î¢ÈíÑÅºÚ', 'ºÚÌå';
+	margin: 0;
+	padding: 0;
+}
+.toolbar .main ul {
+	padding: 5px 15px 0 15px;
+	margin: 0;
+}
+.toolbar .main ul.left {
+	float: left;
+	width: 800px;
+}
+.toolbar .main ul.right {
+	float: right;
+}
+.toolbar .main li {
+	display: block;
+	float: left;
+	margin: 0 2px;
+}
+.toolbar .main li a {
+	display: block;
+	color: white;
+	padding: 4px 12px;
+	background-color: #333333;
+	border-radius: 10px;
+	text-decoration: none;
+}
+.toolbar .main li a:hover {
+	background-color: #666;
+}
+.toolbar .sub {
+	height: 22px;
+	width: 100%;
+	background: #777;
+	color: white;
+	border-bottom: 1px solid #ffa500;
+	margin: 0;
+	padding: 0;
+}

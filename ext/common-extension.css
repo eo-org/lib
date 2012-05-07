@@ -1,0 +1,83 @@
+/************************************/
+/**Navi**/
+/************************************/
+.toolbar {
+	z-index: 999;
+	top: 0;
+	left: 0;
+	height: 51px;
+	width: 100%;
+	box-shadow: 0 2px 6px #777;
+}
+.toolbar .main {
+	height: 28px;
+	width: 100%;
+	background: #333333;
+	font-size: 11px;
+	margin: 0;
+	padding: 0;
+}
+.toolbar .main ul {
+	padding: 5px 15px 0 15px;
+	margin: 0;
+}
+.toolbar .main ul.left {
+	float: left;
+	width: 800px;
+}
+.toolbar .main ul.right {
+	float: right;
+}
+.toolbar .main li {
+	display: block;
+	float: left;
+	margin: 0 2px;
+}
+.toolbar .main li a {
+	display: block;
+	color: white;
+	padding: 4px 12px;
+	background-color: #333333;
+	border-radius: 10px;
+	text-decoration: none;
+}
+.toolbar .main li a:hover {
+	background-color: #666;
+}
+.toolbar .sub {
+	height: 22px;
+	width: 100%;
+	background: #777;
+	color: white;
+	border-bottom: 1px solid #ffa500;
+	margin: 0;
+	padding: 0;
+}
+/************************************/
+/** End Navi**/
+/************************************/
+
+/************************************/
+/**ActionMenu**/
+/************************************/
+div.action-menu {
+	overflow: auto;
+	padding: 2px;
+}
+div.action-menu a.action-menu {
+	display: block;
+	float:left;
+	margin: 0 5px;
+	border: 1px solid #0077BB;
+	background-color: #EEE;
+	padding: 5px 20px;
+	border-radius: 2px;
+	box-shadow: 1px 1px 2px #777;
+}
+div.action-menu a.action-menu:hover {
+	box-shadow: 0px 0px 2px #777;
+	text-decoration: none;
+}
+/************************************/
+/**End ActionMenu**/
+/************************************/
