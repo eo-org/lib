@@ -14,7 +14,7 @@ $(document).ready(function() {
 		formData.append("uploadedfile", file);
 		var groupId = $('.file-container').attr('groupId');
 		var xhr = new XMLHttpRequest();
-		xhr.open('POST', "/rest/file?groupId=" + groupId, true);
+		xhr.open('POST', "/rest/file?orgCode=" + window.ORG_CODE + "&groupId=" + groupId, true);
 		xhr.onreadystatechange = function() {
 	        if (xhr.readyState == 4) {
 	            if (xhr.status == 200 || xhr.status == 304) {
