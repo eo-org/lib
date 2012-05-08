@@ -45,9 +45,10 @@ $(document).ready(function() {
 			if(dragSrcEl.attr('element-type') != undefined) {
 				var dropEl = $(this);
 				var elType = dragSrcEl.attr('element-type');
+				var formid = $('#formname').val();
 				var resp = $.ajax({
 					type: "POST",
-					url: '/admin/form/get-element-template/type/' + elType + '/format/html',
+					url: '/admin/form/get-element-template/type/' + elType + '/id/' + formid + '/format/html',
 					success: function(html) {
 						if(resp.getResponseHeader('result') == 'success') {
 							var newDrop = $("<li class='element-dropable'></li>");
