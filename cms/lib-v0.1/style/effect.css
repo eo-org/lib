@@ -1,0 +1,13 @@
+/*********************************/
+/**********HrzAccordion***********/
+/*********************************/
+.hrzAccordion{display:none;}
+.hrzAccordion .container{width:100%;}
+.hrzAccordion .container ul{list-style-type:none;margin:0;padding:0;}
+.hrzAccordion .container li{display:inline;margin:0px;padding:0px;}
+.hrzAccordion .contentContainer{padding-left:0px;float:left;width:0px;overflow:hidden;}
+.hrzAccordion .contentWrapper{}
+.hrzAccordion .contentInnerWrapper{text-align:justify;padding:10px;}
+.hrzAccordion .handle{float:left;margin:1px;margin-right:-10px;}
+.hrzAccordion .handleOver{}
+.hrzAccordion .handleSelected{}
