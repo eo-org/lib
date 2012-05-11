@@ -1,0 +1,63 @@
+#start {
+	border: 1px solid #777;
+	padding: 5px;
+	background: #333;
+	text-align: center;
+	color: #FFF;
+	cursor: pointer;
+	margin-top: 25px;
+}
+
+ul.file-lines li {
+	cursor: pointer;
+	padding: 2px;
+	margin-left: 25px;
+	height: 20px;
+}
+
+ul.file-lines li:hover {
+	list-style: url('../image/cross.png');
+}
+
+ul.file-lines li.uploading {
+	border: 1px solid red;
+}
+
+ul.file-lines li.uploaded {
+	border: 1px solid green;
+}
+
+/**************************/
+
+.group-name {
+	font-size: larger;
+}
+
+ul.file-group {
+	border-top: 1px solid black;
+}
+
+ul.file-group li {
+	overflow: auto;
+	padding: 5px;
+	margin: 1px 0;
+	cursor:pointer;
+	border-radius: 4px;
+}
+
+ul.file-group li:hover {
+	background-color: #999;
+}
+
+ul.file-group li .name {
+	float: left;
+	width: 240px;
+}
+
+ul.file-group li .size {
+	float: left;
+}
+
+ul.file-group li .time {
+	float: right;
+}

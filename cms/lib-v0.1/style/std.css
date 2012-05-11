@@ -1,0 +1,120 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outline:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+body {
+	font-family: "黑体";
+	font-size: 12px;
+	color: #333;
+	height: 100%;
+	width: 100%;
+	background: url('../image/bg.png');
+}
+
+a {
+	color: black;
+  	text-decoration: none;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+ul li {
+	list-style: none;
+}
+
+input {
+	border: 1px solid grey;
+}
+
+select {
+	border: 1px solid grey;
+}
+
+textarea {
+	width: 450px;
+	height: 100px;
+	border: 1px solid grey;
+}
+
+.clear {
+	clear: both;
+}
+
+/*******Forms*********/
+fieldset.main-form {
+	float: left;
+	width: 60%;
+}
+
+fieldset.required-form {
+	float: right;
+	width: 35%;
+}
+
+fieldset.dependent-form {
+	float: right;
+	width: 35%;
+	display: none;
+}
+
+fieldset.optional-form {
+	float: right;
+	width: 35%;
+}
+
+fieldset.param-form {
+	float: right;
+	width: 35%;
+}
+
+fieldset dl {
+	
+}
+
+fieldset dl dt {
+	float: left;
+	width: 75px;
+	clear: both;
+	padding-top: 2px;
+	margin-top: 5px;
+}
+
+fieldset dl dd {
+	float: left;
+	width: 240px;
+	margin-top: 5px;
+}
+
+fieldset.main-form dl dd {
+	width: 480px;
+}
+
+fieldset dl dd textarea{
+	width: 240px;
+}
+
+/*********************/
+/* all context menus have this class */
+.context-menu- {
+	background-color: #f2f2f2;
+	border: 1px solid #999;
+	border-radius: 4px;
+	list-style-type: none;
+	margin: 0; 
+	padding: 0;
+}
+
+.context-menu- a {
+	display: block;
+	padding: 3px 6px;
+	margin: 1px 0;
+	text-decoration: none;
+	color: #333;
+	letter-spacing: 1px;
+}
+
+.context-menu- a:hover {
+	background-color: #666;
+	color: white;
+}

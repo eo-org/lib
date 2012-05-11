@@ -35,6 +35,8 @@ $(document).on('click', '.action-menu', function(evt) {
 					}
 				});
 				break;
+			case undefined:
+				break;
 			default:
 				evt.preventDefault();
 				eval(method)(url);

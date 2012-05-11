@@ -1,0 +1,50 @@
+.left {
+	float: left;
+	margin: 10px;
+	width: 380px;
+}
+.left div.title {
+	text-indent: 2em;
+	height: 25px;
+	line-height: 25px;
+	font-size: 14px;
+	font-weight: bold;
+	background: #b3b3b3;
+	border: 1px solid black;
+	border-bottom: none;
+	margin-top: 15px;
+}
+.left div.recent-box {
+
+}
+.index-order-selector {
+	float: left;
+	margin: 10px;
+	width: 540px;
+}
+.index-order-selector .title-box {
+	height: 25px;
+	background: #b3b3b3;
+	margin-top: 15px;
+}
+.index-order-selector .title-box .title {
+	float: left;
+	line-height: 25px;
+	text-indent: 2em;
+	font-size: 14px;
+	font-weight: bold;
+}
+.index-order-selector .title-box .selector {
+	float: right;
+	margin: 3px 15px;
+}
+
+.index-order-selector #order-list-container {
+	min-height: 150px;
+	background: #fffeee;
+	padding: 10px 0;
+}
+
+.admin-login {
+	padding: 55px;
+}

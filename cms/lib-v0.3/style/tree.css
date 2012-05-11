@@ -1,0 +1,51 @@
+@CHARSET "UTF-8";
+ul.simpleTree {
+	
+}
+
+ul.simpleTree ul {
+	margin-left: 15px;
+}
+
+ul.simpleTree li {
+	padding-left: 18px;
+}
+
+ul.simpleTree li.root {
+	
+}
+
+ul.simpleTree li.root span {
+	display: block;
+	padding: 10px;
+	font-size: larger;
+	font-weight: bold;
+}
+
+ul.simpleTree li.root ul span {
+	display: inline;
+	padding: 0;
+	font-size: smaller;
+	font-weight: normal;
+}
+
+/****************************************/
+
+ul.simpleTree li.leaf {
+	
+}
+
+ul.simpleTree li.node {
+	background:url('../image/folder.png') no-repeat 0 2px;
+}
+
+ul.simpleTree div.label {
+	padding: 5px;
+	margin: 1px 0;
+	cursor:pointer;
+	border-radius: 4px;
+}
+
+ul.simpleTree div.label:hover {
+	background-color: #999;
+}
