@@ -61,15 +61,7 @@ $(document).ready(function() {
 		loadEditor('ck_text_editor');
 	}
 });
-///***********************/
-///*FINDER*********/
-///***********************/
-////var FINDER_RESPONDER_MESSAGE;
-//$(document).on('click', '.finder-responder', function() {
-//	EventMessenger.trigger("finder-responder-back", $(this).attr('message'));
-//	FINDER.hide();
-//});
-//
+
 $(document).on({
 	'click': function() {
 		var TH = $(this);
@@ -88,25 +80,3 @@ $(document).on({
 		$(this).css({'background-color':'transparent'});
 	}
 }, '.icon-selector');
-//
-//$(document).on({
-//	'click': function() {
-//		CALLER = this;
-//		FINDER.show();
-//		$.ajax({
-//			url: "/admin/ad/list-group/",
-//			success: function(HTML) {
-//				content = FINDER.appendToContent(HTML);
-//				EventMessenger.bind('finder-responder-back', function(path) {
-//					$(CALLER).val(path);
-//				});
-//			}
-//		});
-//	},
-//	'mouseover': function() {
-//		$(this).css({'background-color':'#ddeeff'});
-//	},
-//	'mouseleave': function() {
-//		$(this).css({'background-color':'transparent'});
-//	}
-//}, '.ad-group-selector');
