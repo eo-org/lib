@@ -88,41 +88,42 @@ $(document).ready(function(){
 	var roll=$('.leftroll');
 	roll.each(function(i,rolldiv){
 		//alert(roolh);	
-		var rollW=$(rolldiv).width();
+		var rollW=$(this).width();
 		//var data=jQuery.parseJSON($('.image-group-slide').attr('data'));
 		//var offsett=parseInt(data.delay);
 		//console.log(offsett);
 		var offset=50;
 		var listW=0;
-		$(rolldiv).find('ul li').each(function(){
+		$(this).find('ul li').each(function(){
 			listW+=$(this).width();
 		});
-		$(rolldiv).find('ul').width(listW*2);
-		$('#rollborder').css({
+		$(this).find('ul').width(listW*2);
+		$('.leftroll').css({
 			overflow: 'hidden',
 			position: 'absolute',
 			left:0
 		});
-		$('li').css({
+		//alert(1);
+		$(this).find('li').css({
 			position: 'relative'
 		});
 		if(listW>=rollW){
 			var marleft=0;
-			$(rolldiv).find('ul li').clone().attr('class','').appendTo($(rolldiv).find('ul'));
+			$(this).find('ul li').clone().attr('class','').appendTo($(this).find('ul'));
 			function rollText(){
 				marleft++;
 				if(marleft>listW){
 					//alert(1);
 					marleft=marleft-listW;
-					$(rolldiv).find('ul').css('margin-left',-marleft);
+					$(this).find('ul').css('margin-left',-marleft);
 				}
 				else{
 					//alert(1);
-					$(rolldiv).find('ul').css('margin-left',-marleft);
+					$(this).find('ul').css('margin-left',-marleft);
 				}
 			}
 			var int=setInterval(rollText,offset);
-			$(rolldiv).hover(
+			$(this).hover(
 				function(){
 					clearInterval(int);
 				},

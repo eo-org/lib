@@ -52,8 +52,7 @@ $(document).ready(function() {
 			leftPos = -itemWidth;
 		}
 		$(sliderUl).animate({'left': leftPos}, 500);
-	};
-	
+	}; 
 	var singleFly = function(sliderUl, numPerSlide, itemWidth, itemCount, pageToCall, handlers)
 	{
 		sliderUl.attr('status', 'moving');
@@ -63,7 +62,7 @@ $(document).ready(function() {
 			$(h).removeClass('active');
 		});
 		$(handlers[hIndex]).addClass('active');
-		
+		 
 		var items = sliderUl.find('li');
 		var onStageItems = sliderUl.find('li[status="onStage"]');
 		var onStageCount = onStageItems.length;
@@ -79,18 +78,23 @@ $(document).ready(function() {
 					movingItem = $(item);
 				}
 			});
-			movingItem.animate({
-				left: (indexToCall % numPerSlide) * itemWidth,
-			}, 1200, function() {
-				movingItem.attr('status', 'onStage');
-			});
+			movingItem.animate(
+				{left: (indexToCall % numPerSlide) * itemWidth},
+				1200,
+				function() {
+					movingItem.attr('status', 'onStage');
+				}
+			);
+			
 			indexToCall++;
+			
 			if(indexToCall < pageToCall * numPerSlide && indexToCall < itemCount) {
 				//repeat same action for the next item on slide
 				setTimeout(itemInAction, 100);
 			} else {
 				setTimeout(function() {sliderUl.attr('status', 'waiting');}, 1500);
 			}
+			
 		}
 		
 		var itemOutAction = function()
@@ -114,8 +118,8 @@ $(document).ready(function() {
 		}
 		
 		//first call on the first slide
-		itemOutAction();
-	}
+		itemOutAction(); 
+	};
 	
 	var containers = $('.image-group-slide');
 	containers.each(function(i, container) {
