@@ -115,11 +115,11 @@ $(document).ready(function(){
 				if(marleft>listW){
 					//alert(1);
 					marleft=marleft-listW;
-					$(this).find('ul').css('margin-left',-marleft);
+					$(rolldiv).find('ul').css('margin-left',-marleft);
 				}
 				else{
 					//alert(1);
-					$(this).find('ul').css('margin-left',-marleft);
+					$(rolldiv).find('ul').css('margin-left',-marleft);
 				}
 			}
 			var int=setInterval(rollText,offset);
