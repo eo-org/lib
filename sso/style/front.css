@@ -1,0 +1,28 @@
+@CHARSET "UTF-8";
+/***************/
+/*Sso Login Page*/
+/***************/
+.login-page {
+	
+}
+
+.login-page .head {
+	font-size: 14px;
+	font-weight: bold;
+	margin: 15px;
+}
+
+.login-page ul.errorMsg {
+	color: red;
+	margin: 5px 15px;
+}
+
+.login-page ul.errorMsg li {
+	margin: 5px;
+}
+.login-page .zend_form {
+	margin: 5px 15px;
+}
+.login-page .zend_form dt {
+	padding: 4px;
+}
