@@ -33,6 +33,35 @@ $(document).ready(function() {
 		});
 	});
 	
+	$('#form_element').draggable(function() {
+		var dropLis = $('.element-dropable');
+		dropLis.css({'background':'#0077bb', 'opacity':1});
+		
+		dragSrcEl = $(this);
+		dragSrcEl.css('opacity', 0.2);
+		
+		if(dragSrcEl.attr('elementType') != undefined) {
+			prevEmpty = $("<li class='element-dropable'></li>");
+			return {
+				effect: 'copy',
+				'el': $(this).attr('elementType')
+			};
+		} else {
+			prevEmpty = dragSrcEl.prev('li');
+			return {
+				effect: 'move',
+				'el': $(this).html(),
+			};
+		}
+	}, function() {
+		var dropLis = $('.element-dropable');
+		dropLis.css({opacity: 0});
+		dragSrcEl.animate({opacity: 1}, function() {
+			dragSrcEl = null;
+			prevEmpty = null;
+		});
+	});
+	
 	$('.element-dropable').droppable(
 		'el',
 		function() {
@@ -46,9 +75,10 @@ $(document).ready(function() {
 				var dropEl = $(this);
 				var elType = dragSrcEl.attr('element-type');
 				var formid = $('#formname').val();
+				var orgcode = $('#orgcode').val();
 				var resp = $.ajax({
 					type: "POST",
-					url: '/admin/form/get-element-template/type/' + elType + '/id/' + formid + '/format/html',
+					url: '/'+orgcode+'/admin/form/get-element-template/type/' + elType + '/id/' + formid + '/format/html',
 					success: function(html) {
 						if(resp.getResponseHeader('result') == 'success') {
 							var newDrop = $("<li class='element-dropable'></li>");
