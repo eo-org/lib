@@ -89,9 +89,9 @@ FileCollectionView = Backbone.View.extend({
 		paginatorContainer.empty();
 		for(var i = 1; i <= pageNumber; i++) {
 			if(i == pageInfo.currentPage) {
-				paginatorContainer.append('<li class="current"><a href="#/rest/file/groupId/' + this.groupId + '@page/' + i + '">' + i + '</a></li>');
+				paginatorContainer.append('<li class="current"><a href="#/groupId:' + this.groupId + '@page:' + i + '">' + i + '</a></li>');
 			} else {
-				paginatorContainer.append('<li><a href="#/rest/file/groupId/' + this.groupId + '@page/' + i + '">' + i + '</a></li>');
+				paginatorContainer.append('<li><a href="#/groupId:' + this.groupId + '@page:' + i + '">' + i + '</a></li>');
 			}
 		}
 	},

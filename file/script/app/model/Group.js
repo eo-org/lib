@@ -8,7 +8,7 @@ GroupDiv = Backbone.Model.extend({
 
 GroupCollection = Backbone.Collection.extend({
 	model: GroupDiv,
-	url: "/rest/group/?orgCode=" + window.ORG_CODE,
+	url: "/rest/group",
 	parse: function(resp) {
 		return resp.data;
 	}

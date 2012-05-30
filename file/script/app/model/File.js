@@ -11,7 +11,7 @@ FileDiv = Backbone.Model.extend({
 
 FileCollection = Backbone.Collection.extend({
 	model: FileDiv,
-	url: "/rest/file/?orgCode=" + window.ORG_CODE,
+	url: "/rest/file",
 	parse: function(resp) {
 		this.pageInfo = {
 			"currentPage": resp.currentPage,

@@ -64,7 +64,7 @@ GroupView = Backbone.View.extend({
 		e.preventDefault();
 		$(this.el).siblings().removeClass('selected');
 		$(this.el).addClass('selected');
-		window.location.hash = "/rest/file/groupId/" + this.model.id + "@page/1";
+		window.location.hash = "/groupId:" + this.model.id + "@page:1";
 	}
 });
 
