@@ -42,7 +42,11 @@ nav.group-container li.add-group div.add-group {
 	padding: 10px;
 }
 nav.group-container li.add-group #label-create {
+	width: 110px;
 	margin-left: 10px;
+}
+nav.group-container li.add-group #label-affirm{
+	
 }
 nav.group-container li.load-group {
 	display: block;
@@ -155,7 +159,7 @@ div.file-container .upload-toolbar #upload-button:hover {
 
 ul.file-list {
 	height: 340px;
-	overflow: auto;
+	overflow: hidden;
 	background: white;
 	border-radius: 4px;
 	margin: 5px 0;
