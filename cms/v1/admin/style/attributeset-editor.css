@@ -1,0 +1,61 @@
+@CHARSET "UTF-8";
+.attribute-library {
+	width: 350px;
+	border-radius: 4px;
+	background: #eee;
+	padding: 25px;
+	margin: 15px;
+/*	position: fixed; */
+}
+.attribute-library .attribute-library-item {
+	padding: 10px;
+	background: #bbb;
+	cursor: crosshair;
+}
+.attribute-current {
+	width: 420px;
+	margin-left: 450px;
+	background: #bbb;
+}
+
+.attribute-current div.solid {
+	padding: 5px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	margin: 5px 0;
+}
+
+.attribute-current div.solid:hover {
+	border: 1px dashed #777;
+}
+
+.attribute-current div.element-label {
+	width: 400px;
+}
+
+.attribute-current div.element-label a {
+	display: block;
+	font-weight: bold;
+	padding: 8px;
+	cursor: pointer;
+	background: #f0f0f0;
+	border-radius: 2px;
+}
+
+.attribute-current div.element-label a:hover {
+	background: #e0e0e0;
+}
+
+.attribute-current div.element {
+	font-weight: bold;
+	padding: 2px 0;
+}
+
+.attribute-current div.element textarea {
+	width: 300px;
+}
+
+.attribute-current div.element-desc {
+	font-size: smaller;
+	padding: 2px 0;
+}
