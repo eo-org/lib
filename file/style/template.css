@@ -42,7 +42,7 @@ nav.group-container li.add-group div.add-group {
 	padding: 10px;
 }
 nav.group-container li.add-group #label-create {
-	width: 110px;
+	width: 100px;
 	margin-left: 10px;
 }
 nav.group-container li.add-group #label-affirm{
@@ -69,7 +69,7 @@ nav.group-container li.load-group div.actions {
 	padding: 5px;
 	position: absolute;
 	top: 32px;
-	left: 128px;
+	left: 111px;
 	display: none;
 }
 nav.group-container li.load-group div.actions a {
