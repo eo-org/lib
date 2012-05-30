@@ -1,22 +1,50 @@
-FileView = Backbone.View.extend({
+ FileView = Backbone.View.extend({
 	tagName: "li",
 	events: {
 		'click .remove': "removeFile",
-		'dblclick': "postFileUrl"
+		'click .amend': "editname",
+		'dblclick': "postFileUrl",
+		'keypress .inputamend-label': "updateOnfilename"
 	},
 	render: function() {
 		var template = _.template($('#file-template').html());
 		$(this.el).html(template(this.model.toJSON()));
 		
+		this.input = this.$('.inputamend-label');
+		this.amend = this.$('.text-amend');
+		var TH=this;
+		this.input.bind('blur',function(){
+			$(this).val(TH.amend.text());
+			TH.close();
+		});	
 		return this;
 	},
 	removeFile: function(e) {
 		e.preventDefault();
 		if(confirm('delete file ' + this.model.get('filename'))) {
-			var EL = this.el
+			var EL = this.el;
 			this.model.destroy({success: function(model, response) {
 				$(EL).remove();
 			}});
+		}
+	},
+	editname: function(){
+		this.$('.text-amend').hide();
+		this.$('.amend-label').show();
+		this.$('.inputamend-label').focus();
+	},
+	close: function(){
+		this.$('.amend-label').hide();
+		this.$('.text-amend').show();
+	},
+	updateOnfilename: function(e){
+		if(e.keyCode == 13){
+			var newVals = this.input.val();
+			if(newVals != ''){
+				this.model.save({filename: newVals});
+				this.amend.text(newVals);
+				this.close();
+			}
 		}
 	},
 	postFileUrl: function() {
@@ -36,6 +64,7 @@ FileCollectionView = Backbone.View.extend({
 		
 	},
 	initialize: function() {
+		
 		this.collection = new FileCollection();
 		this.collection.bind('reset', _.bind(this.render, this));
 		this.collection.bind('add', _.bind(this.prependItemView, this));
@@ -49,6 +78,7 @@ FileCollectionView = Backbone.View.extend({
 		_(this.collection.models).each(function(file) {
 			TH.addItemView(file);
 		}, this);
+		
 		this.renderPaginator();
 	},
 	renderPaginator: function() {
@@ -72,13 +102,17 @@ FileCollectionView = Backbone.View.extend({
 		$(this.el).append(fileView.render().el);
 	},
 	prependItemView: function(item) {
-		var fileView = new FileView({
+ 		var fileView = new FileView({ 
 			model: item
 		});
-		$(this.el).prepend(fileView.render().el);
+		$(this.el).prepend(fileView.render().el); 
+		
 	},
 	loadGroupFiles: function(groupId, pageNumber) {
 		this.groupId = groupId;
 		this.collection.fetch({data: {'groupId': groupId, 'page': pageNumber}});
-	}
+	},
+ 	afterOneSent: function(item) {
+		this.collection.add([item]);
+    }
 });

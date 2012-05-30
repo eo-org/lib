@@ -71,7 +71,7 @@ GroupView = Backbone.View.extend({
 GroupCollectionView = Backbone.View.extend({
 	el: $('ul.group-list'),
 	events: {
-		"keypress #label-create": "createOnEnter",
+		"click #label-affirm": "createOnEnter",
 	},
 	initialize: function() {
 		var TH = this;
@@ -97,9 +97,12 @@ GroupCollectionView = Backbone.View.extend({
 	},
 	createOnEnter: function(e) {
 		var val = this.input.val();
-		if(!val || e.keyCode != 13) return;
+		if( val == '') return;
 		
 		this.collection.create({label: val}, {wait: true});
 		this.input.val('');
 	}
+/*  	afterOneSentNum: function() {
+		this.collection;
+    }  */
 });

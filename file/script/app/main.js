@@ -1,9 +1,8 @@
 (function () {
     'use strict';
     require(["model/File", "model/Group", "view/file", "view/group"], function() {
-    	var fcView = new FileCollectionView();
+        var fcView = new FileCollectionView();
     	var gcView = new GroupCollectionView();
-    	
 //    	var files;
 //    	var fileUploader = new FileUploader({
 //    		url: '/rest/file/',
