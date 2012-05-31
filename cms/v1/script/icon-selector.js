@@ -3,7 +3,7 @@ var FILE_SELECTOR_CALLER = null;
 
 var openFileWindow = function() {
 	var fileSelectorWindow = window.open(
-		'http://file.enorange.com/admin/' + window.ORG_CODE,
+		'http://file.enorange.com/' + window.ORG_CODE + '/admin/',
 		'file-selector',
 		'height=640, width=980, location=no,scrollbars=no,toolbar=no,resizable=no'
 	);
