@@ -265,16 +265,6 @@ $(document).ready(function() {
 		$(this).css('display', 'none');
 	});
 	
-	var layoutId = $('.body_main_frame').attr('layoutId');
-	$('#layout-selector').change(function() {
-		window.location.href = $(this).val();
-	});
-	$('#layout-selector').find('option').each(function(i, ls) {
-		if($(ls).attr('layoutId') == layoutId) {
-			$(ls).attr('selected', 'selected');
-		}
-	});
-	
 	reorderStages();
 	$(document).on({
 		'dragstart': function(evt) {
