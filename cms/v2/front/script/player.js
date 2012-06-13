@@ -2348,6 +2348,12 @@
 	};
 })(jQuery);
 $(document).ready(function(){
+	var data = jQuery.parseJSON($('.player-box').attr('data'));
+	if(data.showplayer == n){
+		$('.player-box').css({
+			display:'none',
+		});
+	}
 	$('.jp-play').css({
 		'line-height':'12px',
 		height: '12px',
@@ -2386,7 +2392,6 @@ $(document).ready(function(){
 		height: '6px',
 		'border-radius': '4px 4px 4px 4px'		
 	});
-	var data = jQuery.parseJSON($('.player-box').attr('data'));
 	$('#jquery_jplayer_1').jPlayer({
 		ready: function(event){
 			$(this).jPlayer('setMedia',{
