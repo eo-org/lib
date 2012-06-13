@@ -11,9 +11,10 @@ Backbone.sync = function(method, model, options) {
 
 (function () {
     'use strict';
-    require(["model/File", "model/Group", "view/file", "view/group"], function() {
+    require(["model/File", "model/Group", "view/file", "view/group","Attribute"], function() {
         var fcView = new FileCollectionView();
     	var gcView = new GroupCollectionView();
+		var AttView = new AttributeCollectionView();
 //    	var files;
 //    	var fileUploader = new FileUploader({
 //    		url: '/rest/file/',

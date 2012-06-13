@@ -1,12 +1,15 @@
- FileView = Backbone.View.extend({
+  FileView = Backbone.View.extend({
 	tagName: "li",
 	events: {
 		'click .remove': "removeFile",
 		'click .amend': "editname",
 		'dblclick': "postFileUrl",
-		'keypress .inputamend-label': "updateOnfilename"
+		'keypress .inputamend-label': "updateOnfilename",
+		'dragstart': "dragStartEvent",
+		'dragend': "dragEndEvent"
 	},
 	render: function() {
+		$(this.el).attr('draggable','true');
 		var template = _.template($('#file-template').html());
 		$(this.el).html(template(this.model.toJSON()));
 		
@@ -55,6 +58,17 @@
 			window.parent.postMessage(window.ORG_CODE + '/' + this.model.get('urlname'), '*');
 			window.close();
 		}
+	},
+	dragStartEvent: function(e){
+		e.dataTransfer = e.originalEvent.dataTransfer; 
+		e.dataTransfer.effectAllowed = 'move';
+		//console.log((this.el).innerHTML);
+		console.log(this.model);
+		e.dataTransfer.setData('text/html',this.model);
+		$(this.el).css({ 'opacity': '0.4' });
+	},
+	dragEndEvent: function(e){
+		$(this.el).css({ 'opacity': '1' });
 	}
 });
 

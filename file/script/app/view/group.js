@@ -6,18 +6,21 @@ GroupView = Backbone.View.extend({
 		"click .text-label": "triggerLoadGroupFilesHash",
 		"click .edit": "edit",
 		"click .destroy": "destroy",
-		"keypress .input-label": "updateOnEnter"
+		"keypress .input-label": "updateOnEnter",
+		"dragover .load-group":"dragOverEvent",
+		"dragleave .load-group":"dragLeaveEvent",
+		"drop .load-group":"dropEvent"
 	},
 	render: function() {
 		var template = _.template($('#group-template').html());
 		var json = this.model.toJSON();
 		$(this.el).attr('groupId', json.id).addClass('load-group');
 		$(this.el).html(template(json));
-		
+
 		this.textDiv = this.$('.text-label');
 		this.editDiv = this.$('.edit-label');
 		this.input = this.$('.input-label');
-		
+
 		var TH = this;
 		this.input.bind('blur', function() {
 			var t = TH.textDiv.text();
@@ -65,13 +68,36 @@ GroupView = Backbone.View.extend({
 		$(this.el).siblings().removeClass('selected');
 		$(this.el).addClass('selected');
 		window.location.hash = "/groupId:" + this.model.id + "@page:1";
+	},
+	dragOverEvent: function(e){
+		if (e.preventDefault) {
+			e.preventDefault();
+		}
+		$(e.currentTarget).css('background','#E0E0E0');
+		e.preventDefault();
+		e.dataTransfer = e.originalEvent.dataTransfer;
+		e.dataTransfer.dropEffect = 'move';
+		return false;
+	},
+	dragLeaveEvent: function(e){
+		$(e.currentTarget).css('background','#F4F3F2');
+	},
+	dropEvent: function(e){
+		if (e.stopPropagation) {
+            e.stopPropagation();
+        }
+		e.dataTransfer = e.originalEvent.dataTransfer;
+		var cid = e.dataTransfer.getData('text/html');
+		console.log(cid);
+		$(e.currentTarget).css('background','#F4F3F2');
+		return false;
 	}
 });
 
 GroupCollectionView = Backbone.View.extend({
 	el: $('ul.group-list'),
 	events: {
-		"click #label-affirm": "createOnEnter",
+		"click #label-affirm": "createOnEnter"
 	},
 	initialize: function() {
 		var TH = this;
@@ -80,7 +106,7 @@ GroupCollectionView = Backbone.View.extend({
 		this.collection.fetch({success: function() {
 			TH.render();
 		}});
-		
+
 		this.collection.bind('add', this.addItem,  this);
 	},
 	render: function() {
@@ -98,7 +124,7 @@ GroupCollectionView = Backbone.View.extend({
 	createOnEnter: function(e) {
 		var val = this.input.val();
 		if( val == '') return;
-		
+
 		this.collection.create({label: val}, {wait: true});
 		this.input.val('');
 	}
