@@ -2349,7 +2349,7 @@
 })(jQuery);
 $(document).ready(function(){
 	var data = jQuery.parseJSON($('.player-box').attr('data'));
-	if(data.showplayer == n){
+	if(data.showplayer == 'n'){
 		$('.player-box').css({
 			display:'none',
 		});
