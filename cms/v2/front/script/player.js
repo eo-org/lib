@@ -2351,7 +2351,10 @@ $(document).ready(function(){
 	var data = jQuery.parseJSON($('.player-box').attr('data'));
 	if(data.showplayer == 'n'){
 		$('.player-box').css({
-			display:'none',
+			//opacity: '0'
+			width: '0px',
+			height: '0px',
+			overflow: 'hidden'
 		});
 	}
 	$('.jp-play').css({
