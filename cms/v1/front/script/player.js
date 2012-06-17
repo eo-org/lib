@@ -2348,7 +2348,7 @@
 	};
 })(jQuery);
 $(document).ready(function(){
-	function reader(){	
+	function playreader(){	
 		var data = jQuery.parseJSON($('.player-box').attr('data'));
 		if(data.showplayer == 'n'){
 			$('.player-box').css({
@@ -2407,5 +2407,5 @@ $(document).ready(function(){
 			wmode: 'window'
 		});
 	}
-	setTimeout("reader()",3000);
+	setTimeout("playreader()",3000);
 })
