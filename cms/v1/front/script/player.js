@@ -2407,5 +2407,6 @@ $(document).ready(function(){
 			wmode: 'window'
 		});
 	}
-	setTimeout("playreader()",3000);
+	playreader();
+	//setTimeout("playreader()",3000);
 })
