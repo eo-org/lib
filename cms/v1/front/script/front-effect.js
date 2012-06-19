@@ -127,54 +127,55 @@ $(document).ready(function() {
 		var data = jQuery.parseJSON(CON.attr('data'));
 		var itemWidth = parseInt(data.itemWidth) + parseInt(data.margin);
 		CON.find('.slider').css({width: data.numPerSlide * itemWidth - parseInt(data.margin)});
-		
-		var sliderUl = CON.find('.slider > ul');
-		var LIS = sliderUl.find('li');
-		var itemCount = LIS.length;
-		var totalPage = Math.ceil(itemCount/data.numPerSlide);
-		var pageToCall = 1;
-		
-		var handlers = CON.find('.handler li');
-		$(handlers[0]).addClass('active');
-		LIS.each(function(i, LI) {
-			$(LI).attr('itemNum', i);
-			if(i < data.numPerSlide) {
-				$(LI).css({position: 'absolute', left: i * itemWidth});
-				$(LI).attr('status', 'onStage');
-			} else {
-				$(LI).css({position: 'absolute', left: data.numPerSlide * itemWidth});
-				$(LI).attr('status', 'inQueue');
-			}
-		});
-		
-		var autoSlide = setInterval(function() {
-			pageToCall++;
-			//set current page to 0, meaning this is the last page
-			if(pageToCall > totalPage) { pageToCall = 1; }
-			singleFly(sliderUl, data.numPerSlide, itemWidth, itemCount, pageToCall, handlers);
-		}, data.delay);
-		CON.mouseenter(function() {
-			clearInterval(autoSlide);
-		}).mouseleave(function() {
-			autoSlide = setInterval(function() {
+		if(CON.find('.slider').attr('class') != undefined){
+			var sliderUl = CON.find('.slider > ul');
+			var LIS = sliderUl.find('li');
+			var itemCount = LIS.length;
+			var totalPage = Math.ceil(itemCount/data.numPerSlide);
+			var pageToCall = 1;
+			
+			var handlers = CON.find('.handler li');
+			$(handlers[0]).addClass('active');
+			LIS.each(function(i, LI) {
+				$(LI).attr('itemNum', i);
+				if(i < data.numPerSlide) {
+					$(LI).css({position: 'absolute', left: i * itemWidth});
+					$(LI).attr('status', 'onStage');
+				} else {
+					$(LI).css({position: 'absolute', left: data.numPerSlide * itemWidth});
+					$(LI).attr('status', 'inQueue');
+				}
+			});
+			
+			var autoSlide = setInterval(function() {
 				pageToCall++;
 				//set current page to 0, meaning this is the last page
 				if(pageToCall > totalPage) { pageToCall = 1; }
 				singleFly(sliderUl, data.numPerSlide, itemWidth, itemCount, pageToCall, handlers);
 			}, data.delay);
-		});
-		
-		//-----------------------------process handles-------------------------------//
-		$(handlers).each(function(i, handle) {
-			$(handle).click(function(e) {
-				e.preventDefault();
-				if(sliderUl.attr('status') != 'moving') {
-					pageToCall = i + 1;
+			CON.mouseenter(function() {
+				clearInterval(autoSlide);
+			}).mouseleave(function() {
+				autoSlide = setInterval(function() {
+					pageToCall++;
+					//set current page to 0, meaning this is the last page
+					if(pageToCall > totalPage) { pageToCall = 1; }
 					singleFly(sliderUl, data.numPerSlide, itemWidth, itemCount, pageToCall, handlers);
-				}
-				return false;
+				}, data.delay);
 			});
-		});
+			
+			//-----------------------------process handles-------------------------------//
+			$(handlers).each(function(i, handle) {
+				$(handle).click(function(e) {
+					e.preventDefault();
+					if(sliderUl.attr('status') != 'moving') {
+						pageToCall = i + 1;
+						singleFly(sliderUl, data.numPerSlide, itemWidth, itemCount, pageToCall, handlers);
+					}
+					return false;
+				});
+			});
+		}
 	});
 });
 
@@ -187,9 +188,17 @@ $(document).ready(function() {
 	var handles = containerUl.children();
 	handles.each(function(i, handle) {
 		$(handle).children('ul').css({'display':'none'});
+		$(handle).children('ul').children('li').children('ul').css({'display':'none'});
 		$(handle).mouseover(function() {
 			$(this).addClass('mouseover');
 			$(this).children('ul').css({'display':'block'});
+			if($(this).children('ul').children('li').children('ul') != undefined){
+				$('.mouseover').children('ul').children('li').mouseover(function(){
+					$(this).children('ul').css({'display':'block'});
+				}).mouseout(function() {
+					$(this).children('ul').css({'display':'none'});
+				})
+			}
 		}).mouseout(function() {
 			$(this).removeClass('mouseover');
 			$(this).children('ul').css({'display':'none'});
