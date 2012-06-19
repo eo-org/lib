@@ -193,15 +193,14 @@ $(document).ready(function() {
 			$(this).addClass('mouseover');
 			$(this).children('ul').css({'display':'block'});
 			if($(this).children('ul').children('li').children('ul') != undefined){
-				$('.mouseover').children('ul').children('li').mouseover(function(){
+				$(this).children('ul').children('li').mouseover(function(){
 					$(this).children('ul').css({'display':'block'});
-				}).mouseout(function() {
-					$(this).children('ul').css({'display':'none'});
-				})
+				});
 			}
 		}).mouseout(function() {
 			$(this).removeClass('mouseover');
 			$(this).children('ul').css({'display':'none'});
+			$(this).children('ul').children('li').children('ul').css({'display':'none'});
 		});
 	});
 });
