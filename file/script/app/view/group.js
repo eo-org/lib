@@ -88,7 +88,6 @@ GroupView = Backbone.View.extend({
         }
 		e.dataTransfer = e.originalEvent.dataTransfer;
 		var cid = e.dataTransfer.getData('text/html');
-		console.log(cid);
 		$(e.currentTarget).css('background','#F4F3F2');
 		return false;
 	}
