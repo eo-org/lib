@@ -146,7 +146,7 @@ BookpageCollectionView = Backbone.View.extend({
 		}
 		if(container.length) {
 			container.append(bookpageView.render().el);
-			container.append("<li class='drop-to-sort' parent-id='0'></li>");
+			container.append("<li class='drop-to-sort' parent-id='" + model.get('parentId') + "'></li>");
 		}
 	},
 //	createNew: function(e) {

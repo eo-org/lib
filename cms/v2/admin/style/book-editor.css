@@ -2,11 +2,12 @@
 	background-color: #FEFEFE;
     border-radius: 4px 4px 4px 4px;
     box-shadow: 0 2px 6px #777777;
-    margin: 4px;
+    margin: 4px 0 0 200px;
     padding: 5px 15px;
+    width: 600px;
 }
 .container-bg ul {
-	padding-left: 15px;
+	padding-left: 20px;
 }
 .container-bg ul.container {
 	border-left: 2px dashed #777;
@@ -36,6 +37,19 @@
 	float: left;
 	padding: 1px 0 0 2px;
 }
+.bookpage-item .page-link {
+	float: right;
+	padding: 3px 0 0 0;
+	font-size: smaller;
+	border-bottom: 1px dotted #777;
+}
+/*.bookpage-item .edit-link {
+	float: right;
+	width: 16px;
+	height: 16px;
+	background: url('../image/mini-icons.png') no-repeat;
+}
+*/
 .drop-to-sort {
 	padding: 3px;
 }
