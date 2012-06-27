@@ -10,11 +10,13 @@ $(document).on('click', 'a.action-menu', function(e) {
 		var url = $(this).attr('href');
 		$(location).attr('href', url + '?' + urlSuffix);
 		return false;
-	} else if($(this).attr('method') == 'func') {
+	} else if($(this).attr('method') != undefined) {
 		e.preventDefault();
-		var urlSuffix = ajaxFunc();
-		var url = $(this).attr('href');
-		$(location).attr('href', url + '/param/' + urlSuffix);
+		var fn = $(this).attr('method');
+		window[fn]();
+//		var urlSuffix = ajaxFunc();
+//		var url = $(this).attr('href');
+//		$(location).attr('href', url + '/param/' + urlSuffix);
 		return false;
 	} else {
 		//skip actions for link, just link
