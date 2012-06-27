@@ -89,17 +89,13 @@ $(document).on({
 	'click': function() {
 		var TH = $(this);
 		
-		FILE_SELECTOR_CALLER = 'input';
+		FILE_SELECTOR_CALLER = 'attachment';
 		openFileWindow();
-		appendToInput = function(filePath) {
-			TH.val(filePath);
+		appendToAttachment = function(filepath, filename) {
+			var l = $("<li filepath='" + filepath + "'>" + filename + "</li>");
+			var attachmentList = $('#attachment-list');
+			l.appendTo(attachmentList);
 		};
 	    return false;
-	},
-	'mouseover': function() {
-		$(this).css({'background-color':'#ddeeff'});
-	},
-	'mouseleave': function() {
-		$(this).css({'background-color':'transparent'});
 	}
 }, '.attachment-selector');
