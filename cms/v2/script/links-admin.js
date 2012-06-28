@@ -13,7 +13,7 @@ $(document).on('click', 'a.action-menu', function(e) {
 	} else if($(this).attr('method') != undefined) {
 		e.preventDefault();
 		var fn = $(this).attr('method');
-		window[fn]();
+		window[fn]($(this));
 //		var urlSuffix = ajaxFunc();
 //		var url = $(this).attr('href');
 //		$(location).attr('href', url + '/param/' + urlSuffix);

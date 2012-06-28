@@ -13,7 +13,7 @@ $(document).on('click', 'a.action-menu', function(e) {
 	} else if($(this).attr('method') != undefined) {
 		e.preventDefault();
 		var fn = $(this).attr('method');
-		window[fn]();
+		window[fn]($(this));
 		return false;
 	} else {
 		//skip actions for link, just link

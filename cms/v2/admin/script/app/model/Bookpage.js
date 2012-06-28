@@ -20,6 +20,8 @@ BookpageView = Backbone.View.extend({
 	events: {
 		"dragstart .drag-handle": "dragStartEvent",
 		"dragend .drag-handle": "dragEndEvent",
+		"click .quick-edit": "quickEdit"
+		
 //		"dragover": "dragOverEvent",
 //		"dragleave": "dragLeaveEvent",
 //		"drop": "dropEvent"
@@ -53,6 +55,11 @@ BookpageView = Backbone.View.extend({
 		$(this.el).css('display', 'block');
 		$(this.el).next().css('display', 'block');
 	},
+	quickEdit: function(e) {
+		alert('ok');
+//		var prompt = $.Prompt;
+		$.Prompt.load();
+	}
 //	dragOverEvent: function(e) {
 //		$(e.currentTarget).css('background', 'blue');
 //		e.preventDefault();

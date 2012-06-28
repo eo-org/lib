@@ -22,8 +22,14 @@ $(document).ready(function() {
 		xhr.onreadystatechange = function() {
 	        if (xhr.readyState == 4) {
 	            if (xhr.status == 200 || xhr.status == 304) {
-					var jsonObj = eval('(' +xhr.response + ')');
-					this.Uploadfile = new  FileCollectionView;
+	            	try {
+	            		var jsonObj = eval('(' + xhr.response + ')');
+	            	} catch(e) {
+	            		console.log('error report!');
+	            		console.log(e);
+	            		console.log(xhr.response);
+	            	}
+					this.Uploadfile = new FileCollectionView;
 					this.Uploadfile.afterOneSent(jsonObj);
 	            	afterUpload(i);
 	            }
