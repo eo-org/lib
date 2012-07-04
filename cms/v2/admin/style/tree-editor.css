@@ -14,17 +14,17 @@
 	padding-left: 5px;
 }
 
-.bookpage-item {
+.treeleaf-item {
 	display: block;
 	padding: 0;
 	margin: 0;
 }
-.bookpage-item .page-line {
+.treeleaf-item .leaf-line {
 	border: 1px solid #DDDDDD;
 	border-radius: 2px;
 	padding: 2px;
 }
-.bookpage-item .drag-handle {
+.treeleaf-item .drag-handle {
 	width: 16px;
 	height: 16px;
 	padding: 0;
@@ -33,23 +33,20 @@
 	background: url('../image/mini-icons.png') 0 -80px no-repeat;
 	float: left;
 }
-.bookpage-item .page-label {
+.treeleaf-item .leaf-label {
 	float: left;
 	padding: 1px 0 0 2px;
 }
-.bookpage-item .page-link {
+.treeleaf-item .quick-edit {
+	float: left;
+	padding: 1px 0 0 2px;
+}
+.treeleaf-item .leaf-link {
 	float: right;
 	padding: 3px 0 0 0;
 	font-size: smaller;
 	border-bottom: 1px dotted #777;
 }
-/*.bookpage-item .edit-link {
-	float: right;
-	width: 16px;
-	height: 16px;
-	background: url('../image/mini-icons.png') no-repeat;
-}
-*/
 .drop-to-sort {
 	padding: 3px;
 }

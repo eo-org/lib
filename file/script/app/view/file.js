@@ -52,10 +52,16 @@
 	},
 	postFileUrl: function() {
 		if(window.opener) {
-			window.opener.postMessage(window.ORG_CODE + '/' + this.model.get('urlname'), '*');
+			window.opener.postMessage({
+				'filepath' : window.ORG_CODE + '/' + this.model.get('urlname'),
+				'filename' : this.model.get('filename')
+			}, '*');
 			window.close();
 		} else if(window.parent) {
-			window.parent.postMessage(window.ORG_CODE + '/' + this.model.get('urlname'), '*');
+			window.parent.postMessage({
+				'filepath' : window.ORG_CODE + '/' + this.model.get('urlname'),
+				'filename' : this.model.get('filename')
+			}, '*');
 			window.close();
 		}
 	},

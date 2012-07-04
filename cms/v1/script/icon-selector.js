@@ -3,22 +3,26 @@ var FILE_SELECTOR_CALLER = null;
 
 var openFileWindow = function() {
 	var fileSelectorWindow = window.open(
-		'http://file.enorange.com/' + window.ORG_CODE + '/admin/',
+		'http://file.enorange.cn/' + window.ORG_CODE + '/admin/',
 		'file-selector',
 		'height=640, width=980, location=no,scrollbars=no,toolbar=no,resizable=no'
 	);
 };
 var appendToEditor = function() {};
 var appendToInput = function() {};
-
+var appendToAttachment = function() {};
 window.addEventListener('message', function(e) {
-	var filePath = e.data;
+	var filePath = e.data.filepath;
+	var filename = e.data.filename;
 	switch(FILE_SELECTOR_CALLER) {
 		case 'editor':
 			appendToEditor(filePath);
 			break;
 		case 'input':
 			appendToInput(filePath);
+			break;
+		case 'attachment':
+			appendToAttachment(filePath, filename);
 			break;
 	}
 }, false);
@@ -80,3 +84,18 @@ $(document).on({
 		$(this).css({'background-color':'transparent'});
 	}
 }, '.icon-selector');
+
+$(document).on({
+	'click': function() {
+		var TH = $(this);
+		
+		FILE_SELECTOR_CALLER = 'attachment';
+		openFileWindow();
+		appendToAttachment = function(filepath, filename) {
+			var l = $("<li filepath='" + filepath + "'>" + filename + "</li>");
+			var attachmentList = $('#attachment-list');
+			l.appendTo(attachmentList);
+		};
+	    return false;
+	}
+}, '.attachment-selector');
