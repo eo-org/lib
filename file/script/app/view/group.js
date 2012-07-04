@@ -1,4 +1,3 @@
-//var fileCollects;
 GroupView = Backbone.View.extend({
 	tagName: "li",
 	events: {
@@ -89,8 +88,8 @@ GroupView = Backbone.View.extend({
         }
 		e.dataTransfer = e.originalEvent.dataTransfer;
 		var cid = e.dataTransfer.getData('text/html');
-		if(this.model.id != fileCollects.get(cid).get('groupId')){
-			var fileObject = fileCollects.get(cid).set({groupId : this.model.id});
+		if(this.model.id != fileCollect.get(cid).get('groupId')){
+			var fileObject = fileCollect.get(cid).set({groupId : this.model.id});
 			fileObject.save();
 			$('#'+cid).remove();
 		}
@@ -100,7 +99,7 @@ GroupView = Backbone.View.extend({
 });
 
 GroupCollectionView = Backbone.View.extend({
-	fileCollects: null,
+	fileCollect: null,
 	el: $('ul.group-list'),
 	events: {
 		"click #label-affirm": "createOnEnter"
@@ -115,8 +114,8 @@ GroupCollectionView = Backbone.View.extend({
 
 		this.collection.bind('add', this.addItem,  this);
 	},
-	getCollection: function(fileCollect) {
-		fileCollects = fileCollect;
+	setfileCollection: function(fc) {
+		fileCollect = fc;
 	},
 	render: function() {
 		var TH = this;

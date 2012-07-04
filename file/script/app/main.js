@@ -15,8 +15,8 @@ Backbone.sync = function(method, model, options) {
     require(["model/File", "model/Group", "view/file", "view/group"], function() {
         var fcView = new FileCollectionView();
     	var gcView = new GroupCollectionView();
-		var fc = fcView.getCollection();
-		var gc = gcView.getCollection(fc);
+		var fileCollect = fcView.getCollection();
+		var groupCollect = gcView.setfileCollection(fileCollect);
 //		var AttView = new AttributeCollectionView();
 //    	var files;
 //    	var fileUploader = new FileUploader({
