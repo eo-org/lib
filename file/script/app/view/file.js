@@ -62,9 +62,8 @@
 	dragStartEvent: function(e){
 		e.dataTransfer = e.originalEvent.dataTransfer; 
 		e.dataTransfer.effectAllowed = 'move';
-		//console.log((this.el).innerHTML);
-		console.log(this.model);
-		e.dataTransfer.setData('text/html',this.model);
+		e.dataTransfer.setData('text/html',[this.model.id]);
+		$(this.el).attr('id',this.model.id);
 		$(this.el).css({ 'opacity': '0.4' });
 	},
 	dragEndEvent: function(e){

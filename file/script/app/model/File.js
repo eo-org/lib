@@ -5,6 +5,7 @@ FileDiv = Backbone.Model.extend({
 		filename: "",
 		isImage: null,
 		size: "",
+		groupId:"",
 		uploadTime: ""
 	}
 });
