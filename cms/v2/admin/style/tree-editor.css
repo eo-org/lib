@@ -1,0 +1,52 @@
+.container-bg {
+	background-color: #FEFEFE;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 2px 6px #777777;
+    margin: 4px 0 0 200px;
+    padding: 5px 15px;
+    width: 600px;
+}
+.container-bg ul {
+	padding-left: 20px;
+}
+.container-bg ul.container {
+	border-left: 2px dashed #777;
+	padding-left: 5px;
+}
+
+.treeleaf-item {
+	display: block;
+	padding: 0;
+	margin: 0;
+}
+.treeleaf-item .leaf-line {
+	border: 1px solid #DDDDDD;
+	border-radius: 2px;
+	padding: 2px;
+}
+.treeleaf-item .drag-handle {
+	width: 16px;
+	height: 16px;
+	padding: 0;
+	margin: 0;
+	cursor: move;
+	background: url('../image/mini-icons.png') 0 -80px no-repeat;
+	float: left;
+}
+.treeleaf-item .leaf-label {
+	float: left;
+	padding: 1px 0 0 2px;
+}
+.treeleaf-item .quick-edit {
+	float: left;
+	padding: 1px 0 0 2px;
+}
+.treeleaf-item .leaf-link {
+	float: right;
+	padding: 3px 0 0 0;
+	font-size: smaller;
+	border-bottom: 1px dotted #777;
+}
+.drop-to-sort {
+	padding: 3px;
+}
