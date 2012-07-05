@@ -9,6 +9,25 @@ input {border: 1px solid grey;}
 select {border: 1px solid grey;}
 textarea {width: 450px;height: 100px;border: 1px solid grey;}
 
+/**********system prompt***********/
+/*
+info:		#BDE5F8; border:#00529B
+success:	#DFF2BF; border:#4F8A10
+warning:	#FEEFB3; border:#9F6000
+error:		#FFBABA; border:#D8000C
+*/
+
+.info-prompt {
+	border: 1px solid #00529B !important;
+	background-color: #BDE5F8 !important;
+	color: #00529B !important;
+}
+.warning-prompt {
+	border: 1px solid #9F6000 !important;
+	background-color: #FEEFB3 !important;
+	color: #9F6000 !important;
+}
+
 /**********mini-icon-background***********/
 .mini-icon-bg {
 	width: 17px;
@@ -26,7 +45,7 @@ textarea {width: 450px;height: 100px;border: 1px solid grey;}
 .mini-icon-delete {
 	background: url('mini-icons.png') no-repeat -176px -96px;
 }
-.mini-icon-close{
+.mini-icon-close {
 	background: url('mini-icons.png') no-repeat -32px -191.5px;
 	float:right;
 	margin-top:-2px;

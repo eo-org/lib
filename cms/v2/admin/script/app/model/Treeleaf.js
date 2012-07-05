@@ -18,8 +18,10 @@ TreeleafView = Backbone.View.extend({
 	className: 'treeleaf-item',
 	events: {
 		"dragstart .drag-handle": "dragStartEvent",
-		"dragend .drag-handle": "dragEndEvent",
-		"click .quick-edit": "quickEdit"
+		"dragend .drag-handle": "dragEndEvent"
+	},
+	initialize: function() {
+		this.model.on('change', this.modelChanged, this);
 	},
 	render: function() {
 		var template = _.template($('#treeleaf-item-template').html());
@@ -30,6 +32,10 @@ TreeleafView = Backbone.View.extend({
 			'label': this.model.get('label')
 		});
 		return this;
+	},
+	modelChanged: function() {
+		$(this.el).children('.treeleaf-label-html').html(this.model.get('label'));
+		console.log($(this.el));
 	},
 	dragStartEvent: function(e) {
 		e.dataTransfer.effectAllowed = 'move';
@@ -42,9 +48,6 @@ TreeleafView = Backbone.View.extend({
 	dragEndEvent: function(e) {
 		$(this.el).css('display', 'block');
 		$(this.el).next().css('display', 'block');
-	},
-	quickEdit: function(e) {
-		alert('ok');
 	}
 });
 
@@ -101,6 +104,8 @@ TreeleafCollectionView = Backbone.View.extend({
 		if (e.stopPropagation) {
 			e.stopPropagation();
 		}
+		
+		var prompt = Prompt.getInstance().appendHintBoxContent("树状结构已经改变，请点击<保存结构>以保存新的结构").showHintBox();
 		
 		var id = e.dataTransfer.getData('text');
 		var preSib = $(e.currentTarget);

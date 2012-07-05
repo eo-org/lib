@@ -185,7 +185,7 @@ $(document).ready(function() {
 			var spriteConfig = new Array();
 			stages.each(function(i, st) {
 				var stageId = $(st).attr('stage-id');
-				spriteConfig.push('{"stageId":"' + stageId + '", "type":"' + $(st).attr('type') + '", "uniquId":"' + $(st).attr('id') + '"}');
+				spriteConfig.push('{"stageId":"' + stageId + '", "type":"' + $(st).attr('type') + '", "uniqueId":"' + $(st).attr('id') + '"}');
 			});
 			var postStr = spriteConfig.join(',');
 			postStr = '{"layoutId":"' + layoutId + '" ,"stages":[' + postStr + ']}';

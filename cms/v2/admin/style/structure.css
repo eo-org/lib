@@ -19,6 +19,10 @@ div.clear {clear: both;}
 	box-shadow: 1px 1px 2px #777;
 	cursor: pointer;
 }
+.button:hover {
+	box-shadow: 0px 0px 2px #777;
+	text-decoration: none;
+}
 /********FINDER*********/
 #lightbox-whitebox {
 	margin-top: 55px;
