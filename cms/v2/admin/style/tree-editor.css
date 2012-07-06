@@ -24,6 +24,10 @@
 	border-radius: 2px;
 	padding: 2px;
 }
+.treeleaf-item .changed {
+	border: 1px solid #FFBABA;
+}
+
 .treeleaf-item .drag-handle {
 	width: 16px;
 	height: 16px;

@@ -58,6 +58,7 @@ TreeleafCollectionView = Backbone.View.extend({
 		"dragleave .drop-to-sort": "dragLeaveEvent",
 		"drop .drop-to-sort": "dropEvent"
 	},
+	prompt: Prompt.getInstance().appendHintBoxContent("树状结构已经改变，请点击<保存结构>以保存新的结构"),
 	initialize: function() {
 		var TH = this;
 		this.collection = new TreeleafCollection();
@@ -73,6 +74,10 @@ TreeleafCollectionView = Backbone.View.extend({
 		var container = $(this.el);
 		
 		_(this.collection.models).each(function(model) {
+			if(model.get('parentId') == '') {
+				model.set('parentId', 0);
+				this.prompt.showHintBox();
+			}
 			TH.addItem(model);
 		}, this);
 	},	
@@ -104,8 +109,7 @@ TreeleafCollectionView = Backbone.View.extend({
 		if (e.stopPropagation) {
 			e.stopPropagation();
 		}
-		
-		var prompt = Prompt.getInstance().appendHintBoxContent("树状结构已经改变，请点击<保存结构>以保存新的结构").showHintBox();
+		this.prompt.showHintBox();
 		
 		var id = e.dataTransfer.getData('text');
 		var preSib = $(e.currentTarget);
@@ -121,6 +125,7 @@ TreeleafCollectionView = Backbone.View.extend({
 			nextDropEl.attr('parent-id', parentId);
 			viewEl.insertAfter(preSib);
 			viewEl.attr('parent-id', parentId);
+			viewEl.children('.leaf-line').addClass('changed');
 		} catch(err) {
 			console.log(err);
 			return false;
