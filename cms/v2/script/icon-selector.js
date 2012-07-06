@@ -3,7 +3,7 @@ var IconSelector = function() {
 		caller : null,
 		callbackFunctionName : null,
 		fileServerUrl : "http://storage.aliyun.com/public-misc",
-		fileHost : "http://file.eo.test"
+		fileHost : "http://file.enorange.cn"
 	}
 	this.init = function() {
 		var TH = this;
