@@ -1,0 +1,38 @@
+body {
+ font-family: arial, ËÎÌו, serif;font-size:13px;
+}
+.nav {
+  line-height: 24px; list-style-type: none; background-color:#555;width: 80%; height:30px;float:left;
+}
+.right {
+  line-height: 24px; list-style-type: none; background-color:#555;width: 20%; height:30px;float:right;
+}
+.nav a {
+ display: block; width: 80px; text-align:center;color:#fff;
+}
+.right a {
+ display: block; width: 80px; text-align:center;color:#fff;
+}
+.nav a:hover {
+ color:#666;text-decoration:none;font-weight:bold;background-color:#ddd; border-radius: 10px 10px 10px 10px;
+}
+.right a:hover {
+ color:#666;text-decoration:none;font-weight:bold;background-color:#ddd;border-radius: 10px 10px 10px 10px;
+}
+.nav li {
+ float: left; width: 8%; margin-left:20px;margin-top:2px;margin-bottom:2px;
+}
+.right li {
+ float: left; width: 30%; margin-left:20px;margin-top:2px;margin-bottom:2px;
+}
+.nav li a.on{ background:#999;}
+.right li a.on{ background:#999;}
+.nav li.sfhover ul {
+ left: auto;
+}
+.right li.sfhover ul {
+ right: auto;
+}
+.content {
+ clear: left; 
+}

@@ -36,7 +36,6 @@ $(document).ready(function() {
 	$('#form_element').draggable(function() {
 		var dropLis = $('.element-dropable');
 		dropLis.css({'background':'#0077bb', 'opacity':1});
-		
 		dragSrcEl = $(this);
 		dragSrcEl.css('opacity', 0.2);
 		

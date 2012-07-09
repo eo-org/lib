@@ -1,19 +1,20 @@
 .element-library {
 	width: 350px;
 	border-radius: 4px;
-	background: #eee;
+	background: #ccc;
 	padding: 25px;
 	margin: 15px;
 	position: fixed;
+}
+
+
+ul.form-editor {
+	
 }
 .element-current {
 	width: 420px;
 	margin-left: 450px;
 }
-ul.form-editor {
-	
-}
-
 ul.form-editor li.drag-dropable {
 	padding: 0;
 	border-radius: 2px;
