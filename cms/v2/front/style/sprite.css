@@ -36,7 +36,8 @@ div.sprite-surrogate .handle {
 	cursor: pointer;
 }
 div.sprite-editmode {
-	background-color: #87CB53;
+	background-color: #7ac4a0;
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
 }
 div.grid-25 {
 	width: 242px;

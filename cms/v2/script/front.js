@@ -116,6 +116,10 @@ $(document).ready(function() {
 				});
 				var stages = $('.stage');
 				stages.each(function(i, s) {
+					if(i == 0) {
+						var newDropper = $("<div class='stage-gap'></div>");
+						newDropper.insertBefore(s);
+					}
 					var newDropper = $("<div class='stage-gap'></div>");
 					newDropper.insertAfter(s);
 				});
@@ -383,8 +387,11 @@ $(document).ready(function() {
 	});
 	$('#reload-local-css').click(function() {
 	    var queryString = '?reload=' + new Date().getTime();
-	    $('link[uselocal="true"]').each(function () {
-	        this.href = this.href.replace(/\?.*|$/, queryString);
+	    $('link').each(function (i, el) {
+	    	var href = $(el).attr('href');
+	    	if(href.indexOf('http://local.host/') === 0) {
+	    		this.href = this.href.replace(/\?.*|$/, queryString);
+	    	}
 	    });
 	});
 });
