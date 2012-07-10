@@ -14,27 +14,24 @@ var Lightbox = function()
 		whiteBox.hide();
 		blackBox.hide();
 		
-		$('body').trigger('AdminControlUnload');
+		$(document).trigger('AdminControlUnload');
 	});
     
-    this.show = function()
-    {
+    this.show = function() {
     	blackBox.show();
     	$('html, body').animate({scrollTop:0}, 'fast');
     	content.empty();
     	whiteBox.show();
     };
-    this.close = function()
-    {
+    this.close = function() {
     	window.location.hash = '';
     	whiteBox.hide();
     	blackBox.hide();
-    	$('body').trigger('AdminControlUnload');
+    	$(document).trigger('AdminControlUnload');
     };
-    this.appendContent = function(html)
-    {
+    this.appendContent = function(html) {
     	content.empty();
     	content.append(html);
-    	$('body').trigger('AdminControlLoad');
+    	$(document).trigger('AdminControlLoad');
     };
 };

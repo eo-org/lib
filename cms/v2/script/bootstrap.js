@@ -26,9 +26,6 @@ $(document).ready(function() {
 						window.location.reload();
 					} else {
 						lb.appendContent(html);
-						if($('#ck_text_editor').attr('id') == 'ck_text_editor') {
-							loadEditor('ck_text_editor');
-						}
 					}
 				}
 			});
