@@ -153,15 +153,17 @@ $(document).ready(function() {
 						'zIndex': '99'
 					});
 					
-					var gearLinks = jQuery.parseJSON($(this).attr('gearlinks'));
-					
-					if(gearLinks.length > 0) {
-						var UL = $("<ul class='gearlinks'></ul>");
-						for(i in gearLinks) {
-							gl = gearLinks[i];
-							UL.append("<li><a href='#" +  gl.href + "'>" + gl.label + "</a></li>");
+					if($(this).attr('gearlinks') != undefined) {
+						var gearLinks = jQuery.parseJSON($(this).attr('gearlinks'));
+						
+						if(gearLinks.length > 0) {
+							var UL = $("<ul class='gearlinks'></ul>");
+							for(i in gearLinks) {
+								gl = gearLinks[i];
+								UL.append("<li><a href='#" +  gl.href + "'>" + gl.label + "</a></li>");
+							}
+							MINI_BRICK_MASK.append(UL);
 						}
-						MINI_BRICK_MASK.append(UL);
 					}
 				});
 				$(brick).css('min-height', '80px');
