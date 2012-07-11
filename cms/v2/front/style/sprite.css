@@ -1,6 +1,5 @@
 .body_main_frame {
-	width: 1008px;
-	margin: 0 auto;
+	width: 100%;
 }
 /*******************/
 /*Stage Dropper*****/
@@ -17,8 +16,8 @@
 /*Stage*************/
 /*******************/
 div.stage {
-	width: 100%;
-	
+	width: 1008px;
+	margin: 0 auto;
 	position: relative;
 }
 /*******************/
