@@ -16,6 +16,9 @@ AdSectionView = Backbone.View.extend({
 	events:{
 		'click .adsection-handle': "adSectionHandle"
 	},
+	initialize: function() {
+		this.model.on('change', this.render, this);
+	},
 	render: function() {
 		var template = _.template($("#ad-section").html());
 		$(this.el).html(template(this.model.toJSON()));
@@ -29,7 +32,7 @@ AdSectionView = Backbone.View.extend({
 
 AdSectionCollectionView = Backbone.View.extend({
 	el: $('ul.ad-section'),
-	collection: null,
+	adSectionCollection: null,
 	events: {
 		
 	},
@@ -39,20 +42,20 @@ AdSectionCollectionView = Backbone.View.extend({
 		this.collection.fetch({success: function() {
 			TH.render();
 		}});
-		collection = this.collection;
-		
 		this.collection.bind('add', this.addItemView, this);
+		
+		adSectionCollection = this.collection;
 	},
 	render: function(){
 		var TH = this;
 		$(this.el).empty();
-		_(this.collection.models).each(function(file){
-			TH.addItemView(file);
+		_(this.collection.models).each(function(item){
+			TH.addItemView(item);
 		},this);
 	},
-	addItemView: function(adSection){
+	addItemView: function(item){
 		var adSectionView = new AdSectionView({
-			model:adSection
+			model:item
 		});
 		$(this.el).append(adSectionView.render().el);
 	},
@@ -77,22 +80,14 @@ AdSectionEditorView = Backbone.View.extend({
 	create: function() {
 		var fields = $(this.el).find('.value-field');
 		var data = {};
-		var options = [];
+		
 		fields.each(function(i, f) {
-			if($(f).attr('name') == 'option') {
-				if($(f).val() !== '') {
-					options.push({'label': $(f).val()});
-				}
-			} else {
-				data[$(f).attr('name')] = $(f).val();
-			}
-			data['options'] = options;
+			data[$(f).attr('name')] = $(f).val();
 		});
 		this.model.set(data);
 		
-		collection.add(this.model);
+		adSectionCollection.add(this.model);
 		this.model.save();
-		
 		Prompt.getInstance().hideMask();
 	}
 });
