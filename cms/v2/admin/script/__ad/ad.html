@@ -1,0 +1,47 @@
+﻿<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="css.css">
+		<link rel="stylesheet" type="text/css" href="prompt.css">
+		<script type="text/javascript" src="../jquery-1.7.2.js"></script>
+		<script type="text/javascript" src="../underscore.js"></script>
+		<script type="text/javascript" src="../backbone.js"></script>
+		<script type="text/javascript" src="ad/require.js"></script>
+		<script type="text/javascript" src="ad/admain.js"></script>
+	</head>
+	<body>
+		<div>
+			<ul class="ad">
+				
+			</ul>
+		</div>
+<script type="text/template" id="adEl">
+	<div class="ad-file">
+		<div class="ad-image"><img src="image/1.jpg" width="120px" height="60px"></div>
+		<div class="ad-filename">filename:<%=filename%></div>
+	</div>
+	<div class="ad-content">
+		<div class="ad-lable">label:<%=label%></div>
+		<div class="ad-description">description:<%=description%></div>
+		<div class="ad-link">link:<%=link%></div>
+		<div class="ad-edit"><a href="javascript:void(0)">修改</a></div>
+		<div class="ad-delete"><a href="javascript:void(0)">删除</a></div>
+	</div>
+	<div style="clear:both;"></div>
+</script>
+<script type="text/template" id="edit-adEl">
+	<div class="ad-edit-file">
+		<div class="ad-edit-image"><img src="image/1.jpg"></div>
+	</div>
+	<div class="ad-edit-content">
+		<div class="ad-edit-filename">filename:<input class="edit-filename" type="text" value="<%=filename%>"></div>
+		<div class="ad-edit-lable">label:<input class="edit-lable" type="text" value="<%=label%>"></div>
+		<div class="ad-edit-description">description:<input class="edit-description" type="text" value="<%=description%>"></div>
+		<div class="ad-edit-link">link:<input class="edit-link" type="text" value="<%=link%>"></div>
+		<div class="ad-save"><a href="javascript:void(0)">保存</a></div>
+	</div>
+</script>
+	</body>
+</html>
+<!--
+
+-->
