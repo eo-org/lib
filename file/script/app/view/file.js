@@ -83,7 +83,6 @@ FileCollectionView = Backbone.View.extend({
 		
 	},
 	initialize: function() {
-		
 		this.collection = new FileCollection();
 		this.collection.bind('reset', _.bind(this.render, this));
 		this.collection.bind('add', _.bind(this.prependItemView, this));

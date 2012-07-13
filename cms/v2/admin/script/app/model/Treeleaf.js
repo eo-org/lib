@@ -3,6 +3,7 @@ Treeleaf = Backbone.Model.extend({
 		id: null,
 		label: null,
 		link: null,
+		css: null,
 		parentId: 0,
 		sort: 0
 	}
@@ -18,7 +19,8 @@ TreeleafView = Backbone.View.extend({
 	className: 'treeleaf-item',
 	events: {
 		"dragstart .drag-handle": "dragStartEvent",
-		"dragend .drag-handle": "dragEndEvent"
+		"dragend .drag-handle": "dragEndEvent",
+		"click .edit-all": "popupEdit"
 	},
 	initialize: function() {
 		this.model.on('change', this.modelChanged, this);
@@ -35,7 +37,6 @@ TreeleafView = Backbone.View.extend({
 	},
 	modelChanged: function() {
 		$(this.el).children('.treeleaf-label-html').html(this.model.get('label'));
-		console.log($(this.el));
 	},
 	dragStartEvent: function(e) {
 		e.dataTransfer.effectAllowed = 'move';
@@ -48,6 +49,45 @@ TreeleafView = Backbone.View.extend({
 	dragEndEvent: function(e) {
 		$(this.el).css('display', 'block');
 		$(this.el).next().css('display', 'block');
+	},
+	popupEdit: function(){
+		var treeleafEditView = new TreeleafEditView({
+			model:this.model
+		});
+		
+		treeleafEditView.render().el;
+	}
+});
+
+TreeleafEditView = Backbone.View.extend({
+	events: {
+		'click .edit-save':'editSave',
+		'click .edit-delete':'editDelete'
+	},
+	render: function(){
+		
+		$(this.el).attr('class','edit-lable');
+		var editTemplate = _.template($('#treeleaf-edititem-template').html());
+		$(this.el).html(editTemplate(this.model.toJSON()));
+		
+		Prompt.getInstance().showMask();
+		Prompt.getInstance().appendEditorContent(this.el);
+		
+		return this; 
+	},
+	editSave: function(){
+		var labels = $(this.el).find('.edit-value');
+		var data = {};	
+		labels.each(function(i,j) {
+			data[$(j).attr('name')] = $(j).val();
+		});
+		this.model.set(data);
+		this.model.save();
+	},
+	editDelete: function(){
+		this.model.destroy({success:function(model,response){
+			Prompt.getInstance().hideMask();
+		}});
 	}
 });
 
