@@ -1,0 +1,5 @@
+.loading-box{width:260px;height:30px;line-height:30px;position:fixed;right:28px;bottom:-40px;background-color:#E0E0E0;background-image:url(attribute-editor_files/load.gif) no-repeat;border-radius:4px 4px 4px 4px;}
+.hint-box{width:260px;height:30px;line-height:30px;text-align:center;position:fixed;top:57px;right:-260px;background:#FFA500;border-radius:7xp 7px 7px 7px;}
+.mask-box{opacity:0.5;background:#cccccc;display:none;position:absolute;top:0px;}
+.content-editor{width:500px;position:absolute;display:none;min-height:300px;background:#ffffff;border:10px solid #BBBBBB;border-radius:4px 4px 4px 4px;}
+.content-editor-close{display:none;position:absolute;cursor:pointer;}

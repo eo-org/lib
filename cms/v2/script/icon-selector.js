@@ -57,7 +57,7 @@ var insertAttachment = function(data) {
 };
 //use icon path as input
 var appendToInput = function(data, caller) {
-	$(caller).val(data.filepath);
+	$(caller).val(data.urlname);
 };
 //append icon to ck editor
 var editor = null;
@@ -72,6 +72,29 @@ var appendToEditor = function(data) {
 
 //init ck editor
 $(document).ready(function() {
+	if($('#ck_text_editor').attr('id') == 'ck_text_editor') {
+		var instance = CKEDITOR.instances['ck_text_editor'];
+	    if(instance) {
+	        CKEDITOR.remove(instance);
+	    }
+	    CKEDITOR.replace('ck_text_editor', {
+	        toolbar:[
+				['Source'],
+				['Underline','Strike'],
+				['NumberedList','BulletedList','-','Outdent','Indent'],
+				['JustifyLeft','JustifyCenter','JustifyBlock'],
+				['Link','Unlink'],
+				'/',
+				['Format','Font','FontSize']
+			],
+			height: 280,
+			width: 480
+		});
+	    editor = CKEDITOR.instances.ck_text_editor;
+	}
+});
+
+$(document).on('AdminControlLoad', function() {
 	if($('#ck_text_editor').attr('id') == 'ck_text_editor') {
 		var instance = CKEDITOR.instances['ck_text_editor'];
 	    if(instance) {

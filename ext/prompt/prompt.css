@@ -62,9 +62,8 @@
 	height: 16px;
 	background: url('../mini-icons.png') -96px -128px;
 }
-.mask-inner-editor div {
+.mask-inner-editor div.editor-title {
 	padding: 8px 0;
-	margin: 8px 0;
 	font-size: larger;
 	border-bottom: 2px solid #777;
 }

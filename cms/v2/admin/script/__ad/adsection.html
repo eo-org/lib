@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="css.css">
+		<script type="text/javascript" src="../jquery-1.7.2.js"></script>
+		<script type="text/javascript" src="../underscore.js"></script>
+		<script type="text/javascript" src="../backbone.js"></script>
+		<script type="text/javascript" src="ad/require.js"></script>
+		<script type="text/javascript" src="ad/admain.js"></script>
+	</head>
+	<body>
+		<div>
+			<ul class="adsection">
+				
+			</ul>
+		</div>
+<script type="text/template" id="adsectionEl">
+	<div class="adsection-images">
+	<%
+		for(var i = 0;i < preview.length;i++){
+	%>
+		<div class="adsection-image<%=i%>"><img src=<%=preview[i]%>></div>
+	<%
+		}
+	%>
+	</div>
+	<div class="adsection-name"><%=label%></div>
+	<div style="clear:both"></div>
+	<div class="adsection-handle"><a href="javascript:void(0)">²Ù×÷</a></div>
+</script>
+	</body>
+</html>
