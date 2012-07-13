@@ -207,12 +207,7 @@
 							} else {
 								var td = jo[keyValue];
 							}
-							if(keyValue == 'content'){
-								$("<td width='780px'>" + td + "</td>").appendTo(newRow);
-							}else{
-								$("<td>" + td + "</td>").appendTo(newRow);
-							}
-                			
+                			$("<td>" + td + "</td>").appendTo(newRow);
                     	}
                     }
                     newRow.attr('rowId', jo[settings.actionId]);
@@ -265,6 +260,7 @@
 		}
 		
 		var composeSearchQuery = function(pageNumber) {
+			
 			var q = "";
 			_.each(pieces, function(piece) {
 				var tmp = piece.split('=');
@@ -311,6 +307,7 @@
 		var links = new Array();
 		
         for(var i = 1; i <= numberOfPages; i++) {
+        	
             if (
                 i <= options.linkPagesEnds
         	    || i > numberOfPages - options.linkPagesEnds
@@ -330,7 +327,7 @@
         }
         
         if (numberOfPages != options.currentPage && numberOfPages != 0) {
-        	links[numberOfPages + 1] = PAGE_CONTAINER.buildLink(options.hashObj, options.currentPage + 1, options.nextText).addClass('next');
+        	links[numberOfPages + 1] = PAGE_CONTAINER.buildLink(options.hashObj, parseInt(options.currentPage)+parseInt(1), options.nextText).addClass('next');
         } else {
         	links[numberOfPages + 1] = $('<span>' + options.nextText + '</span>').addClass('next');
         }
