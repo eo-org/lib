@@ -53,14 +53,16 @@
 	postFileUrl: function() {
 		if(window.opener) {
 			window.opener.postMessage({
-				'filepath' : window.ORG_CODE + '/' + this.model.get('urlname'),
-				'filename' : this.model.get('filename')
+				'filepath'	: window.ORG_CODE + '/' + this.model.get('urlname'),
+				'filename'	: this.model.get('filename'),
+				'urlname'	: this.model.get('urlname')
 			}, '*');
 			window.close();
 		} else if(window.parent) {
 			window.parent.postMessage({
-				'filepath' : window.ORG_CODE + '/' + this.model.get('urlname'),
-				'filename' : this.model.get('filename')
+				'filepath'	: window.ORG_CODE + '/' + this.model.get('urlname'),
+				'filename'	: this.model.get('filename'),
+				'urlname'	: this.model.get('urlname')
 			}, '*');
 			window.close();
 		}

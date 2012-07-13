@@ -57,7 +57,7 @@ var insertAttachment = function(data) {
 };
 //use icon path as input
 var appendToInput = function(data, caller) {
-	$(caller).val(data.filepath);
+	$(caller).val(data.urlname);
 };
 //append icon to ck editor
 var editor = null;
