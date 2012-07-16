@@ -313,7 +313,7 @@
 })(jQuery);
 
 $(document).ready(function() {
-	$('.fancy-transition').each(function(i, ftObj){
+	$('#fancy-transition').each(function(i, ftObj){
 		var brickData = $(ftObj).attr('data');
 		$(ftObj).jqFancyTransitions(jQuery.parseJSON(brickData));
 	});
