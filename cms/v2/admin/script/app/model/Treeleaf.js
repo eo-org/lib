@@ -50,9 +50,10 @@ TreeleafView = Backbone.View.extend({
 		$(this.el).css('display', 'block');
 		$(this.el).next().css('display', 'block');
 	},
-	popupEdit: function(){
+	popupEdit: function(e){
+		var viewId = $(e.target).attr('id');
 		var treeleafEditView = new TreeleafEditView({
-			model:this.model
+			model:collection.get(viewId)
 		});
 		
 		treeleafEditView.render().el;
@@ -92,6 +93,7 @@ TreeleafEditView = Backbone.View.extend({
 });
 
 TreeleafCollectionView = Backbone.View.extend({
+	collection: null,
 	el: $('ul.container'),
 	events: {
 		"dragover .drop-to-sort": "dragOverEvent",
@@ -102,6 +104,7 @@ TreeleafCollectionView = Backbone.View.extend({
 	initialize: function() {
 		var TH = this;
 		this.collection = new TreeleafCollection();
+		collection = this.collection;
 		this.collection.comparator = function(attr) {
 			return attr.get('sort');
 		};
@@ -172,14 +175,4 @@ TreeleafCollectionView = Backbone.View.extend({
 		}
 		return false;
 	}
-});
-var createLink = function(){
-	var LinkModel = new Treeleaf;
-	var createLink = new TreeleafEditView({
-		model:LinkModel
-	});
-	createLink.render().el;
-}
-$('.create-link').click(function(){
-	createLink();
 });
