@@ -313,6 +313,8 @@
 })(jQuery);
 
 $(document).ready(function() {
-	var brickData = $('#fancy-transition').attr('data');
-	$('#fancy-transition').jqFancyTransitions(jQuery.parseJSON(brickData));
+	$('.fancy-transition').each(function(i, ftObj){
+		var brickData = $(ftObj).attr('data');
+		$(ftObj).jqFancyTransitions(jQuery.parseJSON(brickData));
+	});
 });
