@@ -106,6 +106,34 @@
 	float:left;
 	display:block;	
 }
+.create-link {
+	width:120px;
+	height:20px;
+	line-height:20px;
+	text-align:center;
+	cursor:pointer;
+	margin-top:10px;
+	margin-left:10px;
+	display:block;
+	border:1px solid #0077BB;
+	background-color: #EEEEEE;
+	border-radius:4px 4px 4px 4px;
+	box-shadow: 1px 1px 2px #777777;
+}
+.create-link:hover{
+	width:120px;
+	height:20px;
+	line-height:20px;
+	text-align:center;
+	cursor:pointer;
+	margin-top:10px;
+	margin-left:10px;
+	display:block;
+	border:1px solid #0077BB;
+	background-color: #EEEEEE;
+	border-radius:4px 4px 4px 4px;
+	box-shadow: 0px 0px 2px #777777;	
+}
 .css-el input{
 	margin-top:5px;
 	width:150px;

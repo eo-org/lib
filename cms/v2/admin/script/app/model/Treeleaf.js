@@ -173,3 +173,13 @@ TreeleafCollectionView = Backbone.View.extend({
 		return false;
 	}
 });
+var createLink = function(){
+	var LinkModel = new Treeleaf;
+	var createLink = new TreeleafEditView({
+		model:LinkModel
+	});
+	createLink.render().el;
+}
+$('.create-link').click(function(){
+	createLink();
+});
