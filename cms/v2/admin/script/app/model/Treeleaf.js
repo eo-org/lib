@@ -52,6 +52,7 @@ TreeleafView = Backbone.View.extend({
 	},
 	popupEdit: function(e){
 		var viewId = $(e.target).attr('id');
+		$(e.target).parent().parent().attr('class','changed');
 		var treeleafEditView = new TreeleafEditView({
 			model:collection.get(viewId)
 		});
@@ -76,6 +77,9 @@ TreeleafEditView = Backbone.View.extend({
 		
 		return this; 
 	},
+	saveValue: function(){
+		console.log(this.model);
+	},
 	editSave: function(){
 		var labels = $(this.el).find('.edit-value');
 		var data = {};	
@@ -86,9 +90,10 @@ TreeleafEditView = Backbone.View.extend({
 		if(this.model.get('id') == null){
 			collection.add(this.model);
 		}
-		this.model.save(this.model,{success:function(){
+		this.model.save(this.model,{success:function(model,response){
 			Prompt.getInstance().hideMask();
 			Prompt.getInstance().showHintBox();
+			console.log(this.model);
 		}});
 	},
 	editDelete: function(){
@@ -111,7 +116,7 @@ TreeleafCollectionView = Backbone.View.extend({
 		var TH = this;
 		this.collection = new TreeleafCollection();
 		this.collection.bind('add',this.addItem,this);
-		this.collection.bind('change',this.render,this);
+		//this.collection.bind('change',this.amendItem,this);
 		collection = this.collection;
 		this.collection.comparator = function(attr) {
 			return attr.get('sort');
@@ -123,7 +128,9 @@ TreeleafCollectionView = Backbone.View.extend({
 	render: function() {
 		var TH = this;
 		var container = $(this.el);
+		
 		$(this.el).empty();
+		
 		_(this.collection.models).each(function(model) {
 			if(model.get('parentId') == '') {
 				model.set('parentId', 0);
@@ -131,7 +138,7 @@ TreeleafCollectionView = Backbone.View.extend({
 			}
 			TH.addItem(model);
 		}, this);
-	},	
+	},
 	addItem: function(model) {
 		var treeleafView = new TreeleafView({
 			model: model
