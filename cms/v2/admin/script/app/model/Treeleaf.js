@@ -83,6 +83,7 @@ TreeleafEditView = Backbone.View.extend({
 			data[$(j).attr('name')] = $(j).val();
 		});
 		this.model.set(data);
+		collection.add(this.model);
 		this.model.save();
 	},
 	editDelete: function(){
@@ -104,6 +105,7 @@ TreeleafCollectionView = Backbone.View.extend({
 	initialize: function() {
 		var TH = this;
 		this.collection = new TreeleafCollection();
+		this.collection.bind('add',this.addItem,this);
 		collection = this.collection;
 		this.collection.comparator = function(attr) {
 			return attr.get('sort');
