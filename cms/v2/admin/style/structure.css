@@ -528,6 +528,15 @@ ul.context-menu li a {
 /*Brick Selector********/
 /***********************/
 /***********************/
+.extension-group a {
+	display: block;
+	border-bottom: 1px solid #777;
+	margin-bottom: 10px;
+	padding: 10px;
+}
+.extension-group a:hover {
+	border-bottom: 1px solid #0077bb;
+}
 .brick-selector-row {
 	overflow: auto;
 	border: 1px solid #777;
