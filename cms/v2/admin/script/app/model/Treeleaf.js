@@ -83,7 +83,9 @@ TreeleafEditView = Backbone.View.extend({
 			data[$(j).attr('name')] = $(j).val();
 		});
 		this.model.set(data);
-		collection.add(this.model);
+		if(this.model.get('id') == null){
+			collection.add(this.model);
+		}
 		this.model.save();
 	},
 	editDelete: function(){
