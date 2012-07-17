@@ -86,7 +86,10 @@ TreeleafEditView = Backbone.View.extend({
 		if(this.model.get('id') == null){
 			collection.add(this.model);
 		}
-		this.model.save();
+		this.model.save(this.model,{success:function(){
+			Prompt.getInstance().hideMask();
+			Prompt.getInstance().showHintBox();
+		}});
 	},
 	editDelete: function(){
 		this.model.destroy({success:function(model,response){
@@ -108,6 +111,7 @@ TreeleafCollectionView = Backbone.View.extend({
 		var TH = this;
 		this.collection = new TreeleafCollection();
 		this.collection.bind('add',this.addItem,this);
+		this.collection.bind('change',this.render,this);
 		collection = this.collection;
 		this.collection.comparator = function(attr) {
 			return attr.get('sort');
@@ -119,7 +123,7 @@ TreeleafCollectionView = Backbone.View.extend({
 	render: function() {
 		var TH = this;
 		var container = $(this.el);
-		
+		$(this.el).empty();
 		_(this.collection.models).each(function(model) {
 			if(model.get('parentId') == '') {
 				model.set('parentId', 0);
