@@ -8,22 +8,24 @@ Headfile = Backbone.Model.extend({
 
 HeadfileCollection = Backbone.Collection.extend({
 	model: Headfile,
-	url: ""
+	url: "rest/"
 });
 
 HeadfileCollectionView = Backbone.View.extend({
-	el: $('ul.head-file'),
+	collection: null,
+	el: $('ul.head-files'),
 	events: {
 		
 	},
 	initialize: function(){
 		this.collection = new HeadfileCollection();
-		
+		collection = this.collection;
 		this.collection.bind('add',_.bind(this.modelAdd,this));
 		
 		//this.collection.fetch({success: function(){
 		//	this.render();
 		//}});
+		
 		this.setValue();
 	},
 	render: function(){
@@ -42,13 +44,15 @@ HeadfileCollectionView = Backbone.View.extend({
 	},
 	setValue: function(){
 		this.collection.add([{id: "1",type: "css",filename: "cs.css"}]);
+		this.collection.add([{id: "2",type: "js",filename: "cs.js"}]);
 	}
 });
 
 HeadfileView = Backbone.View.extend({
 	tagName: 'li',
 	events:{
-		'click .edit-all': 'editValue',
+		'click .action-edit': 'editValue',
+		'click .action-destroy': 'editDelete'
 	},
 	render: function(){
 		var template = _.template($('#headfile-item-template').html());
@@ -60,16 +64,22 @@ HeadfileView = Backbone.View.extend({
 		var headfile = new Headfileedit({
 			model: this.model
 		});
-		headfile.render().el;
+		headfile.render();
+	},
+	editDelete: function(){
+		this.model.destroy({success:function(model,response){
+			alert('文件已删除!');
+		}});
 	}
 });
 
 Headfileedit = Backbone.View.extend({
 	events:{
 		'click .edit-save':'saveValue',
-		'click .delete':'deleteModel'
+		'click .edit-delete':'deleteModel'
 	},
 	render: function(){
+		$(this.el).attr('class','editAll');
 		var edittemplate = _.template($('#headfile-edititem-template').html());
 		$(this.el).html(edittemplate(this.model.toJSON()));
 		
@@ -79,9 +89,22 @@ Headfileedit = Backbone.View.extend({
 		return this;
 	},
 	saveValue: function(){
-		
+		var file = $(this.el).find('.edit-value');
+		var data = {};
+		file.each(function(i,j){
+			data[$(j).attr('name')] = $(j).val();
+		});
+		this.model.set(data);
+		if(this.model.get('id') == null){
+			collection.add(this.model);
+		}
+		this.model.save(this.model,{success:function(model,response){
+			
+		}});
 	},
 	deleteModel: function(){
-		
+		this.model.destroy({success:function(model,response){
+			Prompt.getInstance().hideMask();
+		}});
 	}
 });

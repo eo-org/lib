@@ -1,7 +1,141 @@
+.create-file{
+	width:50px;
+}
+.head-files{
+	background-color: #FEFEFE;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 2px 6px #777777;
+    margin: 4px 0 0 200px;
+    padding: 5px 15px;
+    width: 600px;
+}
+.head-file{
+	width:600px;
+	height:25px;
+	line-height:25px;
+	border:1px solid #DDDDDD;
+	margin-bottom:5px;
+}
 .head-filename{
 	float:left;
+	margin-left:5px;
 }
-.head-filetype{
+.edit-all{
+	width:100px;
 	float:left;
-	margin-left:100px;
+	display:block;
+}
+.action-edit{
+	width:17px;
+	height:17px;
+	display:block;
+	margin-top:3px;
+	margin-right:10px;
+	float:left;
+	border:1px solid gray;
+	border-radius: 2px 2px 2px 2px;
+	background: url("../image/mini-icons.png") no-repeat scroll -64px -112px transparent;
+}
+.action-edit:hover{
+	border:1px solid #0077BB;
+}
+.head-filetype {
+	float:right;
+	margin-right:5px;
+}
+.editAll{
+	height: auto;
+	margin-left: 100px;
+	margin-top: 100px;
+	width: 300px;
+}
+.filename-el{
+	height: 30px;
+	width: 300px;
+}
+.filename-el span{
+	display: block;
+	float: left;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	width: 100px;	
+}
+.filename-el input{
+	float: left;
+    margin-top: 5px;
+    width: 150px;
+}
+.filetype-el{
+	height: 30px;
+	width: 300px;
+}
+.filetype-el span{
+	display: block;
+	float: left;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	width: 100px;		
+}
+.filetype-el select{
+	float: left;
+    margin-top: 5px;
+    width: 150px;
+}
+.edit-save{
+	background-color: #EEEEEE;
+    border: 1px solid #0077BB;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 1px 1px 2px #777777;
+    display: block;
+    float: left;
+    height: 20px;
+    line-height: 20px;
+    margin-left: 70px;
+    margin-top: 20px;
+    text-align: center;
+    width: 60px;	
+}
+.edit-save:hover{
+	background-color: #EEEEEE;
+    border: 1px solid #0077BB;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 0 2px #777777;
+    display: block;
+    float: left;
+    height: 20px;
+    line-height: 20px;
+    margin-left: 70px;
+    margin-top: 20px;
+    text-align: center;
+    width: 60px;
+}
+.edit-delete{
+	background-color: #EEEEEE;
+    border: 1px solid #0077BB;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 1px 1px 2px #777777;
+    display: block;
+    float: left;
+    height: 20px;
+    line-height: 20px;
+    margin-left: 20px;
+    margin-top: 20px;
+    text-align: center;
+    width: 60px;	
+}
+.edit-delete:hover{
+	background-color: #EEEEEE;
+    border: 1px solid #0077BB;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 0 2px #777777;
+    display: block;
+    float: left;
+    height: 20px;
+    line-height: 20px;
+    margin-left: 20px;
+    margin-top: 20px;
+    text-align: center;
+    width: 60px;
 }
