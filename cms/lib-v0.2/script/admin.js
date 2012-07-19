@@ -1,6 +1,7 @@
 /***********************/
 /*FINDER*********/
 /***********************/
+var EVENT_BINDED = false;
 function loadEditor(elementId) {
     var instance = CKEDITOR.instances[elementId];
     if(instance) {
@@ -27,10 +28,13 @@ function loadEditor(elementId) {
 				url: "/admin/file/list/layout/disable",
 				success: function(HTML) {
 					content = FINDER.appendToContent(HTML);
+					if(EVENT_BINDED == false) {
 					EventMessenger.bind('finder-responder-back', function(path) {
 						imgHtml = CKEDITOR.dom.element.createFromHtml("<img src='http://" + FILE_SERVER + "/" + path + "' />");
 						editor.insertElement(imgHtml);
 					});
+					EVENT_BINDED = true;
+					}
 				}
 			});
 		}
