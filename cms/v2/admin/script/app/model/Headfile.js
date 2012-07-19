@@ -8,7 +8,7 @@ Headfile = Backbone.Model.extend({
 
 HeadfileCollection = Backbone.Collection.extend({
 	model: Headfile,
-	url: "rest/"
+	url: "/rest/head-file"
 });
 
 HeadfileCollectionView = Backbone.View.extend({
@@ -18,15 +18,16 @@ HeadfileCollectionView = Backbone.View.extend({
 		
 	},
 	initialize: function(){
+		TH = this;
 		this.collection = new HeadfileCollection();
 		collection = this.collection;
 		this.collection.bind('add',_.bind(this.modelAdd,this));
 		
-		//this.collection.fetch({success: function(){
-		//	this.render();
-		//}});
+		this.collection.fetch({success: function(){
+			TH.render();
+		}});
 		
-		this.setValue();
+		//this.setValue();
 	},
 	render: function(){
 		var TH = this;
@@ -51,8 +52,7 @@ HeadfileCollectionView = Backbone.View.extend({
 HeadfileView = Backbone.View.extend({
 	tagName: 'li',
 	events:{
-		'click .action-edit': 'editValue',
-		'click .action-destroy': 'editDelete'
+		'click .action-edit': 'editValue'
 	},
 	render: function(){
 		var template = _.template($('#headfile-item-template').html());
@@ -65,11 +65,6 @@ HeadfileView = Backbone.View.extend({
 			model: this.model
 		});
 		headfile.render();
-	},
-	editDelete: function(){
-		this.model.destroy({success:function(model,response){
-			alert('文件已删除!');
-		}});
 	}
 });
 
@@ -99,7 +94,7 @@ Headfileedit = Backbone.View.extend({
 			collection.add(this.model);
 		}
 		this.model.save(this.model,{success:function(model,response){
-			
+			Prompt.getInstance().hideMask();
 		}});
 	},
 	deleteModel: function(){
