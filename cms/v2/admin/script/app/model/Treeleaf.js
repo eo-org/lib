@@ -20,23 +20,50 @@ TreeleafView = Backbone.View.extend({
 	events: {
 		"dragstart .drag-handle": "dragStartEvent",
 		"dragend .drag-handle": "dragEndEvent",
-		"click .edit-all": "popupEdit"
+		"click .edit": "showEditor"
 	},
 	initialize: function() {
-		this.model.on('change', this.modelChanged, this);
+		this.model.on('change', this.update, this);
+		this.model.on('destroy', this.destroy, this);
 	},
 	render: function() {
 		var template = _.template($('#treeleaf-item-template').html());
 		$(this.el).html(template(this.model.toJSON()));
 		$(this.el).attr({
 			'id': this.model.get('id'),
-			'parent-id': this.model.get('parentId'),
-			'label': this.model.get('label')
+			'parent-id': this.model.get('parentId')
 		});
+		
 		return this;
 	},
-	modelChanged: function() {
-		$(this.el).children('.treeleaf-label-html').html(this.model.get('label'));
+	update: function() {
+		if(this.model.hasChanged('id')) {
+			var template = _.template($('#treeleaf-item-template').html());
+			$(this.el).html(template(this.model.toJSON()));
+			$(this.el).attr({
+				'id': this.model.get('id'),
+				'parent-id': parentId
+			});
+			$(this.el).children('.leaf-line').addClass('changed');
+		} else {
+			var ulEl = $(this.el).children('ul');
+			var parentId = $(this.el).attr('parent-id');
+			
+			var template = _.template($('#treeleaf-item-template').html());
+			$(this.el).html(template(this.model.toJSON()));
+			$(this.el).attr({
+				'id': this.model.get('id'),
+				'parent-id': parentId
+			});
+			$(this.el).children('.leaf-line').addClass('changed');
+			
+			$(this.el).find('ul').replaceWith(ulEl);
+		}
+	},
+	destroy: function(model, resp) {
+		var nextDropEl = $(this.el).next();
+		nextDropEl.remove();
+		$(this.el).remove();
 	},
 	dragStartEvent: function(e) {
 		e.dataTransfer.effectAllowed = 'move';
@@ -50,8 +77,9 @@ TreeleafView = Backbone.View.extend({
 		$(this.el).css('display', 'block');
 		$(this.el).next().css('display', 'block');
 	},
-	popupEdit: function(e){
+	showEditor: function(e){
 		var viewId = $(e.target).attr('id');
+<<<<<<< HEAD
 		$(e.target).parent().parent().attr('class','changed');
 		var treeleafEditView = new TreeleafEditView({
 			model:collection.get(viewId)
@@ -100,11 +128,18 @@ TreeleafEditView = Backbone.View.extend({
 		this.model.destroy({success:function(model,response){
 			Prompt.getInstance().hideMask();
 		}});
+=======
+		var treeleafEditView = new TreeleafEditorView({
+			model:treeleafCollection.get(viewId)
+		});
+		
+		treeleafEditView.render();
+>>>>>>> 。。。。
 	}
 });
 
 TreeleafCollectionView = Backbone.View.extend({
-	collection: null,
+	treeleafCollection: null,
 	el: $('ul.container'),
 	events: {
 		"dragover .drop-to-sort": "dragOverEvent",
@@ -116,14 +151,19 @@ TreeleafCollectionView = Backbone.View.extend({
 		var TH = this;
 		this.collection = new TreeleafCollection();
 		this.collection.bind('add',this.addItem,this);
+<<<<<<< HEAD
 		//this.collection.bind('change',this.amendItem,this);
 		collection = this.collection;
+=======
+		
+>>>>>>> 。。。。
 		this.collection.comparator = function(attr) {
 			return attr.get('sort');
 		};
 		this.collection.fetch({success: function() {
 			TH.render();
 		}});
+		treeleafCollection = this.collection;
 	},
 	render: function() {
 		var TH = this;
@@ -132,7 +172,7 @@ TreeleafCollectionView = Backbone.View.extend({
 		$(this.el).empty();
 		
 		_(this.collection.models).each(function(model) {
-			if(model.get('parentId') == '') {
+			if(model.get('parentId') === '') {
 				model.set('parentId', 0);
 				this.prompt.showHintBox();
 			}
@@ -149,10 +189,11 @@ TreeleafCollectionView = Backbone.View.extend({
 		} else {
 			var container = $('#' + model.get('parentId')).children('ul');
 		}
-		if(container.length) {
-			container.append(treeleafView.render().el);
-			container.append("<li class='drop-to-sort' parent-id='" + model.get('parentId') + "'></li>");
+		if(container.length === 0) {
+			container = $(this.el);
 		}
+		container.append(treeleafView.render().el);
+		container.append("<li class='drop-to-sort' parent-id='" + model.get('parentId') + "'></li>");
 	},
 	dragOverEvent: function(e) {
 		$(e.currentTarget).css('background', 'blue');
@@ -189,5 +230,49 @@ TreeleafCollectionView = Backbone.View.extend({
 			return false;
 		}
 		return false;
+	}
+});
+
+TreeleafEditorView = Backbone.View.extend({
+	events: {
+		'click .edit-save' : 'saveModel',
+		'click .edit-delete' : 'deleteModel'
+	},
+	render: function() {
+		var youmeiyou = true;
+		
+		var template = _.template($('#treeleaf-editor').html());
+		$(this.el).html(template(this.model.toJSON()));
+		
+		Prompt.getInstance().showMask();
+		Prompt.getInstance().appendEditorContent(this.el);
+		
+		return this; 
+	},
+	saveModel: function() {
+		var labels = $(this.el).find('.edit-value');
+		var data = {};	
+		labels.each(function(i,j) {
+			data[$(j).attr('name')] = $(j).val();
+		});
+		
+		this.model.set(data);
+		if(this.model.isNew()) {
+			treeleafCollection.add(this.model);
+		}
+		this.model.save(data, {success:function(model, response) {
+			Prompt.getInstance().hideMask();
+			Prompt.getInstance().showHintBox();
+		}});
+	},
+	deleteModel: function(){
+		var request = this.model.destroy({
+			success:function(model) {
+				Prompt.getInstance().hideMask();
+			},
+			error: function(model, resp) {
+				alert(resp.responseText);
+			}
+		});
 	}
 });
