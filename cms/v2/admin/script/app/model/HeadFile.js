@@ -68,6 +68,7 @@ HeadfileView = Backbone.View.extend({
 	},
 	update: function(){
 		
+		
 	}
 });
 
