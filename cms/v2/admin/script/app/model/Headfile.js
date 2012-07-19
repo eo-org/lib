@@ -26,8 +26,6 @@ HeadfileCollectionView = Backbone.View.extend({
 		this.collection.fetch({success: function(){
 			TH.render();
 		}});
-		
-		//this.setValue();
 	},
 	render: function(){
 		var TH = this;
@@ -42,10 +40,6 @@ HeadfileCollectionView = Backbone.View.extend({
 			model:item
 		}); 
 		$(this.el).prepend(headfileView.render().el);
-	},
-	setValue: function(){
-		this.collection.add([{id: "1",type: "css",filename: "cs.css"}]);
-		this.collection.add([{id: "2",type: "js",filename: "cs.js"}]);
 	}
 });
 
@@ -98,7 +92,9 @@ Headfileedit = Backbone.View.extend({
 		}});
 	},
 	deleteModel: function(){
+		var elId = this.model.get('id');
 		this.model.destroy({success:function(model,response){
+			$('#'+elId).parent().parent().parent().remove();
 			Prompt.getInstance().hideMask();
 		}});
 	}
