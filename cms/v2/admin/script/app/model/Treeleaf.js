@@ -60,7 +60,7 @@ TreeleafView = Backbone.View.extend({
 			$(this.el).find('ul').replaceWith(ulEl);
 		}
 	},
-	destroy: function(model, resp) {
+	destroy: function() {
 		var nextDropEl = $(this.el).next();
 		nextDropEl.remove();
 		$(this.el).remove();
