@@ -3,6 +3,9 @@ Headfile = Backbone.Model.extend({
 		id: null,
 		type: "",
 		filename: ""
+	},
+	validate: function(){
+		
 	}
 });
 
@@ -48,6 +51,9 @@ HeadfileView = Backbone.View.extend({
 	events:{
 		'click .action-edit': 'editValue'
 	},
+	initialize: function(){
+		this.model.on('change',this.update,this);
+	},
 	render: function(){
 		var template = _.template($('#headfile-item-template').html());
 		$(this.el).html(template(this.model.toJSON()));
@@ -59,6 +65,9 @@ HeadfileView = Backbone.View.extend({
 			model: this.model
 		});
 		headfile.render();
+	},
+	update: function(){
+		
 	}
 });
 
