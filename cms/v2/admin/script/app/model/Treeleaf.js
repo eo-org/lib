@@ -79,62 +79,11 @@ TreeleafView = Backbone.View.extend({
 	},
 	showEditor: function(e){
 		var viewId = $(e.target).attr('id');
-<<<<<<< HEAD
-		$(e.target).parent().parent().attr('class','changed');
-		var treeleafEditView = new TreeleafEditView({
-			model:collection.get(viewId)
-		});
-		
-		treeleafEditView.render().el;
-	}
-});
-
-TreeleafEditView = Backbone.View.extend({
-	events: {
-		'click .edit-save':'editSave',
-		'click .edit-delete':'editDelete'
-	},
-	render: function(){
-		
-		$(this.el).attr('class','edit-lable');
-		var editTemplate = _.template($('#treeleaf-edititem-template').html());
-		$(this.el).html(editTemplate(this.model.toJSON()));
-		
-		Prompt.getInstance().showMask();
-		Prompt.getInstance().appendEditorContent(this.el);
-		
-		return this; 
-	},
-	saveValue: function(){
-		console.log(this.model);
-	},
-	editSave: function(){
-		var labels = $(this.el).find('.edit-value');
-		var data = {};	
-		labels.each(function(i,j) {
-			data[$(j).attr('name')] = $(j).val();
-		});
-		this.model.set(data);
-		if(this.model.get('id') == null){
-			collection.add(this.model);
-		}
-		this.model.save(this.model,{success:function(model,response){
-			Prompt.getInstance().hideMask();
-			Prompt.getInstance().showHintBox();
-			console.log(this.model);
-		}});
-	},
-	editDelete: function(){
-		this.model.destroy({success:function(model,response){
-			Prompt.getInstance().hideMask();
-		}});
-=======
 		var treeleafEditView = new TreeleafEditorView({
 			model:treeleafCollection.get(viewId)
 		});
 		
 		treeleafEditView.render();
->>>>>>> 。。。。
 	}
 });
 
@@ -151,12 +100,6 @@ TreeleafCollectionView = Backbone.View.extend({
 		var TH = this;
 		this.collection = new TreeleafCollection();
 		this.collection.bind('add',this.addItem,this);
-<<<<<<< HEAD
-		//this.collection.bind('change',this.amendItem,this);
-		collection = this.collection;
-=======
-		
->>>>>>> 。。。。
 		this.collection.comparator = function(attr) {
 			return attr.get('sort');
 		};
