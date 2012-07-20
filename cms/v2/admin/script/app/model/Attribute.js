@@ -2,9 +2,10 @@ Attribute = Backbone.Model.extend({
 	defaults: {
 		id: null,
 		attributesetId: null,
-		description: "",
 		type: "",
+		code: "",
 		label: "",
+		description: "",
 		required: false,
 		sort: null,
 		className: null,
