@@ -1,6 +1,6 @@
 (function () {
     require(["head-file", "model/HeadFile"], function() {
-		var tlcView = new HeadfileCollectionView();
+		var tlcView = new HeadFileCollectionView();
     });
 	
 }());

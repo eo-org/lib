@@ -1,29 +1,32 @@
-Headfile = Backbone.Model.extend({
+HeadFile = Backbone.Model.extend({
 	defaults:{
 		id: null,
 		type: "",
 		filename: ""
 	},
-	validate: function(){
-		
+	validate: function(attrs){
+		if(attrs.type == '' || attrs.filename == ''){
+			Prompt.getInstance().hideMask();
+			return 'The model is null';
+		}
 	}
 });
 
-HeadfileCollection = Backbone.Collection.extend({
-	model: Headfile,
+HeadFileCollection = Backbone.Collection.extend({
+	model: HeadFile,
 	url: "/rest/head-file"
 });
 
-HeadfileCollectionView = Backbone.View.extend({
-	collection: null,
+HeadFileCollectionView = Backbone.View.extend({
+	headfileCollection: null,
 	el: $('ul.head-files'),
 	events: {
 		
 	},
 	initialize: function(){
 		TH = this;
-		this.collection = new HeadfileCollection();
-		collection = this.collection;
+		this.collection = new HeadFileCollection();
+		headfileCollection = this.collection;
 		this.collection.bind('add',_.bind(this.modelAdd,this));
 		
 		this.collection.fetch({success: function(){
@@ -39,20 +42,21 @@ HeadfileCollectionView = Backbone.View.extend({
 		return this;
 	},
 	modelAdd: function(item){
-		var headfileView = new HeadfileView({
+		var headfileView = new HeadFileView({
 			model:item
 		}); 
 		$(this.el).prepend(headfileView.render().el);
 	}
 });
 
-HeadfileView = Backbone.View.extend({
+HeadFileView = Backbone.View.extend({
 	tagName: 'li',
 	events:{
 		'click .action-edit': 'editValue'
 	},
 	initialize: function(){
 		this.model.on('change',this.update,this);
+		this.model.on('destroy',this.destroy,this);
 	},
 	render: function(){
 		var template = _.template($('#headfile-item-template').html());
@@ -60,19 +64,25 @@ HeadfileView = Backbone.View.extend({
 		
 		return this;
 	},
-	editValue: function(){
-		var headfile = new Headfileedit({
+	editValue: function(){		
+		var headfile = new HeadFileedit({
 			model: this.model
 		});
 		headfile.render();
 	},
 	update: function(){
-		
-		
+		if(this.model.hasChanged('id')){
+			
+		}else{
+			
+		}
+	},
+	destroy: function(model, resp){
+		$(this.el).remove();
 	}
 });
 
-Headfileedit = Backbone.View.extend({
+HeadFileedit = Backbone.View.extend({
 	events:{
 		'click .edit-save':'saveValue',
 		'click .edit-delete':'deleteModel'
@@ -85,6 +95,10 @@ Headfileedit = Backbone.View.extend({
 		Prompt.getInstance().showMask();
 		Prompt.getInstance().appendEditorContent(this.el);
 		
+		if(this.model.get('id') == null){
+			$('.edit-delete').css({'display':'none'});
+		}
+		
 		return this;
 	},
 	saveValue: function(){
@@ -94,17 +108,20 @@ Headfileedit = Backbone.View.extend({
 			data[$(j).attr('name')] = $(j).val();
 		});
 		this.model.set(data);
-		if(this.model.get('id') == null){
-			collection.add(this.model);
+
+		if(this.model.isValid()){
+			if(this.model.get('id') == null){
+				headfileCollection.add(this.model);
+			};
+		}else{
+			alert('文件名和文件类型不能为空！');
 		}
 		this.model.save(this.model,{success:function(model,response){
 			Prompt.getInstance().hideMask();
 		}});
 	},
 	deleteModel: function(){
-		var elId = this.model.get('id');
 		this.model.destroy({success:function(model,response){
-			$('#'+elId).parent().parent().parent().remove();
 			Prompt.getInstance().hideMask();
 		}});
 	}

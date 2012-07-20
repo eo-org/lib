@@ -43,99 +43,25 @@
 	float:right;
 	margin-right:5px;
 }
-.editAll{
-	height: auto;
-	margin-left: 100px;
-	margin-top: 100px;
-	width: 300px;
-}
 .filename-el{
-	height: 30px;
-	width: 300px;
+	margin: 5px 0;
+	font-weight: bold;
 }
-.filename-el span{
-	display: block;
-	float: left;
-	height: 30px;
-	line-height: 30px;
-	text-align: center;
-	width: 100px;	
-}
-.filename-el input{
-	float: left;
-    margin-top: 5px;
-    width: 150px;
-}
+
 .filetype-el{
-	height: 30px;
-	width: 300px;
-}
-.filetype-el span{
-	display: block;
-	float: left;
-	height: 30px;
-	line-height: 30px;
-	text-align: center;
-	width: 100px;		
-}
-.filetype-el select{
-	float: left;
-    margin-top: 5px;
-    width: 150px;
+	margin: 5px 0;
+	font-weight: bold;
 }
 .edit-save{
-	background-color: #EEEEEE;
-    border: 1px solid #0077BB;
-    border-radius: 4px 4px 4px 4px;
-    box-shadow: 1px 1px 2px #777777;
-    display: block;
-    float: left;
-    height: 20px;
-    line-height: 20px;
-    margin-left: 70px;
-    margin-top: 20px;
-    text-align: center;
-    width: 60px;	
-}
-.edit-save:hover{
-	background-color: #EEEEEE;
-    border: 1px solid #0077BB;
-    border-radius: 4px 4px 4px 4px;
-    box-shadow: 0 0 2px #777777;
-    display: block;
-    float: left;
-    height: 20px;
-    line-height: 20px;
-    margin-left: 70px;
-    margin-top: 20px;
-    text-align: center;
-    width: 60px;
+	width:100px;
+	display:block;
+	float:left;
+	margin-top:10px;
 }
 .edit-delete{
-	background-color: #EEEEEE;
-    border: 1px solid #0077BB;
-    border-radius: 4px 4px 4px 4px;
-    box-shadow: 1px 1px 2px #777777;
-    display: block;
-    float: left;
-    height: 20px;
-    line-height: 20px;
-    margin-left: 20px;
-    margin-top: 20px;
-    text-align: center;
-    width: 60px;	
-}
-.edit-delete:hover{
-	background-color: #EEEEEE;
-    border: 1px solid #0077BB;
-    border-radius: 4px 4px 4px 4px;
-    box-shadow: 0 0 2px #777777;
-    display: block;
-    float: left;
-    height: 20px;
-    line-height: 20px;
-    margin-left: 20px;
-    margin-top: 20px;
-    text-align: center;
-    width: 60px;
+	width:100px;
+	float:left;
+	display:block;
+	margin-top:10px;
+	margin-left:10px;
 }

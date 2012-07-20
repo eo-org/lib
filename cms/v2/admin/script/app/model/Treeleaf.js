@@ -1,11 +1,17 @@
 Treeleaf = Backbone.Model.extend({
 	defaults: {
 		id: null,
-		label: null,
-		link: null,
-		css: null,
+		label: '',
+		link: '',
+		css: '',
 		parentId: 0,
 		sort: 0
+	},
+	validate: function(attrs){	
+		if(attrs.label == '' || attrs.link == ''){
+			Prompt.getInstance().hideMask();
+			return 'The model is null';
+		}
 	}
 });
 
@@ -60,7 +66,7 @@ TreeleafView = Backbone.View.extend({
 			$(this.el).find('ul').replaceWith(ulEl);
 		}
 	},
-	destroy: function() {
+	destroy: function(model, resp) {
 		var nextDropEl = $(this.el).next();
 		nextDropEl.remove();
 		$(this.el).remove();
@@ -79,10 +85,11 @@ TreeleafView = Backbone.View.extend({
 	},
 	showEditor: function(e){
 		var viewId = $(e.target).attr('id');
+		
 		var treeleafEditView = new TreeleafEditorView({
 			model:treeleafCollection.get(viewId)
 		});
-		
+	
 		treeleafEditView.render();
 	}
 });
@@ -182,13 +189,16 @@ TreeleafEditorView = Backbone.View.extend({
 		'click .edit-delete' : 'deleteModel'
 	},
 	render: function() {
-		var youmeiyou = true;
 		
 		var template = _.template($('#treeleaf-editor').html());
 		$(this.el).html(template(this.model.toJSON()));
 		
 		Prompt.getInstance().showMask();
 		Prompt.getInstance().appendEditorContent(this.el);
+		
+		if(this.model.get('id') == null){
+			$('.edit-delete').css({'display':'none'});
+		}
 		
 		return this; 
 	},
@@ -200,9 +210,14 @@ TreeleafEditorView = Backbone.View.extend({
 		});
 		
 		this.model.set(data);
-		if(this.model.isNew()) {
-			treeleafCollection.add(this.model);
+		if(this.model.isValid()){
+			if(this.model.isNew()) {
+				treeleafCollection.add(this.model);
+			}			
+		}else{
+			alert('链接名和链接地址不能为空！');
 		}
+		
 		this.model.save(data, {success:function(model, response) {
 			Prompt.getInstance().hideMask();
 			Prompt.getInstance().showHintBox();
