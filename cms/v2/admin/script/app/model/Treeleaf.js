@@ -8,7 +8,7 @@ Treeleaf = Backbone.Model.extend({
 		sort: 0
 	},
 	validate: function(attrs){	
-		if(attrs.label == '' || attrs.link == ''){
+		if(attrs.label == ''){
 			Prompt.getInstance().hideMask();
 			return 'The model is null';
 		}
@@ -215,22 +215,27 @@ TreeleafEditorView = Backbone.View.extend({
 				treeleafCollection.add(this.model);
 			}			
 		}else{
-			alert('链接名和链接地址不能为空！');
+			alert('链接名不能为空！');
+			console.log(1);
 		}
-		
+		console.log(2);
 		this.model.save(data, {success:function(model, response) {
 			Prompt.getInstance().hideMask();
 			Prompt.getInstance().showHintBox();
+			console.log(3);
 		}});
+		console.log(4);
 	},
 	deleteModel: function(){
-		var request = this.model.destroy({
-			success:function(model) {
-				Prompt.getInstance().hideMask();
-			},
-			error: function(model, resp) {
-				alert(resp.responseText);
-			}
-		});
+		if(confirm('确定要删除吗？')){
+			var request = this.model.destroy({
+				success:function(model) {
+					Prompt.getInstance().hideMask();
+				},
+				error: function(model, resp) {
+					alert(resp.responseText);
+				}
+			});
+		}
 	}
 });

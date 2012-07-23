@@ -5,10 +5,11 @@ HeadFile = Backbone.Model.extend({
 		filename: ""
 	},
 	validate: function(attrs){
-		if(attrs.type == '' || attrs.filename == ''){
+		var patrn = /[\w+]([.]{1}[j]{1}[s]{1}$|[.]{1}[c]{1}[s]{2}$)/;
+		if(!patrn.exec(attrs.filename)){
 			Prompt.getInstance().hideMask();
 			return 'The model is null';
-		}
+		};
 	}
 });
 
@@ -114,15 +115,22 @@ HeadFileedit = Backbone.View.extend({
 				headfileCollection.add(this.model);
 			};
 		}else{
-			alert('文件名和文件类型不能为空！');
+			alert('文件名不能为空且文件名后缀必须为.css和.js！');
 		}
 		this.model.save(this.model,{success:function(model,response){
 			Prompt.getInstance().hideMask();
 		}});
 	},
 	deleteModel: function(){
-		this.model.destroy({success:function(model,response){
-			Prompt.getInstance().hideMask();
-		}});
+		if(confirm('确定要删除吗？')){	
+			this.model.destroy({
+				success: function(model,response){
+					Prompt.getInstance().hideMask();
+				},
+				error: function(){
+					alert(resp.responseText);
+				}
+			});
+		}
 	}
 });
