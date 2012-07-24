@@ -4,10 +4,10 @@ HeadFile = Backbone.Model.extend({
 		type: "",
 		filename: ""
 	},
-	validate: function(attrs){
+	validate: function(attrs,options){
 		var patrn = /[\w+]([.]{1}[j]{1}[s]{1}$|[.]{1}[c]{1}[s]{2}$)/;
-		if(!patrn.exec(attrs.filename)){
-			Prompt.getInstance().hideMask();
+		if(!patrn.exec(proving)){
+			console.log(!patrn.exec(attrs.filename));
 			return 'The model is null';
 		};
 	}
@@ -66,16 +66,15 @@ HeadFileView = Backbone.View.extend({
 		return this;
 	},
 	editValue: function(){		
-		var headfile = new HeadFileedit({
+		var headfile = new HeadFileEditView({
 			model: this.model
 		});
 		headfile.render();
 	},
 	update: function(){
-		if(this.model.hasChanged('id')){
-			
-		}else{
-			
+		if(!this.model.hasChanged('id')){
+			var template = _.template($('#headfile-item-template').html());
+			$(this.el).html(template(this.model.toJSON()));
 		}
 	},
 	destroy: function(model, resp){
@@ -83,7 +82,7 @@ HeadFileView = Backbone.View.extend({
 	}
 });
 
-HeadFileedit = Backbone.View.extend({
+HeadFileEditView = Backbone.View.extend({
 	events:{
 		'click .edit-save':'saveValue',
 		'click .edit-delete':'deleteModel'
@@ -108,18 +107,16 @@ HeadFileedit = Backbone.View.extend({
 		file.each(function(i,j){
 			data[$(j).attr('name')] = $(j).val();
 		});
-		this.model.set(data);
-
-		if(this.model.isValid()){
+		if(this.model.set(data)){
 			if(this.model.get('id') == null){
 				headfileCollection.add(this.model);
 			};
+			this.model.save(this.model,{success:function(model,response){
+				Prompt.getInstance().hideMask();
+			}});
 		}else{
 			alert('文件名不能为空且文件名后缀必须为.css和.js！');
 		}
-		this.model.save(this.model,{success:function(model,response){
-			Prompt.getInstance().hideMask();
-		}});
 	},
 	deleteModel: function(){
 		if(confirm('确定要删除吗？')){	
