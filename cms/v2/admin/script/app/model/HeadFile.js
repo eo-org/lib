@@ -6,8 +6,7 @@ HeadFile = Backbone.Model.extend({
 	},
 	validate: function(attrs,options){
 		var patrn = /[\w+]([.]{1}[j]{1}[s]{1}$|[.]{1}[c]{1}[s]{2}$)/;
-		if(!patrn.exec(proving)){
-			console.log(!patrn.exec(attrs.filename));
+		if(!patrn.exec(attrs.filename)){
 			return 'The model is null';
 		};
 	}
@@ -107,6 +106,8 @@ HeadFileEditView = Backbone.View.extend({
 		file.each(function(i,j){
 			data[$(j).attr('name')] = $(j).val();
 		});
+		var types = data['filename'].split('.');
+		data['type'] = types[types.length-1];
 		if(this.model.set(data)){
 			if(this.model.get('id') == null){
 				headfileCollection.add(this.model);
