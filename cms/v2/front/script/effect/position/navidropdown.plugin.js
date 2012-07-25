@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	var containerUl = $('.link-dropdown-container > ul');
+	var containerUl = $('.brick-navidropdown > ul');
 	var handles = containerUl.children();
 	handles.each(function(i, handle) {
 		$(handle).children('ul').css({'display':'none'});
