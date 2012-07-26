@@ -7,7 +7,7 @@ HeadFile = Backbone.Model.extend({
 	validate: function(attrs,options){
 		var patrn = /[\w+]([.]{1}[j]{1}[s]{1}$|[.]{1}[c]{1}[s]{2}$)/;
 		if(!patrn.exec(attrs.filename)){
-			return 'The model is null';
+			return 'The model is null ！';
 		};
 	}
 });

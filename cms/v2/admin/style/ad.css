@@ -93,7 +93,20 @@ ul.ad li dl dt {
 	text-align: right;
 	margin: 10px 0;
 }
+ul.ad li dl dt a {
+	color:black;
+	cursor:pointer;
+}
+ul.ad li dl dt a:hover{
+	color:#0077BB;
+	cursor:pointer;
+}
 ul.ad li dl dd {
 	width: 530px;
 	margin: 10px;
+}
+.action-cc{
+	display: block;
+	float: left;
+	width: 100px;
 }

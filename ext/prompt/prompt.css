@@ -75,4 +75,12 @@
 }
 .mask-inner-editor .action-dd {
 	width: 100px;
+	float: left;
+	display: block;
+}
+.mask-inner-editor .action-ss {
+	width: 100px;
+	float: left;
+	margin-left: 20px;
+	display: block;
 }

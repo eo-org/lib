@@ -17,29 +17,39 @@ AdCollection = Backbone.Collection.extend({
 AdView = Backbone.View.extend({
 	tagName: "li",
 	events:{
-//		'click .ad-edit': "editValue",
-//		'click .ad-delete': "deleteEl"
+		'click .ad-edit': "showeditValue",
+		'click .ad-delete': "deleteEl"
+	},
+	initialize: function(){
+		this.model.on('change',this.update,this);
 	},
 	render: function(){
 		var template = _.template($('#ad').html());
 		$(this.el).html(template(this.model.toJSON()));
 		return this;
+	},
+	showeditValue: function(){
+		var adEditView = new AdEditorView({
+			model: this.model
+		});
+
+		adEditView.render();
+	},
+	update: function(){
+		if(!this.model.hasChanged('id')){
+			var template = _.template($('#ad').html());
+			$(this.el).html(template(this.model.toJSON()));
+			Prompt.getInstance().hideMask();
+		}
+	},
+	deleteEl: function(){
+		var EL = this.el;
+		if(confirm('确定要删除吗？')){
+			this.model.destroy({success:function(model,response){
+				$(EL).remove();
+			}});
+		}
 	}
-//	editValue: function(e){
-//		var adEditView = new AdEditView({
-//			model:this.model
-//		});
-//		
-//		e.preventDefault();
-//		var itemId = $(e.target).attr('id',this.model.get('id'));
-//		adEditView.render().el;
-//	},
-//	deleteEl: function(){
-//		var EL = this.el;
-//		this.model.destroy({success:function(model,response){
-//			$(EL).remove();
-//		}});
-//	}
 });
 
 AdCollectionView = Backbone.View.extend({
@@ -70,9 +80,6 @@ AdCollectionView = Backbone.View.extend({
 			model:item
 		});
 		$(this.el).append(adView.render().el);
-	},
-	modelChange: function(){
-		//alert(this.model.get('id'));
 	}
 }); 
 
@@ -82,8 +89,12 @@ AdEditorView = Backbone.View.extend({
 		'click .action-dd': "create"
 	},
 	render: function(){
+		
 		var template = _.template($('#ad-editor').html());
 		$(this.el).html(template(this.model.toJSON()));
+		
+		var prompt = Prompt.getInstance().appendEditorContent(this.el).showMask();
+		
 		return this;
 	},
 	create: function(){
@@ -93,9 +104,13 @@ AdEditorView = Backbone.View.extend({
 			data[$(f).attr('name')] = $(f).val();
 		});
 		this.model.set(data);
-		
-		adCollection.add(this.model);
-		this.model.save();
-		Prompt.getInstance().hideMask();
+		if(this.model.get('id') == null){
+			adCollection.add(this.model);
+		}
+		this.model.save({
+			success: function(model,response){
+				Prompt.getInstance().hideMask();
+			}
+		});
 	}
 });
