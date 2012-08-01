@@ -307,8 +307,10 @@ $(document).ready(function(){
 		function slideImage(b){
 			var id='#imgshow'+b;
 			$(id).siblings(':visible').animate({opacity: 0},2000,function(){
+				$(this).css('display','none');
 			});
 			$(id).animate({opacity: 1},2000,function(){
+				$(this).css('display','block');
 			}).show();
 		}
 		function auto(){
