@@ -57,10 +57,11 @@ var insertAttachment = function(data) {
 };
 
 var insertImage = function(data){
-	console.log(data);
-	require(["product-image", "model/produtImage"], function() {
-		
-    });
+	var addmodel = new ProductImage();
+	var pdoductImage = new ProductImageCollectionView({
+		model:addmodel
+	});
+	pdoductImage.getobject(data);
 }
 //use icon path as input
 var appendToInput = function(data, caller) {

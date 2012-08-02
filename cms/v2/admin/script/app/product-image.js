@@ -1,5 +1,5 @@
 (function () {
-    require(["product-image", "model/produtImage"], function() {
+	require(["product-image", "model/productImage"], function() {
 		
     });
 }());
