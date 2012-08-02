@@ -1,8 +1,10 @@
+var restUrl = window.restUrl;
+
 Data = Backbone.Model.extend();
 
 DataCollection = Backbone.Collection.extend({
 	model: Data,
-	url: "/rest/org/",
+	url: restUrl,
 	parse: function(resp) {
 		this.pageInfo = {
 			"currentPage": resp.currentPage,
@@ -20,43 +22,52 @@ DataView = Backbone.View.extend({
 		$(this.el).html(template({
 			data: this.model.toJSON()
 		}));
+		if(this.bgDiff == 1) {
+			$(this.el).addClass('odd');
+		}
 		return this;
 	},
+	setIdx: function(idx) {
+		this.bgDiff = idx % 2;
+	}
 });
 
 DataCollectionView = Backbone.View.extend({
-	el: $('table.data'),
+	el: $('table.datalist > tbody'),
 	initialize: function() {
 		this.collection = new DataCollection();
 		this.collection.bind('reset', _.bind(this.render, this));
-		this.collection.fetch();
 	},
 	render: function() {
 		var TH = this;
 		$(this.el).empty();
-		_(this.collection.models).each(function(data) {
-			TH.addItemView(data);
+		_(this.collection.models).each(function(data, idx) {
+			TH.addItemView(data, idx);
 		}, this);
 		this.renderPaginator();
 	},
-	addItemView: function(data) {
+	addItemView: function(data, idx) {
 		var dataView = new DataView({
 			model: data
 		});
+		dataView.setIdx(idx);
 		$(this.el).append(dataView.render().el);
 	},
 	renderPaginator: function() {
 		var pageInfo = this.collection.pageInfo;
-		var paginatorContainer = $('ul.paginator');
+		var paginatorContainer = $('#datalist-paginator');
 		var pageNumber = Math.ceil(pageInfo.dataSize / pageInfo.pageSize);
 		
 		paginatorContainer.empty();
 		for(var i = 1; i <= pageNumber; i++) {
 			if(i == pageInfo.currentPage) {
-				paginatorContainer.append('<li class="current"><a href="#/rest/file/groupId/' + this.groupId + '@page/' + i + '">' + i + '</a></li>');
+				paginatorContainer.append('<li class="current"><a href="#@page/' + i + '">' + i + '</a></li>');
 			} else {
-				paginatorContainer.append('<li><a href="#/rest/file/groupId/' + this.groupId + '@page/' + i + '">' + i + '</a></li>');
+				paginatorContainer.append('<li><a href="#@page/' + i + '">' + i + '</a></li>');
 			}
 		}
 	},
+	loadPage: function(pageNumber) {
+		this.collection.fetch({data: {'page': pageNumber}});
+	}
 });
