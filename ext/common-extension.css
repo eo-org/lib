@@ -81,3 +81,16 @@ div.action-menu a.action-menu:hover {
 /************************************/
 /**End ActionMenu**/
 /************************************/
+
+/************************************/
+/**Flash Messenger**/
+/************************************/
+.flash-message ul {
+	padding: 15px;
+	margin: 5px;
+	border: 2px solid #BBEE88;
+	background-color: #aafaaa;
+}
+/************************************/
+/**End Flash Messenger**/
+/************************************/
