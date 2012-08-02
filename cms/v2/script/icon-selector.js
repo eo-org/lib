@@ -55,6 +55,13 @@ var insertAttachment = function(data) {
 	var attachmentList = $('#attachment-list');
 	l.appendTo(attachmentList);
 };
+
+var insertImage = function(data){
+	console.log(data);
+	require(["product-image", "model/produtImage"], function() {
+		
+    });
+}
 //use icon path as input
 var appendToInput = function(data, caller) {
 	$(caller).val(data.urlname);

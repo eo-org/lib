@@ -2,7 +2,7 @@ $(document).ready(function(){
 	$('.rotateimage').each(function(){
 		var index=null;
 		var timer=0;
-		var data=jQuery.parseJSON($('.image-group-slide').attr('data'));
+		var data=jQuery.parseJSON($('.image-group-rotateimage').attr('data'));
 		var offset=parseInt(data.delay);
 		var change=$('.bigimage');
 		change.each(function(n,changediv){
