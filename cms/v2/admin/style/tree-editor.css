@@ -51,6 +51,10 @@
 	font-size: smaller;
 	border-bottom: 1px dotted #777;
 }
+.treeleaf-item .leaf-page-edit {
+	float: right;
+	margin: 0 0 0 6px;
+}
 .drop-to-sort {
 	padding: 3px;
 }
