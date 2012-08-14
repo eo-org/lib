@@ -305,7 +305,7 @@ var SlideDeck;
                         top: '25px',
                         left: offset + spine_outer_width + "px",
                         overflow: "hidden",
-                        zIndex: "20000"
+                        zIndex: "20"
                     }).hide();
                     if(spine.hasClass(self.classes.active)){
                         spine.next('.' + self.classes.activeCorner).show();
