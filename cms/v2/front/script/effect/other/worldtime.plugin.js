@@ -23,18 +23,17 @@ $(document).ready(function(){
 		def = dt.getTimezoneOffset()/60;
 		gmt = (dt.getHours() + def);
 		ending = ":" + IfZero(dt.getMinutes()) + ":" +  IfZero(dt.getSeconds());
-		rome =check24(((gmt + 1) > 24) ? ((gmt + 1) - 24) : (gmt + 1));
 		tky =check24(((gmt + 9) > 24) ? ((gmt + 9) - 24) : (gmt + 9));
-		_GMT =check24(((gmt) > 24) ? (gmt - 24) : (gmt));
+		_GMT =check24(((gmt + 24) > 24) ? (gmt) : (gmt+24));
 		atl =check24(((gmt + (24-4)) > 24) ? ((gmt + (24-4)) - 24) : (gmt + (24-4)));
 		for(var j=0;j<dataSum;j++){
 			countryName = data.country[j];
 			switch(countryName){
 				case 'beijing': documentDom[j].innerHTML=("北京"+IfZero(dt.getHours()) + ":" + IfZero(dt.getMinutes()) + ":" + IfZero(dt.getSeconds()));
 								break;
-				case 'paris': documentDom[j].innerHTML=("巴黎"+IfZero(rome+1) + ending);
+				case 'paris': documentDom[j].innerHTML=("巴黎"+IfZero(_GMT+2) + ending);
 								break;
-				case 'seoul': documentDom[j].innerHTML=("首尔"+IfZero(dt.getHours()+1) + ending);
+				case 'seoul': documentDom[j].innerHTML=("首尔"+IfZero(tky) + ending);
 								break;
 				case 'tokyo': documentDom[j].innerHTML=("東京"+IfZero(tky) + ending);
 								break;
