@@ -1,0 +1,12 @@
+.transition-frame{width:960px;margin:0 auto;}
+.featured{margin-top:20px;}
+.slides{background-color:#e5e5e5;border:1px solid #ffffff;padding:3px;width:954px;height:375px;}
+.slide{width:954px;height:375px;position:absolute;}
+.slide_overlay{background:url(slider-overlay.png) no-repeat  scroll 0 0 transparent;height:375px;width:954px;position:absolute;top:0;left:0;}
+.slide_shadow{background-image:url(slider-shadow.png); display:block;height:14px;width:960px;}
+.introducebanner{background:url(slider-banner.png) no-repeat scroll 0 0 transparent;width:303px;height:319px;padding: 30px 20px 0 96px;position:absolute;top:90px;}
+.switcher{float:right;margin-top:-65px;}
+.item{background:url(slider-thumb-shadow.png) no-repeat scroll center bottom transparent;float:left;width:93px;height:98px;margin-right:17px;position:relative;}
+.wrap{background: none repeat scroll 0 0 #e4e4e4;border:1px solid #ffffff;cursor:pointer;width:83px;height:83px;padding:4px;position:absolute;margin-top:0px;}
+.slider_small{background:url(slider-thumb-overlay.png) no-repeat scroll 0 0 transparent;height:83px;width:83px;position:absolute;display:block;top:4px;left:4px;}
+.hover{background:url(slider-hover.png);height:123px;width:182px;z-index:5;position:absolute;padding:15px;left:-55px;display:none;}
