@@ -13,10 +13,11 @@ $(document).ready(function(){
 				opacity: '0.2',
 				position: 'absolute',
 				top: '0',
-				backgroundColor: '#000000'
+				backgroundColor: '#000000',
+				zIndex: '9999'
 			});
 			clickImageBackground.animate({opacity: '0.6'},500);
-			$('body').append('<div class="enlargeImage" ><div class="enlargeImagePopup"><img src='+imageSrc+' > </div><div class="close" style="display:none"><a href="javascript:void(0)"><img src="http://storage.aliyun.com/public-misc/4fe811e76d54610e05000000/070731d39820381770ea17fa34739629.gif"></a></div></div>');
+			$('body').append('<div class="enlargeImage" ><div class="enlargeImagePopup"><img src='+imageSrc+' > </div></div>');
 			var enlargeImage = $('.enlargeImage');
 			var enlargeImagePopup = $('.enlargeImagePopup').find('img');
 			var imageWidth = enlargeImagePopup.width();
@@ -24,10 +25,11 @@ $(document).ready(function(){
 			enlargeImage.css('position','fixed');
 			enlargeImagePopup.css({
 				position: 'fixed',
-				'border-radius': '8px 8px 8px 8px',
+				borderRadius: '8px 8px 8px 8px',
 				border: '7px solid black',
 				width: '90',
-				height: '60'
+				height: '60',
+				zIndex: '9999'
 			});
 			var imageSmailWidth = enlargeImagePopup.width();
 			var imageSmailLeft = (documentWidth - imageSmailWidth)/2;
@@ -51,9 +53,9 @@ $(document).ready(function(){
 					});
 				}
 			);
-			$('.close').click(function(){
+			clickImageBackground.click(function(){
 				enlargeImage.remove();
-				clickImageBackground.remove();
+				$(this).remove();
 			});			
 		})
 	});
