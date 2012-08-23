@@ -1,12 +1,12 @@
 $(document).ready(function(){
-	var clickEnlarge = $('.clickToenlarge').find('img');
+	var clickEnlarge = $('.clickToEnlarge').find('img');
 	clickEnlarge.each(function(i,clickImage){
 		$(this).click(function(){
 			var imageSrc = $(this).attr('src');
 			$('body').append('<div class=clickImageBackground></div>');
 			var clickImageBackground = $('.clickImageBackground');
 			var documentWidth = $(document).width();
-			var documentHeight = $(document).heigt();
+			var documentHeight = $(document).height();
 			clickImageBackground.css({
 				width: documentWidth,
 				height: documentHeight,
