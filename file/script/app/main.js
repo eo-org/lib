@@ -2,8 +2,8 @@ Backbone.old_sync = Backbone.sync;
 Backbone.sync = function(method, model, options) {
     var new_options =  _.extend({
         beforeSend: function(xhr) {
-            var orgCode = window.ORG_CODE;
-            xhr.setRequestHeader('X-Org-Code', orgCode);
+            var siteId = window.SITE_ID;
+            xhr.setRequestHeader('X-Site-Id', siteId);
         }
     }, options)
     Backbone.old_sync(method, model, new_options);

@@ -39,7 +39,7 @@ var IconSelector = function() {
 	
 	var openFileWindow = function() {
 		window.open(
-			settings.fileHost + '/' + window.ORG_CODE + '/admin/',
+			settings.fileHost + '/' + window.SITE_FOLDER + '/admin/',
 			'file-selector',
 			'height=640, width=980, location=no,scrollbars=no,toolbar=no,resizable=no'
 		);
