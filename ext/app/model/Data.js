@@ -42,7 +42,7 @@ DataView = Backbone.View.extend({
 });
 
 DataCollectionView = Backbone.View.extend({
-	el: $('table.datalist'),
+	el: $('.datalist'),
 	events: {
 		'click .s-index'			: 'resort',
 		'change #currentPageNumber'	: 'repage',
@@ -51,8 +51,8 @@ DataCollectionView = Backbone.View.extend({
 		'click .page-next'			: 'nextPage'
 	},
 	initialize: function() {
-		this.tbody = $(this.el).find('tbody');
-		this.thead = $(this.el).find('thead');
+		this.tbody = $(this.el).find('.datalist-body');
+		this.thead = $(this.el).find('.datalist-head');
 		/*******Sort********/
 		this.sortIndexes = this.thead.find('.s-index');
 		this.sortIndexes.each(function(i, obj) {

@@ -1,4 +1,4 @@
-var Prompt = (function(){
+var Prompt = (function() {
 	var instantiated;
 	var documentheight = null;
 	var documentwidth = null;
@@ -7,8 +7,8 @@ var Prompt = (function(){
 	var hintBoxEl = null;
 	var hintBoxContent = null;
 	var maskBoxEl = null;
-	var contentEditorEl = null;
-	var contentEditorCloseEl = null;
+	var editorEl = null;
+	var closeEl = null;
 	
 	function init() {
 		loadingBoxEl = $('<div class="loading-box info-prompt">Processing...</div>');
@@ -115,6 +115,49 @@ var Prompt = (function(){
 		}
 	}
 })();
+
 $(document).ready(function() {
 	Prompt.getInstance().getDocumentDim();
+	var p = Prompt.getInstance();
+	$('.ajax-content-prompt-trigger').on('click', function(e) {
+		e.preventDefault();
+		var url = $(this).attr('href');
+		$.ajax({
+			url: url,
+			data: {'format': 'html'},
+			dataType: 'html',
+			beforeSend: function() {
+				p.showLoadingBox();
+			},
+			success: function(data) {
+				p.appendEditorContent(data);
+				p.hideLoadingBox();
+				p.showMask();
+			}
+		});
+	});
+	$('.mask-inner-editor').on('click', '.ajax-content-prompt-button a', function(e) {
+		e.preventDefault();
+		var form = $('.mask-inner-editor form:first');
+		var postData = form.serialize();
+		postData+= '&format=html';
+		var url = $(this).attr('href');
+		$.ajax({
+			url: url,
+			type: 'POST',
+			data: postData,
+			dataType: 'html',
+			beforeSend: function() {
+				p.showLoadingBox();
+			},
+			success: function(data) {
+				p.hideLoadingBox();
+				if(data != 'success') {
+					p.appendEditorContent(data);
+				} else {
+					p.hideMask();
+				}
+			}
+		});
+	})
 });
