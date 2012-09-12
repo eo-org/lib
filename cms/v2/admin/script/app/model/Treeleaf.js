@@ -3,6 +3,7 @@ Treeleaf = Backbone.Model.extend({
 		id: null,
 		label: '',
 		link: '',
+		alias: '',
 		className: '',
 		parentId: 0,
 		sort: 0
