@@ -2,7 +2,8 @@ $(document).ready(function(){
 	$.extend($.fx.step,{
 	    backgroundPosition: function(fx) {
             if (fx.state === 0 && typeof fx.end == 'string') {
-                var start = $.curCSS(fx.elem,'backgroundPosition');
+                //var start = $.curCSS(fx.elem,'backgroundPosition');
+				var start = $(fx.elem).attr('style').substr(20);
                 start = toArray(start);
                 fx.start = [start[0],start[2]];
                 var end = toArray(fx.end);
