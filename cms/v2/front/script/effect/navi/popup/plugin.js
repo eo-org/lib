@@ -10,20 +10,17 @@ $(document).ready(function(){
 	//When mouse rolls over
 	var handles = $(".navi-popup").children('li');
 	var naviHeight = handles.height();
-	handles.each(function(i,handle){
-		$(handle).children('ul').css({'display':'none'});
-	});
+
 	handles.mouseover(function(){
 		//naviHeight = $(this).children('ul').height();
 		$(this).children('ul').find('li').each(function(){
 			naviHeight = naviHeight + parseInt($(this).height());
 		});
-		$(this).children('ul').css('display','block');
 		$(this).stop().animate({height: naviHeight+'px'},{queue:false, duration:600, easing: 'easeOutBounce'})
 	}).mouseout(function(){
 		naviHeight = handles.height();
 		$(this).children('ul').css({'display':'none'});
-		$(this).stop().animate({height:'50px'},{queue:false, duration:600, easing: 'easeOutBounce'})
+		$(this).stop().animate({height: naviHeight },{queue:false, duration:600, easing: 'easeOutBounce'})
 	});
 	jQuery.easing['jswing'] = jQuery.easing['swing'];
 

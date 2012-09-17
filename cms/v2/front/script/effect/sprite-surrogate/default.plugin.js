@@ -18,9 +18,6 @@ $(document).ready(function() {
 				$(h).addClass('selected');
 			}
 			$(h).click(function() {
-				
-				console.log(contents.length);
-				
 				handles.each(function(k, h) {
 					if(k == j) {
 						$(h).addClass('selected');
