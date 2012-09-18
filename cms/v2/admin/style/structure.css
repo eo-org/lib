@@ -856,6 +856,40 @@ fieldset.main-form dl dd {
 fieldset dl dd textarea{
 	width: 240px;
 }
+
+dl.admin-zendform {
+	
+}
+dl.admin-zendform dt {
+	float: left;
+	width: 100px;
+	clear: both;
+	margin-top: 5px;
+	font-weight: bold;
+	padding-top: 2px;
+	padding-left: 5px;
+}
+dl.admin-zendform dd {
+	float: left;
+	width: 680px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	min-height: 25px;
+}
+dl.admin-zendform dd ul.errors li {
+	border: 1px solid #9F6000 !important;
+	background-color: #FEEFB3 !important;
+	color: #9F6000 !important;
+	margin: 4px 0;
+	padding: 4px;
+	border-radius: 2px;
+}
+dl.admin-zendform p.description {
+	font-size: smaller;
+}
+dl.admin-zendform dd textarea{
+	width: 680px;
+}
 /*********************/
 .left {
 	float: left;

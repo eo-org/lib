@@ -55,14 +55,16 @@
 			window.opener.postMessage({
 				'filepath'	: window.SITE_ID + '/' + this.model.get('urlname'),
 				'filename'	: this.model.get('filename'),
-				'urlname'	: this.model.get('urlname')
+				'urlname'	: this.model.get('urlname'),
+				'dims'		: this.model.get('dims')
 			}, '*');
 			window.close();
 		} else if(window.parent) {
 			window.parent.postMessage({
 				'filepath'	: window.SITE_ID + '/' + this.model.get('urlname'),
 				'filename'	: this.model.get('filename'),
-				'urlname'	: this.model.get('urlname')
+				'urlname'	: this.model.get('urlname'),
+				'dims'		: this.model.get('dims')
 			}, '*');
 			window.close();
 		}

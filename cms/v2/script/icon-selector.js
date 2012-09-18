@@ -50,19 +50,12 @@ var IconSelector = new IconSelector();
 IconSelector.init();
 
 //insert attachment
-var insertAttachment = function(data) {
-	var l = $("<li filepath='" + data.filepath + "'>" + data.filename + "</li>");
-	var attachmentList = $('#attachment-list');
-	l.appendTo(attachmentList);
-};
+//var insertAttachment = function(data) {
+//	var l = $("<li filepath='" + data.filepath + "'>" + data.filename + "</li>");
+//	var attachmentList = $('#attachment-list');
+//	l.appendTo(attachmentList);
+//};
 
-var insertImage = function(data){
-	var addmodel = new ProductImage();
-	var pdoductImage = new ProductImageCollectionView({
-		model:addmodel
-	});
-	pdoductImage.getobject(data);
-}
 //use icon path as input
 var appendToInput = function(data, caller) {
 	$(caller).val(data.urlname);
