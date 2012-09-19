@@ -50,7 +50,7 @@ AttachmentView = Backbone.View.extend({
 	},
 	setIntroicon: function() {
 		var imgUrl = 'http://storage.aliyun.com/public-misc/' + window.SITE_FOLDER + '/_resize/' + thumbWidth + '_' + thumbHeight + '_' + this.model.get('urlname');
-		var ajaxUrl = 'http://file.eo.test/' + window.SITE_FOLDER + '/default/file/resize';
+		var ajaxUrl = 'http://file.enorange.cn/' + window.SITE_FOLDER + '/default/file/resize';
 		$('#introicon').val('_resize/' + thumbWidth + '_' + thumbHeight + '_' + this.model.get('urlname'));
 		
 		checkFile(imgUrl, ajaxUrl, {
