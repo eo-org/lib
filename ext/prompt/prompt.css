@@ -8,6 +8,7 @@
 	padding: 10px 0 10px 50px;
 	background: url('../load.gif') no-repeat 10px 10px;
 	border-radius: 4px;
+	z-index: 1002;
 }
 
 .hint-box {

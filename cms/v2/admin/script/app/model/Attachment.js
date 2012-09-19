@@ -1,19 +1,44 @@
+var checkFile = function(imgUrl, ajaxUrl, postData) {
+	var img = new Image();
+	var result = true;
+	
+	img.onload = function() {
+		$('img.introicon-img').attr('src', imgUrl);
+	}
+	img.onerror = function() {
+		var p = Prompt.getInstance();
+		p.showLoadingBox();
+		$.ajax({
+			url: ajaxUrl,
+			data: postData,
+			type: "POST",
+			dataType: "json",
+			success: function(obj) {
+				$('img.introicon-img').attr('src', imgUrl);
+				p.hideLoadingBox();
+				if(obj.result == 'success') {
+					alert('new resize image generated!');
+				} else {
+					alert('something is wrong, try refresh the page!');
+				}
+			}
+		});
+	};
+	img.src = imgUrl;
+}
+
 Attachment = Backbone.Model.extend({defaults:{
 	filetype: 'graphic',
 	filename: '',
 	urlname: ''
 }});
 
-//AttachmentCollection = Backbone.Collection.extend({
-//	model: Attachment,
-//	url: '/'
-//});
-
 AttachmentView = Backbone.View.extend({
 	tagName: 'li',
-	events:{},
+	events: {
+		"click .set-introicon": "setIntroicon"
+	},
 	render: function() {
-		console.log(this.model.get('filetype'));
 		if(this.model.get('filetype') == 'graphic') {
 			var template = _.template($('#graphic-template').html());
 		} else {
@@ -22,6 +47,19 @@ AttachmentView = Backbone.View.extend({
 		$(this.el).html(template(this.model.toJSON()));
 		
 		return this;
+	},
+	setIntroicon: function() {
+		var imgUrl = 'http://storage.aliyun.com/public-misc/' + window.SITE_FOLDER + '/_resize/' + thumbWidth + '_' + thumbHeight + '_' + this.model.get('urlname');
+		var ajaxUrl = 'http://file.eo.test/' + window.SITE_FOLDER + '/default/file/resize';
+		$('#introicon').val('_resize/' + thumbWidth + '_' + thumbHeight + '_' + this.model.get('urlname'));
+		
+		checkFile(imgUrl, ajaxUrl, {
+			'urlname': this.model.get('urlname'),
+			'toWidth': thumbWidth,
+			'toHeight': thumbHeight,
+			'xTime': xTime,
+			'xSig': xSig
+		});
 	}
 });
 
