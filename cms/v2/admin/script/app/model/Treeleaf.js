@@ -6,7 +6,8 @@ Treeleaf = Backbone.Model.extend({
 		alias: '',
 		className: '',
 		parentId: 0,
-		sort: 0
+		sort: 0,
+		description: ''
 	},
 	validate: function(attrs){	
 		if(attrs.label == ''){
@@ -119,7 +120,7 @@ TreeleafCollectionView = Backbone.View.extend({
 		var TH = this;
 		var container = $(this.el);
 		
-		$(this.el).empty();
+//		$(this.el).empty();
 		
 		_(this.collection.models).each(function(model) {
 			if(model.get('parentId') === '') {
@@ -217,7 +218,7 @@ TreeleafEditorView = Backbone.View.extend({
 				Prompt.getInstance().hideMask();
 				Prompt.getInstance().showHintBox();
 			}});			
-		}else{
+		} else {
 			alert('链接名不能为空！');
 		}
 	},
