@@ -89,7 +89,10 @@ $(document).ready(function(){
 		};
 		function slideImage(b){
 			var id='#imgshow'+b;
-			$(id).siblings(':visible').animate({opacity: 0},1000,function(){});
+			$(id).siblings(':visible').animate({opacity: 0},1000,function(){
+				$(this).css('display', 'none');
+			});
+			$(id).css('display', 'block');
 			$(id).animate({opacity: 1},1000,function(){}).show();
 		};
 		function auto(){

@@ -2,7 +2,8 @@ HeadFile = Backbone.Model.extend({
 	defaults:{
 		id: null,
 		type: "",
-		filename: ""
+		filename: "",
+		folder: "file"
 	},
 	validate: function(attrs,options){
 		var patrn = /[\w+]([.]{1}[j]{1}[s]{1}$|[.]{1}[c]{1}[s]{2}$)/;
