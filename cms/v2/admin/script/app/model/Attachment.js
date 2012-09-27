@@ -41,8 +41,8 @@ AttachmentView = Backbone.View.extend({
 	render: function() {
 		if(this.model.get('filetype') == 'graphic') {
 			var template = _.template($('#graphic-template').html());
-		} else {
-			//var template = _.template($('#product-add-template').html());
+		} else if(this.model.get('filetype') == 'download') {
+			var template = _.template($('#download-template').html());
 		}
 		$(this.el).html(template(this.model.toJSON()));
 		
@@ -64,11 +64,13 @@ AttachmentView = Backbone.View.extend({
 });
 
 AttachmentCollectionView = Backbone.View.extend({
-	el: $('ul#graphic-list'),
+	el: $('li#attachment'),
 	events: {
 		
 	},
 	initialize: function() {
+		graphicListEl = $(this.el).find('#graphic-list');
+		downloadListEl = $(this.el).find('#download-list');
 		var TH = this;
 		$(this.options.attachmentObjList).each(function(i, attaObj) {
 			attaModel = new Attachment();
@@ -83,6 +85,11 @@ AttachmentCollectionView = Backbone.View.extend({
 		var view = new AttachmentView({
 			model: item
 		});
-		$(this.el).prepend(view.render().el);
+		
+		if(item.get('filetype') == 'graphic') {
+			graphicListEl.prepend(view.render().el);
+		} else if(item.get('filetype') == 'download') {
+			downloadListEl.prepend(view.render().el);
+		}
 	}
 });
