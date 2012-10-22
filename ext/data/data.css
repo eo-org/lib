@@ -1,0 +1,130 @@
+div.datalist {
+	padding: 5px;
+}
+table.datalist input {
+	border: 1px solid #808080;
+}
+table.datalist select {
+	border: 1px solid #808080;
+}
+table.datalist {
+	width: 100%;
+}
+
+table.datalist thead tr.title-row {
+	border: 1px solid #b1b0ae;
+}
+table.datalist thead tr.search-row {
+	border: 1px solid #b1b0ae;
+	border-top: none;
+}
+table.datalist thead th {
+    text-align: center;
+    padding: 2px 5px;
+    background-color: #e6e3e0;
+    font-weight: normal;
+    line-height: 16px;
+}
+table.datalist thead th.s-index {
+	cursor: pointer;
+}
+table.datalist thead th.s-index:hover {
+	background: #0099DD;
+	color: white;
+}
+table.datalist thead th.up-arrow, table.datalist thead th.down-arrow {
+	background-color: #0077BB;
+	color: white;
+}
+table.datalist thead th div.ui-icon-sort {
+	height: 16px;
+	width: 16px;
+	overflow: hidden;
+	float: right;
+	background: url('../mini-icons.png') no-repeat;
+	display: none;
+}
+table.datalist thead th.up-arrow div.ui-icon-sort {
+	background-position: 0 0;
+	display: block;
+}
+table.datalist thead th.down-arrow div.ui-icon-sort {
+	background-position: -64px 0;
+	display: block;
+}
+table.datalist thead tr.search-row .q-index {
+	width: 100%;
+}
+table.datalist thead tr.search-row .query-invoker {
+	cursor: pointer;
+	color: #0077BB;
+	display: block;
+	border: 1px solid #0077BB;
+	background-color: #EEE;
+	border-radius: 2px;
+	box-shadow: 1px 1px 2px #777;
+}
+table.datalist thead tr.search-row .query-invoker:hover {
+	box-shadow: 0px 0px 2px #777;
+	text-decoration: none;
+}
+
+table.datalist tbody tr {
+	background-color: #f6f2ef;
+	border: 1px solid #b1b0ae;
+	border-top: none;
+}
+table.datalist tbody tr.odd {
+	background-color: #f0f0f0;
+}
+table.datalist tbody tr.selected {
+	background-color: #e1e9eb;
+}
+table.datalist tbody tr:hover {
+	background-color: #e1e9eb;
+}
+table.datalist tbody td {
+	padding: 8px;
+}
+table.datalist tbody td a {
+	display: block;
+	float: left;
+	margin: 0 10px;
+}
+
+table.datalist tfoot #datalist-paginator {
+	padding: 10px;
+	width: 100%;
+	background-color: #e6e3e0;
+	border: 1px solid #b1b0ae;
+	border-top: none;
+}
+table.datalist tfoot #datalist-paginator .page-pre, table.datalist tfoot #datalist-paginator .page-next {
+	height: 16px;
+	width: 16px;
+	overflow: hidden;
+	background: url('../mini-icons.png') no-repeat;
+	float: left;
+	cursor: pointer;
+	border: 1px solid transparent;
+}
+table.datalist tfoot #datalist-paginator .page-pre:hover, table.datalist tfoot #datalist-paginator .page-next:hover {
+	border: 1px solid #0077bb;
+	border-radius: 2px;
+}
+table.datalist tfoot #datalist-paginator .page-pre {
+	background-position: -80px -160px;
+}
+table.datalist tfoot #datalist-paginator .page-next {
+	background-position: -64px -160px;
+}
+table.datalist tfoot #datalist-paginator .page-displayer {
+	float: left;
+	border-left: 1px solid #b1b0ae;
+	border-right: 1px solid #b1b0ae;
+	padding: 0 15px;
+	margin: 0 15px
+}
+table.datalist tfoot #datalist-paginator .data-size {
+	float: right;
+}

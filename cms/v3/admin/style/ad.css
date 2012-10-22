@@ -1,0 +1,112 @@
+/*************ad-section**************/
+ul.ad-section {
+	width: 100%;
+	overflow: auto;
+}
+ul.ad-section li {
+	height: 240px;
+	float: left;
+	padding: 10px;
+	margin: 10px;
+	border: 1px solid #777;
+	border-radius: 8px;
+	background-color: white;
+}
+ul.ad-section li:hover {
+	box-shadow: 0 0 4px #777;
+}
+ul.ad-section li .images {
+	position:relative;
+	height: 180px;
+	width: 180px;
+	border-bottom: 2px solid #ddd;
+}
+ul.ad-section li .images img {
+	border: 1px solid #ddd;
+	position: absolute;
+	border-radius: 4px;
+	box-shadow: 0 0 2px #777;
+}
+ul.ad-section li .images .i-0 {
+	top: 48px;
+	left: 0;
+	opacity: 1;
+	z-index:3;
+}
+ul.ad-section li .images .i-1 {
+	top: 24px;
+	left: 24px;
+	opacity:0.3;
+	z-index:2;
+}
+ul.ad-section li .images .i-2 {
+	top:0;
+	left:48px;
+	opacity:0.2;
+	z-index:1;
+}
+ul.ad-section li div.label {
+	font-size: larger;
+	font-weight: bold;
+	padding: 5px 0;
+}
+ul.ad-section li .bb-action {
+	
+}
+/*************ad**************/
+ul.ad {
+	width: 100%;
+	overflow: auto;
+}
+ul.ad li {
+	height: 125px;	
+	padding: 10px;
+	margin: 10px;
+	border: 1px solid #777;
+	border-radius: 4px;
+	background-color: white;
+}
+ul.ad li:hover {
+	box-shadow: 0 0 4px #777;
+}
+ul.ad li .thumb {
+	float: left;
+}
+ul.ad li .thumb img {
+	display: block;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+}
+ul.ad li dl {
+	float: left;
+	margin-left: 10px;
+	padding-left: 30px;
+	border-left: 2px solid #ddd;
+	height: 125px;
+	width: 600px;
+}
+ul.ad li dl dt, ul.ad li dl dd {
+	float: left;
+}
+ul.ad li dl dt {
+	width: 50px;
+	text-align: right;
+	margin: 10px 0;
+}
+ul.ad li dl dt a {
+	color:black;
+	cursor:pointer;
+}
+ul.ad li dl dt a:hover{
+	color:#0077BB;
+	cursor:pointer;
+}
+ul.ad li dl dd {
+	width: 530px;
+	margin: 10px;
+}
+.action-cc{
+	display: block;
+	float: left;
+	width: 100px;
+}

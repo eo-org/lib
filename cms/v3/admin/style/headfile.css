@@ -1,0 +1,67 @@
+.create-file{
+	width:50px;
+}
+.head-files{
+	background-color: #FEFEFE;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 2px 6px #777777;
+    margin: 4px 0 0 200px;
+    padding: 5px 15px;
+    width: 600px;
+}
+.head-file{
+	width:600px;
+	height:25px;
+	line-height:25px;
+	border:1px solid #DDDDDD;
+	margin-bottom:5px;
+}
+.head-filename{
+	float:left;
+	margin-left:5px;
+}
+.edit-all{
+	width:100px;
+	float:left;
+	display:block;
+}
+.action-edit{
+	width:17px;
+	height:17px;
+	display:block;
+	margin-top:3px;
+	margin-right:10px;
+	float:left;
+	border:1px solid gray;
+	border-radius: 2px 2px 2px 2px;
+	background: url("../image/mini-icons.png") no-repeat scroll -64px -112px transparent;
+}
+.action-edit:hover{
+	border:1px solid #0077BB;
+}
+.head-filetype {
+	float:right;
+	margin-right:5px;
+}
+.filename-el{
+	margin: 5px 0;
+	font-weight: bold;
+}
+
+.filetype-el{
+	margin: 5px 0;
+	font-weight: bold;
+}
+.edit-save{
+	width:100px;
+	display:block;
+	float:left;
+	margin-top:10px;
+}
+.edit-delete{
+	width:100px;
+	float:left;
+	display:block;
+	margin-top:10px;
+	margin-left:10px;
+}

@@ -1,0 +1,18 @@
+.body_action .action-menu {
+	overflow: auto;
+	padding: 10px 0;
+}
+.body_action .action-menu a.action-menu {
+	display: block;
+	float:left;
+	margin: 0 5px;
+	border: 1px solid #0077BB;
+	background-color: #EEE;
+	padding: 5px 20px;
+	border-radius: 2px;
+	box-shadow: 1px 1px 2px #777;
+}
+.body_action .action-menu a.action-menu:hover {
+	box-shadow: 0px 0px 2px #777;
+	text-decoration: none;
+}

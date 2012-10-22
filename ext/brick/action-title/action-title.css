@@ -1,0 +1,7 @@
+.body_action .action-title {
+	border-bottom: 3px solid #AAAAAA;
+}
+.body_action .action-title h1 {
+	margin: 15px;
+	font-size: 14px;
+}
