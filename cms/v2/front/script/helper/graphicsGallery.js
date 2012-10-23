@@ -47,10 +47,9 @@ $(document).ready(function(){
 				var imageSrc = $(this).attr('src');
 			}
 			
-			var imageTag = $("<img src='" + imageSrc + "' />");
-			enlargeImageContainer.append(imageTag);
-			
-			$(imageTag).load(function() {
+			var imageObj = new Image();
+			imageObj.onload = function() {
+				var imageTag = $("<img src='" + imageSrc + "' />");
 				var imageWidth = this.width;
 				var imageHeight = this.height;
 				imageTag.css({
@@ -60,19 +59,21 @@ $(document).ready(function(){
 					width: '90',
 					height: '60',
 					left: (documentWidth - 90)/2,
-					top: 0,
+					top: 10,
 					opacity: 0
 				});
 				enlargeImageContainer.css('display', 'block');
+				enlargeImageContainer.append(imageTag);
 				var imageLeft = (documentWidth - imageWidth)/2;
-				$(this).animate({
+				imageTag.animate({
 					width: imageWidth,
 					height: imageHeight,
 					opacity: '1',
 					top: '60px',
 					left: imageLeft
 				}, 500);
-			});
+			}
+			imageObj.src = imageSrc;
 		});
 	});
 })
