@@ -25,8 +25,8 @@ $(document).ready(function(){
 			enlargeImage.css('position','fixed');
 			enlargeImagePopup.css({
 				position: 'fixed',
-				borderRadius: '8px 8px 8px 8px',
-				border: '7px solid black',
+				borderRadius: '4px 4px 4px 4px',
+				border: '4px solid #ddd',
 				width: '90',
 				height: '60',
 				zIndex: '9999'
