@@ -1,3 +1,24 @@
+.section {
+	border: 1px solid #777;
+	border-radius: 4px;
+	width: 400px;
+	float: left;
+	margin: 15px 20px;
+	padding: 10px;
+	background-color: #f0f0f0;
+	box-shadow: 0 2px 6px #777;
+}
+.section .title {
+	font-weight: bold;
+	border-bottom: 1px solid #ddd;
+	padding: 5px;
+}
+.section a {
+	display: block;
+	padding: 5px;
+	margin-top: 5px;
+}
+
 .body_action {
 	margin: 0;
 	margin-top: 65px;

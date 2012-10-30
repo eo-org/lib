@@ -1,3 +1,4 @@
+Backbone.emulateJSON = true;
 (function () {
 	'use strict';
     require(["model/AdSection"], function() {

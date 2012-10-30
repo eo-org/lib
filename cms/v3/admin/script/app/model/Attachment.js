@@ -36,7 +36,8 @@ Attachment = Backbone.Model.extend({defaults:{
 AttachmentView = Backbone.View.extend({
 	tagName: 'li',
 	events: {
-		"click .set-introicon": "setIntroicon"
+		"click .set-introicon"		: "setIntroicon",
+		"click .remove-attachment"	: "removeAttachment"
 	},
 	render: function() {
 		if(this.model.get('filetype') == 'graphic') {
@@ -60,11 +61,14 @@ AttachmentView = Backbone.View.extend({
 			'xTime': xTime,
 			'xSig': xSig
 		});
+	},
+	removeAttachment: function() {
+		alert('clicked');
 	}
 });
 
 AttachmentCollectionView = Backbone.View.extend({
-	el: $('li#attachment'),
+	el: $('div#attachment'),
 	events: {
 		
 	},
