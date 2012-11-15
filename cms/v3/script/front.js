@@ -102,7 +102,7 @@ $(document).ready(function() {
 					MINI_BRICK_MASK.empty();
 					var brickId = $(this).attr('brick-id');
 					var extName = $(this).attr('ext-name');
-					MINI_BRICK_MASK.append("<div class='ext-name'>" + extName + "</div> <a href='#/admin/brick/edit/brick-id/" + brickId + "'>编辑模块</a>");
+					MINI_BRICK_MASK.append("<div class='ext-name'>" + extName + "</div> <a href='#/admin/brick.ajax/edit/id/" + brickId + "'>编辑模块</a>");
 					MINI_BRICK_MASK.css({
 						'top': topPos,
 						'left': leftPos,
@@ -157,13 +157,15 @@ $(document).ready(function() {
 			postStr = '{"layoutId":"' + layoutId + '" ,"stages":[' + postStr + ']}';
 			var aj = $.ajax({
 				type: "POST",
-				url: '/admin/layout/save-stage-json/',
+				url: '/rest/layout.json/save-stage',
 				data: 'jsonString=' + postStr,
 				dataType: 'json',
-				success: function(jsonObj) {
-					if(jsonObj.result == 'success') {
+				success: function(output, status, xhr) {
+					$result = xhr.getResponseHeader('result');
+					if($result == 'success') {
 						location.reload();
 					} else {
+						console.log($result);
 						alert('system internal error!');
 					}
 				}
@@ -174,13 +176,13 @@ $(document).ready(function() {
 	$.fn.appendSpriteController = function() {
 		var THIS = $(this);
 		var layoutId = $('.body_main_frame').attr('layoutId');
-		var newController = $("<a class='sprite-controller link' href='/admin/brick/create/layoutId/" + layoutId + "/stageId/" + THIS.attr('stage-id') + "/spriteName/" + THIS.attr('sprite-name') + "'>添加模块</a>");
+		var newController = $("<a class='sprite-controller' href='#/admin/brick.ajax/create/layoutId/" + layoutId + "/stageId/" + THIS.attr('stage-id') + "/spriteName/" + THIS.attr('sprite-name') + "'>添加模块</a>");
 		THIS.append(newController);
 	}
 	$.fn.appendSurrogateController = function() {
 		var THIS = $(this);
 		var layoutId = $('.body_main_frame').attr('layoutId');
-		var newController = $("<a class='sprite-controller link' href='/admin/brick/create/layoutId/" + layoutId + "/stageId/" + THIS.attr('stage-id') + "/spriteName/" + THIS.attr('sprite-name') + "'>添加TAB</a>");
+		var newController = $("<a class='sprite-controller' href='#/admin/brick.ajax/create/layoutId/" + layoutId + "/stageId/" + THIS.attr('stage-id') + "/spriteName/" + THIS.attr('sprite-name') + "'>添加TAB</a>");
 		THIS.append(newController);
 	}
 	$.fn.removeSpriteController = function() {
@@ -196,7 +198,7 @@ $(document).ready(function() {
 		
 		var stageId = THIS.attr('stage-id');
 		if(stageId != 0) {
-			var editStageId = $("<a class='edit-stage-id' href='#/admin/layout/edit-stage/stageId/" + stageId + "'>编辑ID</a>");
+			var editStageId = $("<a class='edit-stage-id' href='#/admin/layout.ajax/edit-stage/stageId/" + stageId + "'>编辑ID</a>");
 			THIS.append(editStageId);
 		}
 		newController.click(function() {

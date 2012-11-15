@@ -1,3 +1,4 @@
+/**
 $(document).on('click', '.link', function(evt) {
 	evt.preventDefault();
 	var url = $(this).attr('href');
@@ -44,3 +45,4 @@ $(document).on('click', '.action-menu', function(evt) {
 		}
 	}
 });
+**/

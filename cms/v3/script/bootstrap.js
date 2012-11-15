@@ -20,8 +20,9 @@ $(document).ready(function() {
 			$.ajax({
 				type: "GET",
 				url: '/admin/' + query,
-				success: function(html) {
-					if(html == 'success') {
+				success: function(html, status, xhr) {
+					$result = xhr.getResponseHeader('result');
+					if($result == 'success') {
 						window.location.hash = '';
 						window.location.reload();
 					} else {
