@@ -20,14 +20,22 @@ DataCollection = Backbone.Collection.extend({
 			"dataSize": resp.dataSize,
 			"pageSize": resp.pageSize
 		};
+		this.groupCount = resp.groupCount;
 		return resp.data;
 	}
 });
 
 DataView = Backbone.View.extend({
 	tagName: "tr",
+	events: {
+		'click .ajax-to-trash'	: 'trash'
+	},
 	render: function() {
-		var template = _.template($('#data-row').html());
+		if(this.model.get('status') == 'trash') {
+			var template = _.template($('#data-trash-row').html());
+		} else {
+			var template = _.template($('#data-row').html());
+		}
 		$(this.el).html(template({
 			data: this.model.toJSON()
 		}));
@@ -38,12 +46,21 @@ DataView = Backbone.View.extend({
 	},
 	setIdx: function(idx) {
 		this.bgDiff = idx % 2;
+	},
+	trash: function(e) {
+		e.preventDefault();
+		var idx = $(e.currentTarget).attr('data-id');
+		$(this.el).animate({
+			'opacity': 0
+		}, function() {$(this).css('display', 'none');})
+		this.model.destroy();
 	}
 });
 
 DataCollectionView = Backbone.View.extend({
 	el: $('.datalist'),
 	events: {
+		'click .group-counter'		: 'regroup',
 		'click .s-index'			: 'resort',
 		'change #currentPageNumber'	: 'repage',
 		'click .query-invoker'		: 'requery',
@@ -53,6 +70,8 @@ DataCollectionView = Backbone.View.extend({
 	initialize: function() {
 		this.tbody = $(this.el).find('.datalist-body');
 		this.thead = $(this.el).find('.datalist-head');
+		/*******StatusCount********/
+		this.groupCountContainer = this.thead.find('.group-count');
 		/*******Sort********/
 		this.sortIndexes = this.thead.find('.s-index');
 		this.sortIndexes.each(function(i, obj) {
@@ -76,7 +95,10 @@ DataCollectionView = Backbone.View.extend({
 		_(this.collection.models).each(function(data, idx) {
 			TH.addItemView(data, idx);
 		}, this);
-		this.rePaginate();
+		this.rePaginateRender();
+		if(this.collection.groupCount) {
+			this.reGroupCountRender();
+		}
 	},
 	addItemView: function(data, idx) {
 		var dataView = new DataView({
@@ -108,7 +130,7 @@ DataCollectionView = Backbone.View.extend({
 			this.load();
 		}
 	},
-	rePaginate: function() {
+	rePaginateRender: function() {
 		this.pageInfo = this.collection.pageInfo;
 		var totalPageNumber = Math.ceil(this.pageInfo.dataSize / this.pageInfo.pageSize);
 		
@@ -134,6 +156,29 @@ DataCollectionView = Backbone.View.extend({
 //				paginatorContainer.append('<li><a href="#@page/' + i + '">' + i + '</a></li>');
 //			}
 //		}
+	},
+	reGroupCountRender: function() {
+		if(this.groupCountContainer.text() != "") {
+			return true;
+		}
+		this.groupCount = this.collection.groupCount;
+		var retval = this.groupCount.retval;
+		var countAll = this.groupCount.count;
+		var content = "";
+		var contentTrashLi = "";
+		$(retval).each(function(i, val) {
+			if(val['status'] != null) {
+				if(val['status'] == 'trash') {
+					countAll -= val['count'];
+					contentTrashLi = "<li class='trash group-counter' data-groupname='" + val['status'] + "'>" + val['status'] + " <span>(" + val['count'] + ")</span></li>";
+				} else {
+					content += "<li class='group-counter' data-groupname='" + val['status'] + "'>" + val['status'] + " <span>(" + val['count'] + ")</span></li>";
+				}
+			}
+		});
+		
+		content = "<li class='group-counter' data-groupname='all'>all <span>(" + countAll + ")</span></li>" + content + contentTrashLi;
+		this.groupCountContainer.html("<ul>" + content + "</ul>");
 	},
 	resort: function(e) {
 		var sortState = $(e.currentTarget).attr('sort');
@@ -168,15 +213,26 @@ DataCollectionView = Backbone.View.extend({
 	requery: function() {
 		this.load();
 	},
+	regroup: function(e) {
+		var selectedGroup = e.currentTarget;
+		$(selectedGroup).addClass('active').siblings().removeClass('active');
+		this.qGroup = $(selectedGroup).data('groupname');
+		this.load();
+	},
 	load: function() {
 		var sIndex = '_id';
 		var sOrder = -1;
+		var qGroup = 'all';
 		this.sortIndexes.each(function(i, obj) {
 			if($(obj).attr('sort') != undefined) {
 				sIndex = $(obj).attr('s-index');
 				sOrder = $(obj).attr('sort') == 'asc' ? 1 : -1;
 			}
 		});
+		
+		if(this.qGroup) {
+			qGroup = this.qGroup;
+		}
 		
 		var pageToLoad = 1;
 		if(this.pageInputEl != null) {
@@ -201,6 +257,7 @@ DataCollectionView = Backbone.View.extend({
 			'page': pageToLoad,
 			'sIndex': sIndex,
 			'sOrder': sOrder,
+			'qGroup': qGroup,
 			'query': queryStr
 		}});
 	}

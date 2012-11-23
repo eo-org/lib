@@ -10,20 +10,38 @@ table.datalist select {
 table.datalist {
 	width: 100%;
 }
-
+table.datalist thead tr.group-count-row {
+	border: none;
+	background-color: transparent;
+}
 table.datalist thead tr.title-row {
 	border: 1px solid #b1b0ae;
+	background-color: #e6e3e0;
 }
 table.datalist thead tr.search-row {
 	border: 1px solid #b1b0ae;
 	border-top: none;
+	background-color: #e6e3e0;
 }
 table.datalist thead th {
     text-align: center;
     padding: 2px 5px;
-    background-color: #e6e3e0;
     font-weight: normal;
     line-height: 16px;
+}
+table.datalist thead th.group-count li {
+	cursor: pointer;
+	float: left;
+	margin: 5px;
+	color: #0077BB;
+}
+table.datalist thead th.group-count li span {
+	color: #777777;
+	font-weight: normal;
+}
+table.datalist thead th.group-count li.active {
+	font-weight: bold;
+	color: #333333;
 }
 table.datalist thead th.s-index {
 	cursor: pointer;
