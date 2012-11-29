@@ -1,5 +1,4 @@
 $(document).on('click', '.action-menu', function(evt) {
-	console.log('button clicked!!');
 	var method = $(this).attr('method');
 	var url = $(this).attr('href');
 	switch(method) {
@@ -9,7 +8,7 @@ $(document).on('click', '.action-menu', function(evt) {
 			if(xForm.attr('action') != '') {
 				url = xForm.attr('action');
 			}
-			if(CKEDITOR.instances['ck_text_editor']) {
+			if($('#ck_text_editor').attr('id') == 'ck_text_editor' && CKEDITOR.instances['ck_text_editor']) {
 				CKEDITOR.instances['ck_text_editor'].updateElement();
 		    }
 			
@@ -19,9 +18,13 @@ $(document).on('click', '.action-menu', function(evt) {
 				url: url,
 				data: str,
 				success: function(html, status, xhr) {
-					$result = xhr.getResponseHeader('result');
-					if($result == 'success') {
+					var result = xhr.getResponseHeader('result');
+					
+					if(result == 'success') {
 						window.location.hash = 'refresh-page';
+					} else if(result == 'redirect') {
+						var hashUrl = xhr.getResponseHeader('url');
+						window.location.hash = hashUrl;
 					} else {
 						var lightBox = new Lightbox();
 						lightBox.appendContent(html);
