@@ -36,8 +36,18 @@ DataView = Backbone.View.extend({
 		} else {
 			var template = _.template($('#data-row').html());
 		}
+		listData = this.model.toJSON();
+		var selectors = this.selectors;
+		_.each(listData, function(value, key) {
+			if(key in selectors) {
+				var optVal = selectors[key];
+				if(value in optVal) {
+					listData[key] = optVal[value];
+				}
+			}
+		});
 		$(this.el).html(template({
-			data: this.model.toJSON()
+			data: listData
 		}));
 		if(this.bgDiff == 1) {
 			$(this.el).addClass('odd');
@@ -46,6 +56,9 @@ DataView = Backbone.View.extend({
 	},
 	setIdx: function(idx) {
 		this.bgDiff = idx % 2;
+	},
+	setSelectValue: function(selectors) {
+		this.selectors = selectors;
 	},
 	trash: function(e) {
 		e.preventDefault();
@@ -83,9 +96,19 @@ DataCollectionView = Backbone.View.extend({
 		this.pageInputEl = null;
 		/*******Query********/
 		this.queryIndexes = this.thead.find('.q-index');
-		
+		var seletors = {};
+		this.queryIndexes.each(function() {
+			if($(this).get(0).tagName == 'SELECT') {
+				var optVal = {};
+				$(this).find('option').each(function() {
+					optVal[$(this).val()] = $(this).html();
+				});
+				var name = $(this).attr('name');
+				seletors[name] = optVal;
+			}
+		});
+		this.seletors = seletors;
 		/*==================*/
-		
 		this.collection = new DataCollection();
 		this.collection.bind('reset', _.bind(this.render, this));
 	},
@@ -105,6 +128,7 @@ DataCollectionView = Backbone.View.extend({
 			model: data
 		});
 		dataView.setIdx(idx);
+		dataView.setSelectValue(this.seletors);
 		this.tbody.append(dataView.render().el);
 	},
 	prePage: function() {
