@@ -1,19 +1,14 @@
 (function($) {
-	$.fn.lightBox = function(settings) {
-		// Settings to configure the jQuery lightBox plugin how you like
+	$.fn.lightGallery = function(settings) {
 		settings = jQuery.extend({
-			// Configuration related to overlay
-			overlayBgColor: 		'#000',		// (string) Background color to overlay; inform a hexadecimal value like: #RRGGBB. Where RR, GG, and BB are the hexadecimal values for the red, green, and blue values of the color.
-			overlayOpacity:			0.8,		// (integer) Opacity value to overlay; inform: 0.X. Where X are number from 0 to 9
-			// Configuration related to navigation
-			fixedNavigation:		false,		// (boolean) Boolean that informs if the navigation (next and prev button) will be fixed or not in the interface.
-			// Configuration related to images
+			overlayBgColor: 		'#000',
+			overlayOpacity:			0.8,
+			fixedNavigation:		false,
 			imageLoading:			'http://misc.fucms.com/library/img/loading.gif',
 			imageBtnClose:			'http://misc.fucms.com/library/img/close.gif',
 			imageBtnPrev:			'http://misc.fucms.com/library/img/light-gallery/btn-prev.gif',
 			imageBtnNext:			'http://misc.fucms.com/library/img/light-gallery/btn-next.gif',
 			imageBlank:				'http://misc.fucms.com/library/img/light-gallery/blank.gif images/lightbox-blank.gif',
-			// Configuration related to container image box
 			containerBorderSize:	10,			// (integer) If you adjust the padding in the CSS for the container, #lightbox-container-image-box, you will need to update this value
 			containerResizeSpeed:	400,		// (integer) Specify the resize duration of container image. These number are miliseconds. 400 is default.
 			// Configuration related to texts in caption. For example: Image 2 of 8. You can alter either "Image" and "of" texts.
@@ -23,7 +18,7 @@
 			keyToClose:				'c',		// (string) (c = close) Letter to close the jQuery lightBox interface. Beyond this letter, the letter X and the SCAPE key is used to.
 			keyToPrev:				'p',		// (string) (p = previous) Letter to show the previous image
 			keyToNext:				'n',		// (string) (n = next) Letter to show the next image.
-			// Don´t alter these variables in any way
+			// Donï¿½t alter these variables in any way
 			imageArray:				[],
 			activeImage:			0
 		},settings);
@@ -148,7 +143,7 @@ var miscUrl = "http://misc.fucms.com/public-misc/5046be746d5461db12000000/";
 			});
 		}
 		/**
-		 * Prepares image exibition; doing a image´s preloader to calculate it´s size
+		 * Prepares image exibition; doing a imageï¿½s preloader to calculate itï¿½s size
 		 *
 		 */
 		function _set_image_to_view() { // show the loading
@@ -174,16 +169,16 @@ var miscUrl = "http://misc.fucms.com/public-misc/5046be746d5461db12000000/";
 		/**
 		 * Perfomance an effect in the image container resizing it
 		 *
-		 * @param integer intImageWidth The image´s width that will be showed
-		 * @param integer intImageHeight The image´s height that will be showed
+		 * @param integer intImageWidth The imageï¿½s width that will be showed
+		 * @param integer intImageHeight The imageï¿½s height that will be showed
 		 */
 		function _resize_container_image_box(intImageWidth,intImageHeight) {
 			// Get current width and height
 			var intCurrentWidth = $('#lightbox-container-image-box').width();
 			var intCurrentHeight = $('#lightbox-container-image-box').height();
 			// Get the width and height of the selected image plus the padding
-			var intWidth = (intImageWidth + (settings.containerBorderSize * 2)); // Plus the image´s width and the left and right padding value
-			var intHeight = (intImageHeight + (settings.containerBorderSize * 2)); // Plus the image´s height and the left and right padding value
+			var intWidth = (intImageWidth + (settings.containerBorderSize * 2)); // Plus the imageï¿½s width and the left and right padding value
+			var intHeight = (intImageHeight + (settings.containerBorderSize * 2)); // Plus the imageï¿½s height and the left and right padding value
 			// Diferences
 			var intDiffW = intCurrentWidth - intWidth;
 			var intDiffH = intCurrentHeight - intHeight;
@@ -233,7 +228,7 @@ var miscUrl = "http://misc.fucms.com/public-misc/5046be746d5461db12000000/";
 		function _set_navigation() {
 			$('#lightbox-nav').show();
 
-			// Instead to define this configuration in CSS file, we define here. And it´s need to IE. Just.
+			// Instead to define this configuration in CSS file, we define here. And itï¿½s need to IE. Just.
 			$('#lightbox-nav-btnPrev,#lightbox-nav-btnNext').css({ 'background' : 'transparent url(' + settings.imageBlank + ') no-repeat' });
 			
 			// Show the prev button, if not the first image in set
@@ -324,7 +319,7 @@ var miscUrl = "http://misc.fucms.com/public-misc/5046be746d5461db12000000/";
 			}
 			// Verify the key to show the previous image
 			if ( ( key == settings.keyToPrev ) || ( keycode == 37 ) ) {
-				// If we´re not showing the first image, call the previous
+				// If weï¿½re not showing the first image, call the previous
 				if ( settings.activeImage != 0 ) {
 					settings.activeImage = settings.activeImage - 1;
 					_set_image_to_view();
@@ -333,7 +328,7 @@ var miscUrl = "http://misc.fucms.com/public-misc/5046be746d5461db12000000/";
 			}
 			// Verify the key to show the next image
 			if ( ( key == settings.keyToNext ) || ( keycode == 39 ) ) {
-				// If we´re not showing the last image, call the next
+				// If weï¿½re not showing the last image, call the next
 				if ( settings.activeImage != ( settings.imageArray.length - 1 ) ) {
 					settings.activeImage = settings.activeImage + 1;
 					_set_image_to_view();
@@ -448,5 +443,5 @@ var miscUrl = "http://misc.fucms.com/public-misc/5046be746d5461db12000000/";
 })(jQuery);
 
 $(document).ready(function() {
-	$('.light-gallery img').lightBox();
+	$('.light-gallery img').lightGallery();
 });
