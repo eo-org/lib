@@ -18,7 +18,6 @@
 			keyToClose:				'c',		// (string) (c = close) Letter to close the jQuery lightBox interface. Beyond this letter, the letter X and the SCAPE key is used to.
 			keyToPrev:				'p',		// (string) (p = previous) Letter to show the previous image
 			keyToNext:				'n',		// (string) (n = next) Letter to show the next image.
-			// Don�t alter these variables in any way
 			imageArray:				[],
 			activeImage:			0
 		},settings);
@@ -50,7 +49,6 @@
 			var graphicsObj = $.parseJSON(graphicsData);
 			
 			var miscUrl = "http://misc.fucms.com/public-misc/" + window.SITE_FOLDER + "/";
-var miscUrl = "http://misc.fucms.com/public-misc/5046be746d5461db12000000/";
 			if ( graphicsObj.items.length == 1 ) {
 				settings.imageArray.push(new Array(miscUrl + graphicsObj.items[0], ""));
 			} else {
@@ -169,8 +167,6 @@ var miscUrl = "http://misc.fucms.com/public-misc/5046be746d5461db12000000/";
 		/**
 		 * Perfomance an effect in the image container resizing it
 		 *
-		 * @param integer intImageWidth The image�s width that will be showed
-		 * @param integer intImageHeight The image�s height that will be showed
 		 */
 		function _resize_container_image_box(intImageWidth,intImageHeight) {
 			// Get current width and height
@@ -319,7 +315,6 @@ var miscUrl = "http://misc.fucms.com/public-misc/5046be746d5461db12000000/";
 			}
 			// Verify the key to show the previous image
 			if ( ( key == settings.keyToPrev ) || ( keycode == 37 ) ) {
-				// If we�re not showing the first image, call the previous
 				if ( settings.activeImage != 0 ) {
 					settings.activeImage = settings.activeImage - 1;
 					_set_image_to_view();
@@ -328,7 +323,6 @@ var miscUrl = "http://misc.fucms.com/public-misc/5046be746d5461db12000000/";
 			}
 			// Verify the key to show the next image
 			if ( ( key == settings.keyToNext ) || ( keycode == 39 ) ) {
-				// If we�re not showing the last image, call the next
 				if ( settings.activeImage != ( settings.imageArray.length - 1 ) ) {
 					settings.activeImage = settings.activeImage + 1;
 					_set_image_to_view();
