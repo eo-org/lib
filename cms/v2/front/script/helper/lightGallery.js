@@ -100,14 +100,12 @@
 			// Get page sizes
 			var arrPageSizes = ___getPageSize();
 			// Style overlay and show it
-			/*
 			$('#jquery-overlay').css({
 				backgroundColor:	settings.overlayBgColor,
 				opacity:			settings.overlayOpacity,
 				width:				arrPageSizes[0],
 				height:				arrPageSizes[1]
 			}).fadeIn();
-			*/
 			// Get page scroll
 			var arrPageScroll = ___getPageScroll();
 			// Calculate top and left offset for the jquery-lightbox div object and show it
@@ -117,9 +115,9 @@
 			}).show();
 			// Assigning click events in elements to close overlay
 			
-			//$('#jquery-overlay,#jquery-lightbox').click(function() {
-			//	_finish();									
-			//});
+			$('#jquery-overlay,#jquery-lightbox').click(function() {
+				_finish();									
+			});
 			// Assign the _finish function to lightbox-loading-link and lightbox-secNav-btnClose objects
 			$('#lightbox-loading-link,#lightbox-secNav-btnClose').click(function() {
 				_finish();
@@ -130,12 +128,10 @@
 				// Get page sizes
 				var arrPageSizes = ___getPageSize();
 				// Style overlay and show it
-				/*
 				$('#jquery-overlay').css({
 					width:		arrPageSizes[0],
 					height:		arrPageSizes[1]
 				});
-				*/
 				// Get page scroll
 				var arrPageScroll = ___getPageScroll();
 				// Calculate top and left offset for the jquery-lightbox div object and show it
@@ -355,7 +351,7 @@
 		 */
 		function _finish() {
 			$('#jquery-lightbox').remove();
-			//$('#jquery-overlay').fadeOut(function() { $('#jquery-overlay').remove(); });
+			$('#jquery-overlay').fadeOut(function() { $('#jquery-overlay').remove(); });
 		}
 		/**
 		 / THIRD FUNCTION
