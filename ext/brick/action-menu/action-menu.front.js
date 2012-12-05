@@ -8,9 +8,6 @@ $(document).on('click', '.action-menu', function(evt) {
 			if(xForm.attr('action') != '') {
 				url = xForm.attr('action');
 			}
-			if($('#ck_text_editor').attr('id') == 'ck_text_editor' && CKEDITOR.instances['ck_text_editor']) {
-				CKEDITOR.instances['ck_text_editor'].updateElement();
-		    }
 			
 			var str = xForm.serialize();
 			var aj = $.ajax({

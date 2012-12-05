@@ -2,7 +2,7 @@ var IconSelector = function() {
 	var settings = {
 		caller : null,
 		callbackFunctionName : null,
-		fileServerUrl : "http://storage.aliyun.com/public-misc",
+		fileServerUrl : "http://misc.fucms.com/public-misc",
 		fileHost : "http://file.enorange.cn"
 	}
 	this.init = function() {
@@ -60,7 +60,19 @@ IconSelector.init();
 var appendToInput = function(data, caller) {
 	$(caller).val(data.urlname);
 };
+var appendToCmEditor = function(data, caller) {
+	var imgTag = "<img src='" + IconSelector.getFileServerUrl() + "/" + data.filepath + "' />";
+	var c = codeMirrorEditor.getCursor();
+	codeMirrorEditor.replaceRange(imgTag, c);
+	codeMirrorEditor.save();
+	//console.log(c);
+}
 //append icon to ck editor
+
+
+
+
+/**
 var editor = null;
 var appendToEditor = function(data) {
 	if ( editor.mode == 'wysiwyg' ) {
@@ -117,3 +129,4 @@ $(document).on('AdminControlLoad', function() {
 	    editor = CKEDITOR.instances.ck_text_editor;
 	}
 });
+**/
