@@ -50,7 +50,7 @@ AttachmentView = Backbone.View.extend({
 		return this;
 	},
 	setIntroicon: function() {
-		var imgUrl = 'http://storage.aliyun.com/public-misc/' + window.SITE_FOLDER + '/_resize/' + thumbWidth + '_' + thumbHeight + '_' + this.model.get('urlname');
+		var imgUrl = 'http://misc.fucms.com/public-misc/' + window.SITE_FOLDER + '/_resize/' + thumbWidth + '_' + thumbHeight + '_' + this.model.get('urlname');
 		var ajaxUrl = 'http://file.enorange.cn/' + window.SITE_FOLDER + '/default/file/resize';
 		$('#introicon').val('_resize/' + thumbWidth + '_' + thumbHeight + '_' + this.model.get('urlname'));
 		
