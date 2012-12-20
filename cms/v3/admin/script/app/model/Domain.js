@@ -1,7 +1,9 @@
 Domain = Backbone.Model.extend({
 	defaults:{
 		id: null,
-		domainName: ""
+		domainName: "",
+		isActive: true,
+		isDefault: false,
 	},
 	validate: function(attrs,options){
 		var patrn = /[\w+]/;
@@ -19,8 +21,7 @@ DomainCollection = Backbone.Collection.extend({
 DomainView = Backbone.View.extend({
 	tagName: 'li',
 	events:{
-		'click .action-edit'	: 'editValue',
-		'click .action-delete'	: 'destroy'
+		'click .edit'	: 'editValue'
 	},
 	initialize: function(){
 		this.model.on('change',this.update,this);
@@ -33,14 +34,13 @@ DomainView = Backbone.View.extend({
 		return this;
 	},
 	editValue: function(){		
-		var domain = new DomainEditView({
+		var domain = new DomainEditorView({
 			model: this.model
 		});
 		domain.render();
 	},
 	destroy: function() {
 		$(this.el).remove();
-		this.model.destroy();
 	}
 });
 
@@ -75,7 +75,8 @@ DomainCollectionView = Backbone.View.extend({
 
 DomainEditorView = Backbone.View.extend({
 	events:{
-		'click .edit-save': 'saveValue',
+		'click .edit-save': 'saveModel',
+		'click .edit-delete' : 'deleteModel'
 	},
 	render: function(){
 		$(this.el).attr('class', 'editAll');
@@ -87,24 +88,32 @@ DomainEditorView = Backbone.View.extend({
 		
 		return this;
 	},
-	saveValue: function(){
+	saveModel: function(){
 		var file = $(this.el).find('.edit-value');
 		var data = {};
 		file.each(function(i,j){
 			data[$(j).attr('name')] = $(j).val();
 		});
 		if(this.model.set(data)) {
-			console.log(this.model);
 			if(this.model.get('id') == null){
 				domainCollection.add(this.model);
 			};
-			this.model.save(this.model,{
+			this.model.save(this.model, {
 				success: function(model,response){
 					Prompt.getInstance().hideMask();
 				}
 			});
 		} else {
 			alert('域名不能为空');
+		}
+	},
+	deleteModel: function() {
+		if(confirm('确定要结束域名的绑定吗？')){
+			var request = this.model.destroy({
+				success:function(model) {
+					Prompt.getInstance().hideMask();
+				}
+			});
 		}
 	}
 });
