@@ -24,10 +24,12 @@
 	border-radius: 2px;
 	padding: 2px;
 }
+.treeleaf-item .leaf-line:hover {
+	border: 1px solid #999999;
+}
 .treeleaf-item .changed {
 	border: 1px solid #FFBABA;
 }
-
 .treeleaf-item .drag-handle {
 	width: 16px;
 	height: 16px;
@@ -46,6 +48,13 @@
 	padding: 1px 0 0 2px;
 }
 .treeleaf-item .leaf-link {
+	float: left;
+	padding: 3px 0 0 0;
+	margin-left: 7px;
+	font-size: smaller;
+	border-bottom: 1px dotted #777;
+}
+.treeleaf-item .leaf-layout-alias {
 	float: right;
 	padding: 3px 0 0 0;
 	font-size: smaller;
