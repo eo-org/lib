@@ -8,7 +8,8 @@ Treeleaf = Backbone.Model.extend({
 		className: '',
 		parentId: 0,
 		sort: 0,
-		description: ''
+		description: '',
+		disabled: 'no'
 	},
 	validate: function(attrs){	
 		if(attrs.label == ''){
