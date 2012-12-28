@@ -6,6 +6,8 @@ Treeleaf = Backbone.Model.extend({
 		alias: '',
 		layoutAlias: '',
 		className: '',
+		iconName: '',
+		bannerName: '',
 		parentId: 0,
 		sort: 0,
 		description: '',
