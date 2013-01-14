@@ -15,7 +15,7 @@ HeadFile = Backbone.Model.extend({
 
 HeadFileCollection = Backbone.Collection.extend({
 	model: HeadFile,
-	url: "/rest/head-file.json"
+	url: "/adminrest/adminrest-head-file.json"
 });
 
 HeadFileCollectionView = Backbone.View.extend({

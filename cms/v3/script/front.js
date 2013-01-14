@@ -163,8 +163,8 @@ $(document).ready(function() {
 			var postStr = spriteConfig.join(',');
 			postStr = '{"layoutId":"' + layoutId + '" ,"stages":[' + postStr + ']}';
 			var aj = $.ajax({
-				type: "POST",
-				url: '/rest/layout.json/save-stage',
+				type: "PUT",
+				url: '/adminrest/adminrest-layout.json/' + layoutId,
 				data: 'jsonString=' + postStr,
 				dataType: 'json',
 				success: function(output, status, xhr) {

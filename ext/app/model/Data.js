@@ -14,7 +14,8 @@ Data = Backbone.Model.extend();
 DataCollection = Backbone.Collection.extend({
 	model: Data,
 	url: restUrl,
-	parse: function(resp) {
+	parse: function(retContent) {
+		var resp = retContent.content;
 		this.pageInfo = {
 			"currentPage": resp.currentPage,
 			"dataSize": resp.dataSize,

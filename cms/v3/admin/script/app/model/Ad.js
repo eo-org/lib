@@ -11,7 +11,7 @@
 
 AdCollection = Backbone.Collection.extend({
 	model: Ad,
-	url: "/rest/ad.json"
+	url: "/adminrest/adminrest-ad.json"
 });
 
 AdView = Backbone.View.extend({

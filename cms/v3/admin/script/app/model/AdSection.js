@@ -14,7 +14,7 @@ AdSection = Backbone.Model.extend({
 
 AdSectionCollection = Backbone.Collection.extend({
 	model: AdSection,
-	url: "/rest/ad-section.json"
+	url: "/adminrest/adminrest-ad-section.json"
 });
 
 AdSectionView = Backbone.View.extend({

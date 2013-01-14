@@ -15,7 +15,7 @@ Domain = Backbone.Model.extend({
 
 DomainCollection = Backbone.Collection.extend({
 	model: Domain,
-	url: "/rest/domain.json"
+	url: "/adminrest/adminrest-domain.json"
 });
 
 DomainView = Backbone.View.extend({

@@ -22,7 +22,7 @@ Treeleaf = Backbone.Model.extend({
 
 TreeleafCollection = Backbone.Collection.extend({
 	model: Treeleaf,
-	url: "/rest/treeleaf.json"
+	url: "/adminrest/adminrest-treeleaf.json"
 });
 
 TreeleafView = Backbone.View.extend({

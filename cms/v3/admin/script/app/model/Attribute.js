@@ -15,7 +15,7 @@ Attribute = Backbone.Model.extend({
 
 AttributeCollection = Backbone.Collection.extend({
 	model: Attribute,
-	url: "/rest/attribute"
+	url: "/adminrest/adminrest-attribute"
 });
 
 AttributeView = Backbone.View.extend({
