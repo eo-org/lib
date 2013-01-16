@@ -49,7 +49,16 @@ error:		#FFBABA; border:#D8000C
 	background: url('mini-icons.png') no-repeat -32px -191.5px;
 	float:right;
 	margin-top:-2px;
-	
+}
+.mini-icon-arrow {
+	background: url('mini-icons.png') no-repeat -32px -16px;
+	float:right;
+	margin-top:-2px;
+}
+.mini-icon-arrowdown {
+	background: url('mini-icons.png') no-repeat -64px -16px;
+	float:right;
+	margin-top:-2px;
 }
 /*******Forms*********/
 fieldset.main-form {
