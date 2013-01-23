@@ -3,7 +3,7 @@ var IconSelector = function() {
 		caller : null,
 		callbackFunctionName : null,
 		fileServerUrl : "http://misc.fucms.com/public-misc",
-		fileHost : "http://file.enorange.cn"
+		fileHost : "http://file.enorange.com"
 	}
 	this.init = function() {
 		var TH = this;
