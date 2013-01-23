@@ -37,7 +37,7 @@ AttachmentView = Backbone.View.extend({
 	tagName: 'li',
 	events: {
 		"click .set-introicon"		: "setIntroicon",
-		"click .remove-attachment"	: "removeAttachment"
+		"click .remove"	: "removeAttachment"
 	},
 	render: function() {
 		if(this.model.get('filetype') == 'graphic') {
@@ -63,7 +63,8 @@ AttachmentView = Backbone.View.extend({
 		});
 	},
 	removeAttachment: function() {
-		alert('clicked');
+		this.model.destroy();
+		$(this.el).remove();
 	}
 });
 

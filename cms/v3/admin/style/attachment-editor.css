@@ -1,0 +1,15 @@
+#attachment {}
+#attachment button {float: right;}
+#attachment .graphic-field {padding: 5px; margin: 10px; border: 1px solid #aaa;}
+#attachment .download-field {padding: 5px; margin: 10px; border: 1px solid #aaa;}
+
+#attachment #graphic-list {overflow:hidden; height: 190px; width: 100%; }
+#attachment #graphic-list li {position: relative; float:left; width:120px; margin:5px; padding: 5px; height:160px; text-align:center; border:1px solid #999;  box-shadow:1px 1px 6px #999;}
+#attachment #graphic-list li .set-introicon {padding: 2px 0; cursor:pointer;}
+#attachment #graphic-list li .remove {cursor:pointer; position: absolute; left: 110px; top: 150px;}
+#attachment .introicon {float:left; margin: 5px; box-shadow:1px 1px 6px #999; border-radius:2px;}
+
+#attachment #download-list {overflow:hidden; height: 90px; width: 100%;}
+#attachment #download-list li {position: relative; float: left; margin: 5px; padding: 5px; border:1px solid #999;  box-shadow:1px 1px 6px #999; border-radius:2px;}
+#attachment #download-list li .name {float: left; padding: 3px;}
+#attachment #download-list li .remove {cursor:pointer; float: right;}
