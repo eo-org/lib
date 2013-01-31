@@ -9,7 +9,7 @@ function AutoScroll() {
     });
 }
 $(document).ready(function() {
-	intvalTime = 1500;
+	intvalTime = 2500;
 	scrollObj = $(".auto-scroll");
     var startScroll = setInterval('AutoScroll()', intvalTime)
     scrollObj.hover(
