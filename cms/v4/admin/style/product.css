@@ -1,0 +1,19 @@
+#graphic-list {
+	overflow: auto;
+	padding: 5px;
+	margin: 5px;
+	border: 1px solid #777;
+}
+
+#graphic-list li {
+	float: left;
+	height: 220px;
+	backgrond: white;
+	padding: 5px;
+	margin: 5px;
+	border: 1px solid #777;
+}
+
+#graphic-list li .set-introicon {
+	cursor: pointer;
+}

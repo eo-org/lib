@@ -1,0 +1,141 @@
+table.datalist {
+	width: 100%;
+}
+
+table.datalist thead tr.title-row {
+	border: 1px solid #b1b0ae;
+}
+
+table.datalist thead tr.filter-row {
+	border: 1px solid #b1b0ae;
+	border-bottom: none;
+}
+
+table.datalist thead tr.search-row {
+	border: 1px solid #b1b0ae;
+	border-top: none;
+}
+
+table.datalist thead th {
+    text-align: center;
+    padding: 2px 5px;
+    background-color: #e6e3e0;
+    font-weight: normal;
+}
+
+table.datalist thead td {
+    padding: 2px 5px;
+    background-color: #e6e3e0;
+    border: 1px solid #b1b0ae;
+}
+
+table.datalist thead td.search-td {
+    padding: 2px;
+}
+
+table.datalist thead .filter-field {
+    width: 100%;
+}
+
+table.datalist tbody tr {
+	background-color: #f6f2ef;
+	border: 1px solid #b1b0ae;
+	border-top: none;
+}
+
+table.datalist tbody tr.dbclk {
+	cursor: pointer;
+}
+
+table.datalist tbody tr.selected {
+	background-color: #e1e9eb;
+}
+
+table.datalist tbody tr:hover {
+	background-color: #e1e9eb;
+}
+
+table.datalist tbody th, table.datalist tbody td {
+	padding: 6px;
+}
+
+table.datalist tbody th {
+	background-color: #bbb;
+}
+
+#page-TD {
+	padding: 5px;
+	float: left;
+}
+
+#page-TD span, #page-TD a {
+	padding: 2px 10px;
+}
+
+#page-TD a:hover {
+	background-color: #FFEFD5;
+}
+
+#page-TD span.curr {
+	color: orange;
+	font-size: larger;
+	font-weight: bold;
+}
+
+#page-TD span.curr {
+	color: orange;
+	font-size: larger;
+	font-weight: bold;
+}
+
+.search-button {
+	float: right;
+}
+
+.insert-div {
+    overflow: auto;
+    border-bottom: 3px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.search-link, .insert-new-link {
+	display: block;
+	padding: 5px 15px;
+	margin: 5px;
+	border: 1px solid black;
+	background-color: #123456;
+	width: 100px;
+	text-align: center;
+	color: white;
+	float: right;
+}
+
+.search-link {
+    margin: 2px;
+    width: 50px;
+}
+
+.insert-new-link:hover, .search-link:hover {
+    border: 1px solid orange;
+}
+
+.insert-new-link:active, .search-link:active {
+    border: 1px solid white;
+}
+
+div.function-panel {
+    margin: 5px 0;
+    padding-bottom: 5px;
+    overflow: auto;
+    border-bottom: 2px solid #123456;
+}
+
+div.function-panel .intro {
+    font-weight: bold;
+    float: left;
+    margin-top: 10px;
+}
+
+div.function-panel .confirm {
+    float: right;
+}

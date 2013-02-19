@@ -1,0 +1,20 @@
+ul.site-domain {
+	background-color: #FEFEFE;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 2px 6px #777777;
+    margin: 4px 0 0 100px;
+    padding: 5px 15px;
+    width: 600px;
+}
+
+ul.site-domain li {
+	border: 1px solid #DDDDDD;
+    border-radius: 2px 2px 2px 2px;
+    padding: 2px;
+    margin: 15px 0;
+}
+
+ul.site-domain li a.edit {
+	padding: 12px;
+	display: block;
+}

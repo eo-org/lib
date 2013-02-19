@@ -1,0 +1,11 @@
+.navi-tooltip {
+	display: none;
+	background: url(../image/grad-small.png) repeat-x;
+	padding: 10px;
+	width: 310px;
+	border: 2px solid #FFA500;
+	border-radius: 4px;
+	box-shadow: 2px 2px 4px #000;
+	line-height: 2em;
+	min-height: 60px;
+}
