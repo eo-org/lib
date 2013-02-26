@@ -1,32 +1,49 @@
 Attribute = Backbone.Model.extend({
 	defaults: {
 		id: null,
-		attributesetId: null,
 		type: "",
 		code: "",
 		label: "",
 		description: "",
+		options: null,
 		required: false,
-		sort: null,
-		className: null,
-		options: null
+		sort: null
+	},
+	validate: function(attrs, options){
+		var errorMsg = "";
+		var pattern = new RegExp("^[a-z]+$");
+		if(!pattern.exec(attrs.code)) {
+			errorMsg = 'Attribute Code is not valid';
+		}
+		var pattern = new RegExp("^[a-z0-9]+$");
+		_.each(attrs.optionsCode, function (code, idx) {
+			if(!pattern.exec(code)) {
+				errorMsg = 'option code [' + code + '] is not valid';
+			}
+		});
+		if(errorMsg != "") {
+			return errorMsg;
+		}
 	}
 });
 
 AttributeCollection = Backbone.Collection.extend({
 	model: Attribute,
-	url: "/adminrest/adminrest-attribute"
+	url: "/adminrest/adminrest-attribute.json"
 });
 
 AttributeView = Backbone.View.extend({
 	tagName: 'div',
 	className: 'attribute-solid-item drag-handle',
 	events: {
+		"click a.lightbox-trigger": "editItem",
 		"dragstart": "dragStartEvent",
 		"dragend": "dragEndEvent"
 	},
 	initialize: function() {
 		this.model.on('change', this.modelChanged, this);
+		this.model.on('destroy', this.destroy, this);
+		this.model.on('invalid', this.invalid, this);
 	},
 	render: function() {
 		var template = _.template($('#attribute-template').html());
@@ -38,7 +55,13 @@ AttributeView = Backbone.View.extend({
 	modelChanged: function() {
 		this.render();
 	},
-	
+	editItem: function(e) {
+		e.preventDefault();
+		var aev = new AttributeEditorView({
+			model: this.model
+		});
+		aev.render();
+	},
 	dragStartEvent: function(e) {
 		e.dataTransfer.effectAllowed = 'move';
 		e.dataTransfer.setData('text', this.cid);
@@ -46,14 +69,19 @@ AttributeView = Backbone.View.extend({
 	},
 	dragEndEvent: function(e) {
 		$(this.el).css('opacity', '1');
+	},
+	destroy: function() {
+		$(this.el).remove();
+	},
+	invalid: function(model, error) {
+		alert('Attribute error: ' + error);
 	}
 });
 
 AttributeCollectionView = Backbone.View.extend({
 	el: $('div.attribute-list'),
 	events: {
-		"click .attribute-library-item": "createNew",
-		"click .attribute-solid-item a": "editItem",
+		//"click .attribute-library-item": "createNew",
 		"click .save-sort": "ajaxSaveSort",
 		"dragover .drop-to-sort": "dragOverEvent",
 		"dragleave .drop-to-sort": "dragLeaveEvent",
@@ -72,6 +100,9 @@ AttributeCollectionView = Backbone.View.extend({
 		}});
 		
 		this.collection.bind('add', this.addItem, this);
+		
+		this.creator = new AttributeCreatorView();
+		this.creator.setCollection(this.collection);
 	},
 	getCollection: function() {
 		return this.collection
@@ -80,37 +111,28 @@ AttributeCollectionView = Backbone.View.extend({
 		var TH = this;
 		var attrContainer = $(this.el).find('.attribute-current');
 		attrContainer.empty();
-		_(this.collection.models).each(function(attr) {
-			TH.addItem(attr);
+		_(this.collection.models).each(function(attributeModel) {
+			TH.addItem(attributeModel);
 		}, this);
 	},	
-	addItem: function(attribute) {
+	addItem: function(attributeModel) {
 		var attributeView = new AttributeView({
-			model: attribute
+			model: attributeModel
 		});
 		this.viewPointer[attributeView.cid] = attributeView;
-//		var index = this.collection.indexOf(attribute);
-
-		
 		var attrContainer = $(this.el).find('.attribute-current');
 		attrContainer.append(attributeView.render().el);
-//		console.log(attributeView.render().el);
-//		attrContainer.append("");
-		
-//		console.log(index);
-//		alert('next');
-		
 	},
 	createNew: function(e) {
 		var attributesetId = this.attributesetId;
 		var type = $(e.target).attr('attribute-type');
 		var label = $(e.target).attr('label');
 		var optionsArr = [];
-		if($.inArray(['select', 'radio', 'multicheckbox'], type)) {
-			optionsArr.push({label : '选项一'});
-			optionsArr.push({label : '选项二'});
-			optionsArr.push({label : '选项三'});
-		}
+//		if($.inArray(['select', 'radio', 'multicheckbox'], type)) {
+//			optionsArr.push({label : '选项一'});
+//			optionsArr.push({label : '选项二'});
+//			optionsArr.push({label : '选项三'});
+//		}
 		this.collection.create({
 			attributesetId: attributesetId,
 			description: "元素描述",
@@ -120,19 +142,6 @@ AttributeCollectionView = Backbone.View.extend({
 			sort: this.collection.length,
 			options: optionsArr
 		}, {wait: true});
-	},
-	editItem: function(e) {
-		e.preventDefault();
-		
-		var itemId = $(e.target).attr('attribute-id');
-		var attributeModel = this.collection.get(itemId);
-		var editorView = new AttributeEditorView({
-			model: attributeModel
-		});
-		
-		var editorContainer = $(this.el).find('.attribute-editor');
-		editorContainer.empty();
-		editorContainer.append(editorView.render().el);
 	},
 	ajaxSaveSort: function() {
 		var sortedIds = [];
@@ -182,6 +191,64 @@ AttributeCollectionView = Backbone.View.extend({
 	}
 });
 
+AttributeCreatorView = Backbone.View.extend({
+	el: $('div.attribute-library'),
+	events: {
+		"click .attribute-library-item": "createNew"
+//		"click .save-sort": "ajaxSaveSort",
+//		"dragover .drop-to-sort": "dragOverEvent",
+//		"dragleave .drop-to-sort": "dragLeaveEvent",
+//		"drop .drop-to-sort": "dropEvent"
+	},
+//	initialize: function() {
+//		var TH = this;
+//		this.attributesetId = $(this.el).attr('attributesetId');
+//		this.viewPointer = [];
+//		this.collection = new AttributeCollection();
+//		this.collection.comparator = function(attr) {
+//			return attr.get('sort');
+//		};
+//		this.collection.fetch({success: function() {
+//			TH.render();
+//		}});
+//		
+//		this.collection.bind('add', this.addItem, this);
+//	},
+	setCollection: function(collection) {
+		this.collection = collection;
+	},
+	createNew: function(e) {
+		var attributesetId = this.attributesetId;
+		var type = $(e.target).attr('attribute-type');
+		var label = $(e.target).attr('label');
+		var optionsArr = [];
+		if($.inArray(['select', 'radio', 'multicheckbox'], type)) {
+			optionsArr.push({label : '选项一'});
+			optionsArr.push({label : '选项二'});
+			optionsArr.push({label : '选项三'});
+		}
+		this.collection.create({
+			attributesetId: attributesetId,
+			type: type,
+			code: 'default',
+			label: label,
+			description: "元素描述",
+			required: false,
+			sort: this.collection.length,
+			options: optionsArr
+		});
+//		this.collection.create({
+//			attributesetId: attributesetId,
+//			description: "元素描述",
+//			type: type,
+//			label: label,
+//			required: false,
+//			sort: this.collection.length,
+//			options: optionsArr
+//		}, {wait: true});
+	},
+});
+
 AttributeEditorView = Backbone.View.extend({
 	events: {
 		"click .attribute-save": "saveModel",
@@ -190,13 +257,24 @@ AttributeEditorView = Backbone.View.extend({
 		"click .option-remove": "removeOption"
 	},
 	render: function() {
-		var template = _.template($('#attribute-editor-template').html());
-		$(this.el).html(template(this.model.toJSON()));
+		$(this.el).attr('class','editAll');
+		var editTemplate = _.template($('#attribute-editor-template').html());
+		$(this.el).html(editTemplate(this.model.toJSON()));
+		
+		Prompt.getInstance().showMask();
+		Prompt.getInstance().appendEditorContent(this.el);
+		
 		return this;
 	},
 	addNewOption: function() {
 		var oc = $(this.el).find('.option-container');
-		oc.append("<li class='option-item'><input class='attribute-field' type='text' name='option' value='' /> <span class='option-remove op-remove'>-</span></li>");
+		oc.append(
+			"<li class='option-item'>" +
+			"<label>code</label> <input class='attribute-field' type='text' group-tag='option' name='code' value='' />" +
+			"<label>label</label> <input class='attribute-field' type='text' group-tag='option' name='label' value='' />" +
+			"<span class='option-remove op-remove'>-</span>" +
+			"</li>"
+		);
 	},
 	removeOption: function(e) {
 		var liOption = $(e.currentTarget).parent('li:first');
@@ -205,21 +283,35 @@ AttributeEditorView = Backbone.View.extend({
 	saveModel: function(e) {
 		var fields = $(this.el).find('.attribute-field');
 		var data = {};
-		var options = [];
+		var optionsCode = [];
+		var optionsLabel = [];
 		fields.each(function(i, f) {
-			if($(f).attr('name') == 'option') {
-				if($(f).val() !== '') {
-					options.push({'label': $(f).val()});
+			if($(f).attr('group-tag') == 'option') {
+				if($(f).attr('name') == 'code') {
+					optionsCode.push($(f).val());
+				} else if($(f).attr('name') == 'label') {
+					optionsLabel.push($(f).val());
 				}
 			} else {
 				data[$(f).attr('name')] = $(f).val();
 			}
-			data['options'] = options;
 		});
-		this.model.set(data);
-		this.model.save();
+		data['optionsCode'] = optionsCode;
+		data['optionsLabel'] = optionsLabel;
+		
+		if(this.model.set(data)){
+			this.model.save(data, {success:function(model, response) {
+				Prompt.getInstance().hideMask();
+			}});
+		}
 	},
 	deleteModel: function(e) {
-		this.model.destroy();
+		if(confirm('确定要删除吗？')){
+			var request = this.model.destroy({
+				success:function(model) {
+					Prompt.getInstance().hideMask();
+				}
+			});
+		}
 	}
 });

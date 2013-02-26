@@ -56,8 +56,11 @@ HeadFileView = Backbone.View.extend({
 		'click .action-edit': 'editValue'
 	},
 	initialize: function(){
-		this.model.on('change',this.update,this);
-		this.model.on('destroy',this.destroy,this);
+		this.model.on('change', this.update,this);
+		this.model.on('destroy', this.destroy,this);
+		this.model.on('invalid', function(model, error) {
+			alert(error);
+		});
 	},
 	render: function(){
 		var template = _.template($('#headfile-item-template').html());
