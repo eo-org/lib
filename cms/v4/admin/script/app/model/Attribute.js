@@ -299,11 +299,11 @@ AttributeEditorView = Backbone.View.extend({
 		data['optionsCode'] = optionsCode;
 		data['optionsLabel'] = optionsLabel;
 		
-		if(this.model.set(data)){
-			this.model.save(data, {success:function(model, response) {
-				Prompt.getInstance().hideMask();
-			}});
-		}
+//		if(this.model.set(data)){
+		this.model.save(data, {success:function(model, response) {
+			Prompt.getInstance().hideMask();
+		}});
+//		}
 	},
 	deleteModel: function(e) {
 		if(confirm('确定要删除吗？')){

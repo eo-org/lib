@@ -98,7 +98,7 @@ DomainEditorView = Backbone.View.extend({
 			if(this.model.get('id') == null){
 				domainCollection.add(this.model);
 			};
-			this.model.save(this.model, {
+			this.model.save(data, {
 				success: function(model,response){
 					Prompt.getInstance().hideMask();
 				}

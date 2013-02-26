@@ -88,7 +88,7 @@ TreeleafView = Backbone.View.extend({
 		$(this.el).css('display', 'block');
 		$(this.el).next().css('display', 'block');
 	},
-	showEditor: function(e){
+	showEditor: function(e) {
 		var viewId = $(e.target).attr('id');
 		
 		var treeleafEditView = new TreeleafEditorView({

@@ -4,10 +4,12 @@ AdSection = Backbone.Model.extend({
 		label: '',
 		preview: []
 	},
-	validate: function(attrs,options){
-		if(attrs.label == ''){
-			alert('广告组名不能为空！');
-			return 'The model is null !';
+	initialize: function() {
+		this.on('invalid', this.invalid, this);
+	},
+	validate: function(attrs, options) {
+		if(attrs.label == '') {
+			return '广告组名不能为空';
 		};
 	}
 });
@@ -20,7 +22,6 @@ AdSectionCollection = Backbone.Collection.extend({
 AdSectionView = Backbone.View.extend({
 	tagName: "li",
 	events:{
-		'click .adsection-handle': "adSectionHandle",
 		'click .action-edit': "showAdEditValue"
 	},
 	initialize: function() {
@@ -31,10 +32,6 @@ AdSectionView = Backbone.View.extend({
 		var template = _.template($("#ad-section").html());
 		$(this.el).html(template(this.model.toJSON()));
 		return this;
-	},
-	adSectionHandle: function(){
-		console.log(this.model.get('id'));
-		window.location.href="ad.html?id="+this.model.get('id');
 	},
 	showAdEditValue: function(){
 		var adsectioneditorView = new AdSectionEditorView({
@@ -98,17 +95,19 @@ AdSectionEditorView = Backbone.View.extend({
 		return this;
 	},
 	create: function() {
+		this.model.on('invalid', this.invalid);
+		
 		var fields = $(this.el).find('.value-field');
 		var data = {};
 		
 		fields.each(function(i, f) {
 			data[$(f).attr('name')] = $(f).val();
 		});
-		if(this.model.set(data)){
-			if(this.model.get('id') == null){
+		if(this.model.set(data, {validate:true})){
+			if(this.model.isNew()) {
 				adSectionCollection.add(this.model);
 			}
-			this.model.save(this.model,{success:function(){
+			this.model.save(data, {success:function(){
 				Prompt.getInstance().hideMask();
 			}});
 		};
@@ -121,5 +120,8 @@ AdSectionEditorView = Backbone.View.extend({
 				}
 			});
 		}
+	},
+	invalid: function(model, error) {
+		alert('AdSection error: ' + error);
 	}
 });
