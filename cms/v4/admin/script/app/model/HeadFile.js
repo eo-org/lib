@@ -116,7 +116,7 @@ HeadFileEditView = Backbone.View.extend({
 			if(this.model.get('id') == null){
 				headfileCollection.add(this.model);
 			};
-			this.model.save(this.model,{success:function(model,response){
+			this.model.save(data, {success:function(model,response){
 				Prompt.getInstance().hideMask();
 			}});
 		}else{
