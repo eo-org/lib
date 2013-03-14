@@ -15,7 +15,7 @@ $(document).ready(function() {
 		$('.edit-stage-id').remove();
 		$('.sprite').removeClass('sprite-editmode');
 		
-		$('#body_head').animate({'margin-top':'29px'}, 500);
+		$('#body_head').animate({'margin-top':0}, 500);
 		$('.toolbar').animate({'height':'28px'}, 500);
 	};
 	

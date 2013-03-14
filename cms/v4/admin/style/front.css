@@ -1,21 +1,23 @@
-#body_head {
-	margin-top: 29px;
-}
-
 .toolbar {
 	position: fixed;
 	z-index: 997;
 	top: 0;
 	left: 0;
-	width: 100%;
+	width: 98%;
+	margin-left: 1%;
 	height: 28px;
-	border-bottom: 1px solid #ffa500;
+	border: 1px solid #ffa500;
+	border-top: none;
+	border-radius: 0 0 4px 4px;
 	box-shadow: 0 3px 6px #777;
 	overflow: hidden;
 	background-color: #777;
 	font-size: 11px;
+	opacity: 0.3;
 }
-
+.toolbar:hover {
+	opacity: 1;
+}
 .toolbar .main {
 	height: 28px;
 	width: 100%;
@@ -25,7 +27,7 @@
 }
 
 .toolbar .main ul {
-	padding: 5px 15px 0 15px;
+	padding: 5px 5px 0 5px;
 	margin: 0;
 }
 
@@ -68,7 +70,7 @@
 	margin: 2px;
 	float: left;
 	background-color: #87CB53;
-	width: 120px;
+	width: 100px;
 	text-align: center;
 	cursor: pointer;
 	border-radius: 2px;
