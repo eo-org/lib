@@ -153,13 +153,3 @@
         return $(newMarquee);
     };
 }(jQuery));
-$(document).ready(function() {
-	$('.marquee').marquee({
-		//speed in milliseconds of the marquee  
-		speed: 15000,  
-		//gap in pixels between the tickers  
-		gap: 50,  
-		//gap in pixels between the tickers  
-		delayBeforeStart: 0,
-	});
-});
