@@ -9,6 +9,12 @@
 		mask.css({'position':'relative'});
 		marqueeContent.css({'overflow': 'auto'});
 		
+		if(direction == 'up') {
+		
+		} else {
+			marqueeContent.css({'float': 'left'});
+		}
+		
 		marqueeContent.wrap(mask);
 		marqueeContentCopy.appendTo(marqueeContent.parent());
 		
