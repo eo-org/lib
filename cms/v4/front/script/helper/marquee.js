@@ -1,27 +1,16 @@
 (function ($) {
     $.fn.marquee = function (direction) {
-		var THIS = this;
-		
 		var marqueeObj = $(this);
-		marqueeObj.css({
-			'position':'relative',
-			'overflow':'hidden'
-		});
 		var mask = $('<div style="width: 8000px;"></div>');
 		var marqueeContent = marqueeObj.children('ul');
 		var marqueeContentCopy = marqueeContent.clone();
 		
-		console.log(marqueeContent);
-		
-		console.log(marqueeContentCopy);
-		
-		mask.css({
-			'position':'relative'
-		});
+		marqueeObj.css({'position':'relative', 'overflow':'hidden'});
+		mask.css({'position':'relative'});
+		marqueeContent.css({'overflow': 'auto'});
 		
 		marqueeContent.wrap(mask);
 		marqueeContentCopy.appendTo(marqueeContent.parent());
-		
 		
 		var leftPos = 0;
 		var contentWidth = marqueeContent.width();
