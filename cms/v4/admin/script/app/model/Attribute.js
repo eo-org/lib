@@ -2,6 +2,7 @@ Attribute = Backbone.Model.extend({
 	defaults: {
 		id: null,
 		type: "",
+		UUID: "",
 		code: "",
 		label: "",
 		description: "",

@@ -1,6 +1,33 @@
-div.datalist {
+div.datalist-frame {
+	background-color: white;
+	padding: 4px;
+}
+div.datalist-filter {
+	float: left;
+	width: 160px;
+	background: white;
+	border: 1px solid black;
+}
+div.datalist-filter .title {
+	font-weight: bold;
 	padding: 5px;
 }
+div.datalist-filter ul {
+	border-top: 1px solid black;
+	padding: 5px;
+}
+div.datalist-filter li a {
+	display: block;
+	padding: 5px 0;
+	margin: 1px 0;
+}
+div.datalist {
+	border: 1px solid black;
+	float: left;
+	margin-left: 4px;
+	width: calc(100% - 168px);
+}
+
 table.datalist input {
 	border: 1px solid #808080;
 }
