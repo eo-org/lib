@@ -31,7 +31,8 @@ TreeleafView = Backbone.View.extend({
 	events: {
 		"dragstart .drag-handle": "dragStartEvent",
 		"dragend .drag-handle": "dragEndEvent",
-		"click .edit": "showEditor"
+		"click .edit": "showEditor",
+		"click .leaf-add-to-navi": "addToNavi"
 	},
 	initialize: function() {
 		this.model.on('change', this.update, this);
@@ -96,6 +97,15 @@ TreeleafView = Backbone.View.extend({
 		});
 	
 		treeleafEditView.render();
+	},
+	addToNavi: function(e) {
+		var viewId = $(e.target).attr('id');
+		
+		var addToNaviView = new AddToNaviView({
+			model:this.model
+		});
+	
+		addToNaviView.render();
 	}
 });
 
@@ -237,5 +247,53 @@ TreeleafEditorView = Backbone.View.extend({
 				}
 			});
 		}
+	}
+});
+
+AddToNaviView =  Backbone.View.extend({
+	events: {
+		'click .edit-save' : 'saveToNavi'
+	},
+	render: function() {
+		var EL = $(this.el);
+		$.ajax({
+			url: '/adminrest/adminrest-navi.json?page=1&sIndex=_id&sOrder=-1&qGroup=all&query=none',
+			success: function(naviObj) {
+				var navi = naviObj.data;
+				var template = _.template($('#add-to-navi-editor').html());
+				EL.html(template({
+					'navi': navi
+				}));
+				
+				Prompt.getInstance().appendEditorContent(EL);
+				return this; 
+			}
+		});
+		
+		Prompt.getInstance().showMask();
+	},
+	saveToNavi: function() {
+		var sel = $(this.el).find('.naviId');
+		var naviId = sel.val();
+		
+		var MODEL = this.model;
+		//var data = "model=source=group_item&itemId=" + MODEL.id + "&" + "label=" + MODEL.get('label');
+		var postData = {
+			"itemId":MODEL.id,
+			"label":MODEL.get('label')
+		};
+		var data = {model:JSON.stringify(postData)};
+		$.ajax({
+			type: 'POST',
+			url: '/adminrest/adminrest-treeleaf.json',
+			data: data,
+			headers: {
+				"X-Tree-Type":'navi',
+				"X-Tree-Id":naviId
+	        },
+			success: function() {
+//				
+			}
+		});
 	}
 });

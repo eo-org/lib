@@ -438,5 +438,5 @@
 })(jQuery);
 
 $(document).ready(function() {
-	$('.light-gallery .light-gallery-item').lightGallery();
+	$('.light-gallery img').lightGallery();
 });
