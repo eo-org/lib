@@ -11,7 +11,8 @@ Treeleaf = Backbone.Model.extend({
 		parentId: 0,
 		sort: 0,
 		description: '',
-		disabled: 'no'
+		disabled: 'no',
+		resourceId: ''
 	},
 	validate: function(attrs){	
 		if(attrs.label == ''){
