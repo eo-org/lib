@@ -1,6 +1,7 @@
 Treeleaf = Backbone.Model.extend({
 	defaults: {
 		id: null,
+		groupType: '',
 		label: '',
 		link: '',
 		alias: '',
@@ -100,10 +101,10 @@ TreeleafView = Backbone.View.extend({
 		treeleafEditView.render();
 	},
 	addToNavi: function(e) {
-		var viewId = $(e.target).attr('id');
+		var viewId = $(e.target).data('itemid');
 		
 		var addToNaviView = new AddToNaviView({
-			model:this.model
+			model:treeleafCollection.get(viewId)
 		});
 	
 		addToNaviView.render();
@@ -278,10 +279,26 @@ AddToNaviView =  Backbone.View.extend({
 		var naviId = sel.val();
 		
 		var MODEL = this.model;
-		//var data = "model=source=group_item&itemId=" + MODEL.id + "&" + "label=" + MODEL.get('label');
+		var link = "";
+		var alias = MODEL.get('alias');
+		
+		if (MODEL.get('groupType') == 'article') {
+			if(alias != "") {
+				link = "/list-" + alias + "/page1.shtml";
+			} else {
+				link = "/list-" + MODEL.id + "/page1.shtml";
+			}
+		} else {
+			if(alias != "") {
+				link = "/product-list-" + alias + "/page1.shtml";
+			} else {
+				link = "/product-list-" + MODEL.id + "/page1.shtml";
+			}
+		}
 		var postData = {
-			"itemId":MODEL.id,
-			"label":MODEL.get('label')
+			"resourceId":MODEL.id,
+			"label":MODEL.get('label'),
+			"link":link
 		};
 		var data = {model:JSON.stringify(postData)};
 		$.ajax({
@@ -293,7 +310,7 @@ AddToNaviView =  Backbone.View.extend({
 				"X-Tree-Id":naviId
 	        },
 			success: function() {
-//				
+				Prompt.getInstance().hideMask();
 			}
 		});
 	}
