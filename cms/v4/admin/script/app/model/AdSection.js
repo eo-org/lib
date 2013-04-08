@@ -83,8 +83,8 @@ AdSectionCollectionView = Backbone.View.extend({
 
 AdSectionEditorView = Backbone.View.extend({
 	events: {
-		"click .action-dd": "create",
-		"click .action-ss": "deleteValue"
+		"click .edit-save": "save",
+		"click .edit-delete": "remove"
 	},
 	render: function() {
 		var template = _.template($("#ad-section-editor").html());
@@ -94,7 +94,7 @@ AdSectionEditorView = Backbone.View.extend({
 		
 		return this;
 	},
-	create: function() {
+	save: function() {
 		this.model.on('invalid', this.invalid);
 		
 		var fields = $(this.el).find('.value-field');
@@ -112,7 +112,7 @@ AdSectionEditorView = Backbone.View.extend({
 			}});
 		};
 	},
-	deleteValue: function(){
+	remove: function(){
 		if(confirm('确定要删除吗？')){
 			this.model.destroy({
 				success: function(model,response){
