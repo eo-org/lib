@@ -1,19 +1,17 @@
-Treeleaf = Backbone.Model.extend({
+GroupItem = Backbone.Model.extend({
 	defaults: {
 		id: null,
 		groupType: '',
 		label: '',
-		link: '',
 		alias: '',
 		layoutAlias: '',
-		className: '',
-		iconName: '',
-		bannerName: '',
 		parentId: 0,
 		sort: 0,
-		description: '',
 		disabled: 'no',
-		resourceId: ''
+		description: '',
+		className: '',
+		iconName: '',
+		bannerName: ''
 	},
 	validate: function(attrs){	
 		if(attrs.label == ''){
@@ -22,26 +20,25 @@ Treeleaf = Backbone.Model.extend({
 	}
 });
 
-TreeleafCollection = Backbone.Collection.extend({
-	model: Treeleaf,
-	url: "/adminrest/adminrest-treeleaf.json"
+GroupItemCollection = Backbone.Collection.extend({
+	model: GroupItem,
+	url: "/adminrest/adminrest-group-item.json"
 });
 
-TreeleafView = Backbone.View.extend({
+GroupItemView = Backbone.View.extend({
 	tagName: 'li',
-	className: 'treeleaf-item',
+	className: 'group-item',
 	events: {
 		"dragstart .drag-handle": "dragStartEvent",
 		"dragend .drag-handle": "dragEndEvent",
-		"click .edit": "showEditor",
-		"click .leaf-add-to-navi": "addToNavi"
+		"click .edit": "showEditor"
 	},
 	initialize: function() {
 		this.model.on('change', this.update, this);
 		this.model.on('destroy', this.destroy, this);
 	},
 	render: function() {
-		var template = _.template($('#treeleaf-item-template').html());
+		var template = _.template($('#group-item-template').html());
 		$(this.el).html(template(this.model.toJSON()));
 		$(this.el).attr({
 			'id': this.model.get('id'),
@@ -52,7 +49,7 @@ TreeleafView = Backbone.View.extend({
 	},
 	update: function() {
 		if(this.model.hasChanged('id')) {
-			var template = _.template($('#treeleaf-item-template').html());
+			var template = _.template($('#group-item-template').html());
 			$(this.el).html(template(this.model.toJSON()));
 			$(this.el).attr({
 				'id': this.model.get('id'),
@@ -63,7 +60,7 @@ TreeleafView = Backbone.View.extend({
 			var ulEl = $(this.el).children('ul');
 			var parentId = $(this.el).attr('parent-id');
 			
-			var template = _.template($('#treeleaf-item-template').html());
+			var template = _.template($('#group-item-template').html());
 			$(this.el).html(template(this.model.toJSON()));
 			$(this.el).attr({
 				'id': this.model.get('id'),
@@ -94,25 +91,16 @@ TreeleafView = Backbone.View.extend({
 	showEditor: function(e) {
 		var viewId = $(e.target).attr('id');
 		
-		var treeleafEditView = new TreeleafEditorView({
-			model:treeleafCollection.get(viewId)
+		var groupItemEditView = new GroupItemEditorView({
+			model:groupItemCollection.get(viewId)
 		});
 	
-		treeleafEditView.render();
-	},
-	addToNavi: function(e) {
-		var viewId = $(e.target).data('itemid');
-		
-		var addToNaviView = new AddToNaviView({
-			model:treeleafCollection.get(viewId)
-		});
-	
-		addToNaviView.render();
+		groupItemEditView.render();
 	}
 });
 
-TreeleafCollectionView = Backbone.View.extend({
-	treeleafCollection: null,
+GroupItemCollectionView = Backbone.View.extend({
+	groupItemCollection: null,
 	el: $('ul.container'),
 	events: {
 		"dragover .drop-to-sort": "dragOverEvent",
@@ -122,20 +110,17 @@ TreeleafCollectionView = Backbone.View.extend({
 	prompt: Prompt.getInstance().appendHintBoxContent("树状结构已经改变，请点击<保存结构>以保存新的结构"),
 	initialize: function() {
 		var TH = this;
-		this.collection = new TreeleafCollection();
-		//this.collection.bind('reset', _.bind(this.render, this));
+		this.collection = new GroupItemCollection();
 		this.collection.bind('add',this.addItem,this);
 		this.collection.comparator = function(attr) {
 			return attr.get('sort');
 		};
 		this.collection.fetch();
-		treeleafCollection = this.collection;
+		groupItemCollection = this.collection;
 	},
 	render: function() {
 		var TH = this;
 		var container = $(this.el);
-		
-//		$(this.el).empty();
 		
 		_(this.collection.models).each(function(model) {
 			if(model.get('parentId') === '') {
@@ -146,7 +131,7 @@ TreeleafCollectionView = Backbone.View.extend({
 		}, this);
 	},
 	addItem: function(model) {
-		var treeleafView = new TreeleafView({
+		var groupItemView = new GroupItemView({
 			model: model
 		});
 		
@@ -158,7 +143,7 @@ TreeleafCollectionView = Backbone.View.extend({
 		if(container.length === 0) {
 			container = $(this.el);
 		}
-		container.append(treeleafView.render().el);
+		container.append(groupItemView.render().el);
 		container.append("<li class='drop-to-sort' parent-id='" + model.get('parentId') + "'></li>");
 	},
 	dragOverEvent: function(e) {
@@ -199,14 +184,13 @@ TreeleafCollectionView = Backbone.View.extend({
 	}
 });
 
-TreeleafEditorView = Backbone.View.extend({
+GroupItemEditorView = Backbone.View.extend({
 	events: {
 		'click .edit-save' : 'saveModel',
 		'click .edit-delete' : 'deleteModel'
 	},
 	render: function() {
-		
-		var template = _.template($('#treeleaf-editor').html());
+		var template = _.template($('#group-item-editor').html());
 		$(this.el).html(template(this.model.toJSON()));
 		
 		Prompt.getInstance().showMask();
@@ -227,12 +211,12 @@ TreeleafEditorView = Backbone.View.extend({
 		
 		if(this.model.set(data)){
 			if(this.model.isNew()) {
-				treeleafCollection.add(this.model);
+				groupItemCollection.add(this.model);
 			}
 			this.model.save(data, {success:function(model, response) {
 				Prompt.getInstance().hideMask();
 				Prompt.getInstance().showHintBox();
-			}});			
+			}});
 		} else {
 			alert('链接名不能为空！');
 		}
@@ -248,69 +232,5 @@ TreeleafEditorView = Backbone.View.extend({
 				}
 			});
 		}
-	}
-});
-
-AddToNaviView =  Backbone.View.extend({
-	events: {
-		'click .edit-save' : 'saveToNavi'
-	},
-	render: function() {
-		var EL = $(this.el);
-		$.ajax({
-			url: '/adminrest/adminrest-navi.json?page=1&sIndex=_id&sOrder=-1&qGroup=all&query=none',
-			success: function(naviObj) {
-				var navi = naviObj.data;
-				var template = _.template($('#add-to-navi-editor').html());
-				EL.html(template({
-					'navi': navi
-				}));
-				
-				Prompt.getInstance().appendEditorContent(EL);
-				return this; 
-			}
-		});
-		
-		Prompt.getInstance().showMask();
-	},
-	saveToNavi: function() {
-		var sel = $(this.el).find('.naviId');
-		var naviId = sel.val();
-		
-		var MODEL = this.model;
-		var link = "";
-		var alias = MODEL.get('alias');
-		
-		if (MODEL.get('groupType') == 'article') {
-			if(alias != "") {
-				link = "/list-" + alias + "/page1.shtml";
-			} else {
-				link = "/list-" + MODEL.id + "/page1.shtml";
-			}
-		} else {
-			if(alias != "") {
-				link = "/product-list-" + alias + "/page1.shtml";
-			} else {
-				link = "/product-list-" + MODEL.id + "/page1.shtml";
-			}
-		}
-		var postData = {
-			"resourceId":MODEL.id,
-			"label":MODEL.get('label'),
-			"link":link
-		};
-		var data = {model:JSON.stringify(postData)};
-		$.ajax({
-			type: 'POST',
-			url: '/adminrest/adminrest-treeleaf.json',
-			data: data,
-			headers: {
-				"X-Tree-Type":'navi',
-				"X-Tree-Id":naviId
-	        },
-			success: function() {
-				Prompt.getInstance().hideMask();
-			}
-		});
 	}
 });

@@ -3,10 +3,10 @@ var restUrl = window.restUrl;
 var paginatorTemplate = _.template(
 	"<div class='page-pre'></div>" +
 	"<div class='page-displayer'>" +
-		"Page <input id='currentPageNumber' type='text' name='currentPage' value='{{currentPageNumber}}' /> / <span id='totalPageNumber'>{{totalPageNumber}}</span>" +
+		"Page <input id='currentPageNumber' type='text' name='currentPage' value='<%=currentPageNumber%>' /> / <span id='totalPageNumber'><%=totalPageNumber%></span>" +
 	"</div>" +
 	"<div class='page-next'></div>" +
-	"<div class='data-size'>total item: {{dataSize}}</div>"
+	"<div class='data-size'>total item: <%=dataSize%></div>"
 );
 
 Data = Backbone.Model.extend();
@@ -284,6 +284,6 @@ DataCollectionView = Backbone.View.extend({
 			'sOrder': sOrder,
 			'qGroup': qGroup,
 			'query': queryStr
-		}});
+		}, reset: true});
 	}
 });
