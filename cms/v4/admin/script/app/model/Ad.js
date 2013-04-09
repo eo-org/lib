@@ -61,9 +61,10 @@ AdCollectionView = Backbone.View.extend({
 	initialize: function() {
 		var TH = this;
 		this.collection = new AdCollection();
-		this.collection.fetch({reset:true});
 		this.collection.bind('add', this.addItemView, this);
-		
+		this.collection.fetch({success: function() {
+			TH.render();
+		}});
 		adCollection = this.collection;
 	},
 	render: function() {
