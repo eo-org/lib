@@ -53,9 +53,7 @@ DomainCollectionView = Backbone.View.extend({
 		domainCollection = this.collection;
 		this.collection.bind('add',_.bind(this.modelAdd,this));
 		
-		this.collection.fetch({success: function(){
-			TH.render();
-		}});
+		this.collection.fetch();
 	},
 	render: function(){
 		var TH = this;
@@ -75,8 +73,8 @@ DomainCollectionView = Backbone.View.extend({
 
 DomainEditorView = Backbone.View.extend({
 	events:{
-		'click .edit-save': 'saveModel',
-		'click .edit-delete' : 'deleteModel'
+		'click .edit-save': 'save',
+		'click .edit-delete' : 'remove'
 	},
 	render: function(){
 		$(this.el).attr('class', 'editAll');
@@ -88,7 +86,7 @@ DomainEditorView = Backbone.View.extend({
 		
 		return this;
 	},
-	saveModel: function(){
+	save: function(){
 		var file = $(this.el).find('.edit-value');
 		var data = {};
 		file.each(function(i,j){
@@ -107,7 +105,7 @@ DomainEditorView = Backbone.View.extend({
 			alert('域名不能为空');
 		}
 	},
-	deleteModel: function() {
+	remove: function() {
 		if(confirm('确定要结束域名的绑定吗？')){
 			var request = this.model.destroy({
 				success:function(model) {
