@@ -30,9 +30,7 @@ HeadFileCollectionView = Backbone.View.extend({
 		headfileCollection = this.collection;
 		this.collection.bind('add',_.bind(this.modelAdd, this));
 		
-		this.collection.fetch({success: function(){
-			TH.render();
-		}});
+		this.collection.fetch();
 	},
 	render: function(){
 		var TH = this;
