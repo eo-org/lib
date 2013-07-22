@@ -89,3 +89,16 @@ ul.tab-content dl.admin-zendform p.description {
 ul.tab-content dl.admin-zendform dd textarea{
 	width: 680px;
 }
+ul.tab-content dl.admin-zendform dd #introicon {
+	cursor: pointer;
+	border: none;
+	border-bottom: 1px dotted black;
+	background: transparent;
+	padding: 2px 5px;
+	width: 280px;
+}
+ul.tab-content dl.admin-zendform dd .icon-display {
+	display: block;
+	width: 100px;
+	height: 100px;
+}
