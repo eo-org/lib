@@ -17,7 +17,7 @@ $(document).ready(function() {
 			if(j == 0) {
 				$(h).addClass('selected');
 			}
-			if(tabs.data('response') == 'mouseover') {
+			if($(tab).data('response') == 'mouseover') {
 				$(h).mouseover(function() {
 					handles.each(function(k, h) {
 						if(k == j) {
