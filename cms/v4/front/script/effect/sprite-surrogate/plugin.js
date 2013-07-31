@@ -17,22 +17,41 @@ $(document).ready(function() {
 			if(j == 0) {
 				$(h).addClass('selected');
 			}
-			$(h).click(function() {
-				handles.each(function(k, h) {
-					if(k == j) {
-						$(h).addClass('selected');
-					} else {
-						$(h).removeClass('selected');
-					}
+			if(tabs.data('response') == 'mouseover') {
+				$(h).mouseover(function() {
+					handles.each(function(k, h) {
+						if(k == j) {
+							$(h).addClass('selected');
+						} else {
+							$(h).removeClass('selected');
+						}
+					});
+					contents.each(function(k, c) {
+						if(k == j) {
+							$(c).css({'zIndex': 3});
+						} else {
+							$(c).css({'zIndex': 0});
+						}
+					});
 				});
-				contents.each(function(k, c) {
-					if(k == j) {
-						$(c).css({'zIndex': 3});
-					} else {
-						$(c).css({'zIndex': 0});
-					}
+			} else {
+				$(h).click(function() {
+					handles.each(function(k, h) {
+						if(k == j) {
+							$(h).addClass('selected');
+						} else {
+							$(h).removeClass('selected');
+						}
+					});
+					contents.each(function(k, c) {
+						if(k == j) {
+							$(c).css({'zIndex': 3});
+						} else {
+							$(c).css({'zIndex': 0});
+						}
+					});
 				});
-			});
+			}
 		});
 	});
 });
