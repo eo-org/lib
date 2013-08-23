@@ -37,7 +37,6 @@ OptionEditorView = Backbone.View.extend({
 		MESSAGE_CURRENT_EDIT_MODEL.updateView();
 	},
 	opRemove: function(e) {
-		console.log(MESSAGE_CURRENT_EDIT_MODEL.optionCollection.length)
 		MESSAGE_CURRENT_EDIT_MODEL.optionCollection.remove(this.model);
 		MESSAGE_CURRENT_EDIT_MODEL.updateView();
 	},

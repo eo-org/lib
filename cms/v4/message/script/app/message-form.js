@@ -28,7 +28,6 @@
 	    		mfModel: messageFormModel,
 	    		elementCollection: elementCollection
 	    	});
-	    	console.log('fefefe');
 		} else {
 			var messageFormModel = new MessageForm({id: MESSAGE_FORM_ID});
 			var elementCollection = new ElementCollection();
