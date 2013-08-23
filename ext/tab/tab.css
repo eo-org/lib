@@ -2,7 +2,7 @@ ul.tab-handle {
 	padding-left: 10px;
 	width:360px;
 	height:26px;
-	z-index: 8;
+	z-index: -1;
 	background: transparent;
 }
 ul.tab-handle li.handle {
@@ -23,7 +23,7 @@ ul.tab-handle li.current {
 }
 
 ul.tab-content {
-	z-index: 9;
+	z-index: 1;
 	position: relative;
 	top: -2px;
 }

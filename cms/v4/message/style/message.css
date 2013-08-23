@@ -1,0 +1,45 @@
+.messageform-stage {overflow: auto; background: white;}
+.messageform-stage .section-title {
+	padding: 5px 0; margin: 5px 0;
+	font-weight: bold; color: #ffa500; border-bottom: 1px solid #777;;
+}
+.messageform-control {float: left; width: 360px;}
+.messageform-display {float: left; width: 800px; padding: 15px;}
+/****************************/
+/*message control panel area*/
+/****************************/
+.messageform-control dt {font-weight: bold; padding: 5px;}
+.messageform-control dd {}
+.messageform-control input {border-radius: 2px; padding: 2px;}
+.messageform-control textarea {border-radius: 2px; width: 340px;}
+
+.messageform-control #basic {padding: 5px;}
+.messageform-control #basic #message-form-editor {height: 200px;}
+.messageform-control #message-attr {overflow: auto; padding: 10px;}
+/****************************/
+.messageform-control #element-library {overflow: auto;}
+.messageform-control #element-library li {
+	padding: 4px 4px; border: 1px solid #0077BB; margin: 5px; width: 150px; height: 24px; float: left;
+	cursor: pointer; border-radius: 2px; background: #eee; box-shadow: 0 0 2px #eee;
+}
+.messageform-control #element-library li:hover {box-shadow: 0 0 0 #eee;}
+.messageform-control #element-library li .icon {width: 24px; height: 24px; float: left; background: url(./form-element.png) no-repeat;}
+.messageform-control #element-library li .text {width: 50px; float: left; padding: 6px 0 0 8px;}
+/****************************/
+.messageform-control #element-editor {padding: 5px; min-height: 300px;}
+.messageform-control ul.option-container li.option-item {margin-bottom: 10px; overflow: auto;}
+.messageform-control ul.option-container .op-input {float: left;}
+.messageform-control ul.option-container .op-add,
+.messageform-control ul.option-container .op-remove
+ {float: left; margin: 4px 10px; cursor: pointer;}
+.messageform-control .el-action-container {padding: 10px 0; overflow: auto;}
+.messageform-control .el-action-container .el-remove-button {display: block; float: left; padding: 5px 15px;}
+.messageform-control .el-action-container .el-remove {float: left; margin-right: 10px;}
+.messageform-control .el-action-container .label {float: left; margin-top: 2px;}
+
+/****************************/
+/*message form display area**/
+/****************************/
+.messageform-display #message-form .label {font-size: 18px; font-weight: bold; margin: 15px 0;}
+.messageform-display #element-collection li.form-element {padding: 5px; margin: 5px 0; border: 1px dashed transparent; background: #eee;}
+.messageform-display #element-collection li.form-element:hover {border: 1px dashed black;}
